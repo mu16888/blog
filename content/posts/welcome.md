@@ -4,6 +4,7 @@ date: 2026-10-13
 draft: false
 tags: ["公告", "随笔"]
 description: "第一篇文章，说明这个站点的定位。"
+images: ["/covers/site-launch.jpg"]
 ---
 
 欢迎来到 **沐风** 的个人博客。
