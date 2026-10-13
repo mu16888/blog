@@ -1,33 +1,41 @@
 /* ============================================================
-   沐风博客 · 自定义样式（墨蓝调性，复刻 tranquilpeak 的干净优雅感）
+   沐风博客 · 自定义样式（暖橙调性 · 赤陶橙 + 米白背景）
    仅覆盖 PaperMod 变量与局部样式，框架零改动，删本文件即回退。
+   设计目标：干净留白 + 暖色温度 + 卡片网格（复刻 tranquilpeak 的优雅感，去冷蓝）
    ============================================================ */
 
 /* ---- 1. 配色与间距变量 ---- */
 :root {
-  --accent: #1f3a5f;            /* 墨蓝：链接/标题/按钮主色 */
-  --accent-soft: #2c4f7a;       /* 悬浮态 */
+  --accent: #C0532B;            /* 赤陶橙：链接/标题/按钮主色（暖、有食欲、接地气） */
+  --accent-soft: #E07A4A;       /* 悬浮态 */
   --main-width: 820px;          /* 正文更宽，阅读更舒服 */
   --gap: 28px;
   --radius: 14px;               /* 圆角更大，去掉方正感 */
-  --border: #e7e9ee;
+  --border: #ECE3DA;            /* 暖灰边框 */
+  --bg-warm: #FBF7F2;           /* 米白背景 */
 }
 
-/* 暗色主题下的强调色（偏亮蓝，保证对比） */
+/* 暗色主题下的强调色（提亮橙，保证对比） */
 :root[data-theme="dark"] {
-  --accent: #7aa2f7;
-  --accent-soft: #9ec1ff;
-  --border: #313542;
+  --accent: #E8915E;
+  --accent-soft: #F2B083;
+  --border: #3A3330;
+  --bg-warm: #1A1714;
 }
 
-/* ---- 2. 选中文字底色 ---- */
-::selection { background: rgba(31, 58, 95, .15); }
+/* ---- 2. 整站暖底 ---- */
+body {
+  background: var(--bg-warm);
+}
 
-/* ---- 3. 链接 ---- */
+/* ---- 3. 选中文字底色 ---- */
+::selection { background: rgba(192, 83, 43, .15); }
+
+/* ---- 4. 链接 ---- */
 a { color: var(--accent); }
 a:hover { color: var(--accent-soft); }
 
-/* ---- 4. 标题（更沉稳的墨蓝）+ 中文字体栈 ---- */
+/* ---- 5. 标题（暖橙）+ 中文字体栈 ---- */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
     "Microsoft YaHei", "Hiragino Sans GB", "Source Han Sans SC",
@@ -40,21 +48,27 @@ body {
   letter-spacing: .3px;
 }
 
-/* ---- 5. 卡片：圆角 + 轻阴影 + 细腻边框 ---- */
+/* ---- 6. 卡片：圆角 + 轻暖阴影 + 细腻边框 ---- */
 .entry, .post-entry {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 2px 14px rgba(31, 58, 95, .06);
+  box-shadow: 0 2px 14px rgba(192, 83, 43, .06);
   transition: box-shadow .2s ease, transform .2s ease;
 }
 .post-entry:hover {
-  box-shadow: 0 6px 22px rgba(31, 58, 95, .12);
+  box-shadow: 0 6px 22px rgba(192, 83, 43, .12);
   transform: translateY(-2px);
 }
 
-/* ---- 6. 首页 profile：轻背景卡片 + 头像描边 ---- */
+/* ---- 7. 封面图顶部圆角（tranquilpeak 式卡片缩略图）---- */
+.post-entry .post-cover img,
+.post-entry .cover img {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ---- 8. 首页 profile：暖背景卡片 + 头像描边 ---- */
 .profile_inner {
-  background: linear-gradient(180deg, rgba(31, 58, 95, .04), rgba(31, 58, 95, 0) 70%);
+  background: linear-gradient(180deg, rgba(192, 83, 43, .05), rgba(192, 83, 43, 0) 70%);
   border-radius: var(--radius);
   padding: 32px 20px;
 }
@@ -63,11 +77,11 @@ body {
   height: 150px;
   object-fit: cover;            /* 换成非正方形图也只裁不变形 */
   border: 3px solid #fff;
-  box-shadow: 0 2px 14px rgba(31, 58, 95, .25);
+  box-shadow: 0 2px 14px rgba(192, 83, 43, .25);
   border-radius: 50%;
 }
 
-/* ---- 7. 按钮（首页"博客/关于我"、翻页等）---- */
+/* ---- 9. 按钮（首页"博客/关于我"、翻页等）---- */
 .button, .profile .buttons a, a.button {
   background: var(--accent);
   color: #fff !important;
@@ -82,7 +96,7 @@ body {
   color: #fff !important;
 }
 
-/* ---- 8. 标签 ---- */
+/* ---- 10. 标签 ---- */
 .terms-tags a, .post-tags a {
   border-radius: 999px;
   border-color: var(--border);
