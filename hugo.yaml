@@ -35,7 +35,8 @@ params:
     title: "沐风"
     subtitle: "个人综合博客 · IP 承接落地页｜分享实战经验与好物"
     imageUrl: "/avatar.jpg"          # 头像（锋哥知乎同款红圈金龙 logo）
-    imageHeight: 120
+    imageWidth: 150                  # 宽高必须一致，否则圆头像会被压成椭圆
+    imageHeight: 150
     buttons:
       - name: "博客"
         url: posts
