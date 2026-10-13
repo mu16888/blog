@@ -1,7 +1,8 @@
 # ===== 基础 =====
 baseURL: "https://mufeng168.top/"
 title: "沐风"
-paginate: 6
+pagination:
+  pagerSize: 6          # 新版写法；旧键名 paginate 自 v0.128 起被移除（Cloudflare 用 v0.147 会直接报错）
 theme: "PaperMod"
 enableGitInfo: false
 locale: zh-cn
