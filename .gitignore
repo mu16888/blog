@@ -1,0 +1,7 @@
+# Hugo 构建产物
+/public/
+resources/
+.hugo_build.lock
+
+# 本地工具（hugo 二进制等，不入库）
+/tools/

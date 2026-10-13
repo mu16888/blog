@@ -1,0 +1,62 @@
+# ===== 基础 =====
+baseURL: "https://mufeng168.top/"
+title: "沐风"
+paginate: 6
+theme: "PaperMod"
+enableGitInfo: false
+locale: zh-cn
+
+# ===== 顶部菜单 =====
+menu:
+  main:
+    - identifier: home
+      name: "首页"
+      url: "/"
+      weight: 1
+    - identifier: posts
+      name: "博客"
+      url: "/posts/"
+      weight: 2
+    - identifier: about
+      name: "关于"
+      url: "/about/"
+      weight: 3
+
+# ===== 主题参数（PaperMod）=====
+params:
+  env: production
+  description: "沐风的个人综合博客与 IP 承接落地页"
+  author: "沐风"
+
+  # 首页 profile 模式 = IP 落地页核心
+  profileMode:
+    enabled: true
+    title: "沐风"
+    subtitle: "个人综合博客 · IP 承接落地页｜分享实战经验与好物"
+    imageUrl: ""          # 想放头像：把图片丢进 static/ 命名为 avatar.png，再把这里改成 "/avatar.png"
+    imageHeight: 120
+    buttons:
+      - name: "博客"
+        url: posts
+      - name: "关于我"
+        url: about
+
+  # 社交 / 转化入口（微信、小红书、知乎、邮箱）
+  # ↓↓↓ 下面这些链接都是占位（REPLACE_ME），锋哥请换成自己的真实地址 ↓↓↓
+  socialIcons:
+    - name: "wechat"                       # 微信：可放二维码图片链接或企业微信名片
+      url: "https://u.wechat.com/REPLACE_ME"
+    - name: "xiaohongshu"                  # 小红书主页（无专用图标，显示为链接图标，依然能跳）
+      url: "https://www.xiaohongshu.com/user/profile/REPLACE_ME"
+    - name: "zhihu"                        # 知乎
+      url: "https://www.zhihu.com/people/REPLACE_ME"
+    - name: "email"                        # 邮箱
+      url: "mailto:hello@mufeng168.top"
+
+  # 文章页开关
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowToc: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
