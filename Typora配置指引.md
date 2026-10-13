@@ -109,7 +109,7 @@ description: "一句话简介"
 
 ### Q：发布失败提示 proxy 127.0.0.1
 
-双击项目里的 `fix-proxy.bat`，然后重新发布。
+双击项目里的 `fix_proxy.bat`，然后重新发布。
 
 ### Q：Typora 里插入的图片，网站上看不到
 

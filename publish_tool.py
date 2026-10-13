@@ -266,7 +266,7 @@ class App(tk.Tk):
             messagebox.showerror('发布失败',
                                  '%s\n\n请看下方日志的红色报错。\n\n'
                                  '如果是 proxy 127.0.0.1 的问题，\n'
-                                 '双击项目里的 fix-proxy.bat 再试一次。' % (err or '未知错误'))
+                                 '双击项目里的 fix_proxy.bat 再试一次。' % (err or '未知错误'))
         self.publish_btn.config(state='normal', text='★ 发布到网站（点我做最后一步）')
 
 
