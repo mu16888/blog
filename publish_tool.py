@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """沐风博客 - 图形化发布工具（双击运行，无黑框）"""
+import datetime
 import os
 import sys
 import subprocess
@@ -243,7 +244,7 @@ class App(tk.Tk):
 
         self.log('[2/3] 提交…')
         rc = run_cmd([GIT, 'commit', '-m',
-                      'update: %s' % tk.datetime.datetime.now().strftime('%Y-%m-%d %H:%M')])
+                      'update: %s' % datetime.datetime.now().strftime('%Y-%m-%d %H:%M')])
         if rc != 0:
             self.log('（没有新改动，跳过提交步骤）')
 
