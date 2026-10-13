@@ -1,0 +1,92 @@
+/* ============================================================
+   沐风博客 · 自定义样式（墨蓝调性，复刻 tranquilpeak 的干净优雅感）
+   仅覆盖 PaperMod 变量与局部样式，框架零改动，删本文件即回退。
+   ============================================================ */
+
+/* ---- 1. 配色与间距变量 ---- */
+:root {
+  --accent: #1f3a5f;            /* 墨蓝：链接/标题/按钮主色 */
+  --accent-soft: #2c4f7a;       /* 悬浮态 */
+  --main-width: 820px;          /* 正文更宽，阅读更舒服 */
+  --gap: 28px;
+  --radius: 14px;               /* 圆角更大，去掉方正感 */
+  --border: #e7e9ee;
+}
+
+/* 暗色主题下的强调色（偏亮蓝，保证对比） */
+:root[data-theme="dark"] {
+  --accent: #7aa2f7;
+  --accent-soft: #9ec1ff;
+  --border: #313542;
+}
+
+/* ---- 2. 选中文字底色 ---- */
+::selection { background: rgba(31, 58, 95, .15); }
+
+/* ---- 3. 链接 ---- */
+a { color: var(--accent); }
+a:hover { color: var(--accent-soft); }
+
+/* ---- 4. 标题（更沉稳的墨蓝）+ 中文字体栈 ---- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Hiragino Sans GB", "Source Han Sans SC",
+    "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  line-height: 1.85;
+}
+.post-title, .post-title a, h1, h2, h3, h4 {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+/* ---- 5. 卡片：圆角 + 轻阴影 + 细腻边框 ---- */
+.entry, .post-entry {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 14px rgba(31, 58, 95, .06);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.post-entry:hover {
+  box-shadow: 0 6px 22px rgba(31, 58, 95, .12);
+  transform: translateY(-2px);
+}
+
+/* ---- 6. 首页 profile：轻背景卡片 + 头像描边 ---- */
+.profile_inner {
+  background: linear-gradient(180deg, rgba(31, 58, 95, .04), rgba(31, 58, 95, 0) 70%);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+}
+.profile img {
+  border: 3px solid #fff;
+  box-shadow: 0 2px 14px rgba(31, 58, 95, .25);
+  border-radius: 50%;
+}
+
+/* ---- 7. 按钮（首页"博客/关于我"、翻页等）---- */
+.button, .profile .buttons a, a.button {
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: 999px;
+  border: none;
+  padding: 9px 20px;
+  font-weight: 600;
+  transition: background .2s ease;
+}
+.button:hover, .profile .buttons a:hover {
+  background: var(--accent-soft);
+  color: #fff !important;
+}
+
+/* ---- 8. 标签 ---- */
+.terms-tags a, .post-tags a {
+  border-radius: 999px;
+  border-color: var(--border);
+  color: var(--accent);
+}
+.terms-tags a:hover, .post-tags a:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}

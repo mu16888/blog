@@ -52,6 +52,7 @@ params:
       url: "mailto:hello@mufeng168.top"
 
   # 文章页开关
+  ShowPostThumbnails: true   # 列表/首页显示文章封面图（需在文章 front matter 加 images: ["/covers/xxx.jpg"]）
   ShowReadingTime: true
   ShowShareButtons: true
   ShowToc: true
