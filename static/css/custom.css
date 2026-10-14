@@ -24,7 +24,7 @@
 }
 .widget-simple--contact .contact-info .widget-simple__title {
   margin: 0 0 .35rem;
-  font-size: 1.35rem;
+  font-size: 2rem;
   line-height: 1.3;
 }
 .widget-simple--contact .contact-info__mail {
@@ -35,12 +35,12 @@
 }
 .widget-simple--contact .contact-info__label {
   display: block;
-  font-size: .95rem;
+  font-size: 1.45rem;
   color: var(--muted, var(--foreground, #1b2a4d));
 }
 .widget-simple--contact .contact-info__addr {
   display: block;
-  font-size: .78rem;
+  font-size: 1.4rem;
   color: var(--accent, #1b2a4d);
   word-break: break-all;
   text-decoration: none;
@@ -54,7 +54,7 @@
 }
 .widget-simple--contact .contact-qr__item {
   margin: 0;
-  width: 64px;
+  width: 78px;
   text-align: center;
 }
 .widget-simple--contact .contact-qr__item img {
@@ -68,7 +68,7 @@
 }
 .widget-simple--contact .contact-qr__item figcaption {
   margin-top: .25rem;
-  font-size: .8rem;
+  font-size: 1.25rem;
   color: var(--muted, var(--foreground, #1b2a4d));
 }
 
@@ -88,7 +88,7 @@
 }
 .widget-calendar__dow {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: var(--foreground, #4f565c);
   opacity: .55;
   padding-bottom: .5rem;
@@ -98,7 +98,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border-radius: 10px;
   color: var(--foreground, #4f4736);
   text-decoration: none;
@@ -127,7 +127,7 @@
 .widget-simple--promo .widget-simple__row:last-child { border-bottom: none; }
 .widget-simple__note {
   margin: .5rem 0 0;
-  font-size: .95rem;
+  font-size: 1.4rem;
   color: var(--foreground, #4f565c);
   opacity: .6;
 }
@@ -141,7 +141,7 @@
 }
 .promo-ad__tag {
   display: inline-block;
-  font-size: .68rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
   background: var(--accent, #d4a373);
@@ -150,8 +150,8 @@
   margin-bottom: .4rem;
 }
 .promo-ad__body {
-  font-size: .82rem;
-  line-height: 1.5;
+  font-size: 1.55rem;
+  line-height: 1.7;
   color: var(--foreground, #4f4736);
 }
 
@@ -160,13 +160,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: .6rem;
-  margin: 1.8rem 0 0;
-  padding: 1rem 1.2rem;
+  gap: 1.05rem;
+  margin: 2rem 0 0;
+  padding: 1.5rem 1.6rem;
   border-top: 1px dashed var(--border, #e9edc9);
   border-bottom: 1px dashed var(--border, #e9edc9);
 }
-.share-bar__label { font-weight: 700; font-size: .9rem; color: var(--foreground, #4f4736); }
+.share-bar__label { font-weight: 700; font-size: 1.62rem; color: var(--foreground, #4f4736); }
 .share-bar button,
 .share-bar a.share-btn {
   cursor: pointer;
@@ -174,8 +174,10 @@
   background: var(--card, #eee);
   color: var(--foreground, #4f4736);
   border-radius: 999px;
-  padding: .35rem .9rem;
-  font-size: .82rem;
+  padding: .68rem 1.7rem;
+  font-size: 1.53rem;
+  font-weight: 600;
+  line-height: 1.4;
   text-decoration: none;
   transition: all .15s ease;
 }
@@ -186,7 +188,7 @@
   border-color: var(--accent, #d4a373);
 }
 .share-bar__toast {
-  font-size: .8rem;
+  font-size: 1.45rem;
   color: var(--accent, #d4a373);
   margin-left: .3rem;
 }
@@ -198,8 +200,8 @@
   align-items: center;
   justify-content: center;
   min-height: 0;
-  padding: 3px 12px;
-  font-size: .8rem;
+  padding: 6px 16px;
+  font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.4;
   color: var(--accent, #d4a373);
@@ -232,9 +234,9 @@
 .auth-modal__panel {
   position: relative;
   z-index: 1;
-  width: min(78vw, 264px);
+  width: min(78vw, 320px);
   margin: 14vh auto 0;
-  padding: 1.1rem 1rem .95rem;
+  padding: 1.3rem 1.2rem 1.1rem;
   text-align: center;
   background: var(--card, #eee);
   border: 1px solid var(--border, #e9edc9);
@@ -264,7 +266,7 @@
 .auth-modal__close:hover { color: var(--accent, #d4a373); }
 .auth-modal__title {
   margin: 0 0 .65rem;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--foreground, #4f4736);
 }
@@ -281,16 +283,16 @@
 }
 .auth-modal__hint {
   margin: .6rem 0 0;
-  font-size: .8rem;
-  line-height: 1.55;
+  font-size: 1.15rem;
+  line-height: 1.6;
   color: var(--foreground, #4f4736);
 }
 .auth-modal__submit {
   display: block;
   width: 100%;
   margin-top: .8rem;
-  padding: .55rem 1rem;
-  font-size: .85rem;
+  padding: .68rem 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #fff;
   background: var(--accent, #d4a373);
@@ -303,7 +305,7 @@
 .auth-modal__status {
   min-height: 1.3em;
   margin: .55rem 0 0;
-  font-size: .8rem;
+  font-size: 1.15rem;
   color: var(--accent, #d4a373);
 }
 body.auth-modal-lock { overflow: hidden; }
@@ -314,36 +316,52 @@ body.auth-modal-lock { overflow: hidden; }
 
 /* 右上角「注册 / 登录」文字按钮：放大字号与内边距 */
 .header-tool--auth {
-  font-size: .95rem;
-  padding: 6px 16px;
+  font-size: 1.35rem;
+  padding: 8px 18px;
   letter-spacing: .02em;
 }
 
-/* 页头图标按钮（深浅切换 / 社交 / 极简模式）：克制尺寸，避免与正文失衡 */
+/* 页头图标按钮（深浅切换 / 社交 / 极简模式）
+   注意：主题根字号 62.5%（1rem=10px），图标是 SVG 定宽，光改 font-size 没用，
+   必须覆盖 svg 的 width/height 才能真放大 */
+.header-tool svg,
+.header-tool--toggle svg,
+.social-nav__link svg {
+  width: 21px;
+  height: 21px;
+}
 .header-tool {
-  font-size: 1.5rem;
+  min-height: 42px;
   line-height: 1;
+}
+.header-tool--icon {
+  width: 44px;
+  min-width: 44px;
+}
+.social-nav__link {
+  width: 40px;
+  height: 40px;
 }
 
 /* 右侧栏整体内容基线放大 */
-.sidebar-right { font-size: 1.05rem; }
-.sidebar-right .widget-simple__title { font-size: 1.6rem; }
+.sidebar-right { font-size: 1.45rem; }
+.sidebar-right .widget-simple__title { font-size: 1.95rem; }
 
 /* 主题原生列表（搜索 / 归档 / 分类）链接与行：放大看得清 */
 .sidebar-right .widget-simple__list,
 .sidebar-right .widget-simple__row {
-  font-size: 1.15rem;
+  font-size: 1.6rem;
   line-height: 1.85;
 }
 .sidebar-right .widget-simple__list a,
 .sidebar-right .widget-simple a {
-  font-size: 1.15rem;
+  font-size: 1.6rem;
 }
 /* 搜索框输入框放大 */
 .sidebar-right input,
 .sidebar-right input[type="search"] {
-  font-size: 1.05rem;
-  padding: .6rem .75rem;
+  font-size: 1.5rem;
+  padding: .7rem .85rem;
 }
 
 /* 月历：外框背景美化 + 字体加大（深浅自动协调） */
@@ -355,28 +373,58 @@ body.auth-modal-lock { overflow: hidden; }
   box-shadow: var(--shadow, 0 8px 22px rgba(104,85,61,.08));
 }
 .widget-calendar__head {
-  font-size: 1.35rem;
+  font-size: 1.7rem;
   margin-bottom: .7rem;
 }
 .widget-calendar__grid { gap: 6px; }
 .widget-calendar__dow {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   padding-bottom: .5rem;
 }
 .widget-calendar__cell {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border-radius: 10px;
+}
+
+/* 月历图例：说明「深色块 / 描边框」各代表什么 */
+.widget-calendar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem 1.6rem;
+  margin-top: .9rem;
+  padding-top: .85rem;
+  border-top: 1px dashed var(--border, #dce2ea);
+  font-size: 1.3rem;
+  color: var(--muted, var(--foreground, #1b2a4d));
+}
+.widget-calendar__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.widget-calendar__legend-swatch {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+}
+.widget-calendar__legend-swatch--post {
+  background: var(--accent, #1b2a4d);
+}
+.widget-calendar__legend-swatch--today {
+  border: 2px solid var(--accent, #1b2a4d);
 }
 
 /* 右侧栏自定义模块（行业资讯 / 好物推荐）内容放大 */
 .widget-simple--promo .widget-simple__row {
-  font-size: 1.15rem;
-  line-height: 1.7;
+  font-size: 1.6rem;
+  line-height: 1.72;
 }
-.widget-simple__note { font-size: .95rem; }
-.promo-ad__tag { font-size: .9rem; }
-.promo-ad__body { font-size: 1.1rem; line-height: 1.7; }
+.widget-simple__note { font-size: 1.4rem; }
+.promo-ad__tag { font-size: 1.25rem; }
+.promo-ad__body { font-size: 1.55rem; line-height: 1.7; }
 
 /* =========================================================
    品牌双色：藏青 + 淡白
@@ -411,30 +459,59 @@ html[data-palette="deep-sea-blue"] {
   --hero-orb: rgba(255, 255, 255, 0.10);
 }
 
-/* ---------- 深色模式：藏青底 / 淡白字 ---------- */
+/* ---------- 深色模式：藏青底 / 淡白字 ----------
+   配色标定（2026-10-14）：先用锋哥给的参考色 #303848 反推变换系数 ——
+     饱和度 ×0.369（≈蓝减半）、亮度 ×1.250（相对原始 deep-sea-blue 深值），
+     对全部"面 / 线"色值等比应用；色相不变，仍是同一族藏青。
+   后因锋哥反馈"太深"，亮度系数提到 ×1.550（整体再浅 25%），底色 #303848 → #3c4559。
+   文字类（muted / quote / subtitle）不套该系数（套了会漂成近白、丢层次），
+     沿用"只去蓝"的值，仅按新底色微调亮度保证对比度 ≥4.5:1。
+   纯功能色（danger 暖红、纯黑阴影、白色半透明）不动。
+   两个系数 kS / kL 就是总开关，想更浅或更蓝改它们即可。 */
 html[data-theme=dark][data-palette="deep-sea-blue"] {
-  --background: #16264a;          /* 藏青底 */
-  --foreground: #f6f7f9;          /* 淡白字 */
-  --muted: #a7b5cf;
-  --card: #1e2f52;
-  --card-muted: #26385e;
-  --border: #33456a;
+  --background: #3c4559;          /* 深色底 · 去蓝去灰后整体提亮一档 */
+  --foreground: #f6f7f9;          /* 淡白字 · 对比 8.96:1 */
+  --muted: #b6bcc6;               /* 次要字：只去蓝，提亮到 5.03:1 保可读与层次 */
+  --card: #485266;
+  --card-muted: #566176;
+  --border: #6a7489;
   --accent: #e8eef7;              /* 强调 = 淡白 */
-  --accent-contrast: #16264a;
+  --accent-contrast: #3c4559;
   --danger: #f0897c;
   --shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
-  --markdown-code-bg: #13213f;
-  --markdown-quote: #a7b5cf;
-  --accent-soft: #24365c;
+  --markdown-code-bg: #333b4c;
+  --markdown-quote: #b6bcc6;
+  --accent-soft: #535d73;
   --accent-soft-text: #e8eef7;
-  --hero-start: #0e1b3a;
-  --hero-end: #22345a;
+  --hero-start: #2b3344;
+  --hero-end: #505a70;
   --hero-text: #f6f7f9;
-  --hero-subtitle: #c2cee3;
+  --hero-subtitle: #ccd2dc;
   --hero-chip: rgba(255, 255, 255, 0.10);
   --hero-chip-text: #e8eef7;
   --hero-border: rgba(255, 255, 255, 0.14);
   --hero-orb: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- 深色模式主题背景：藏青纹理底（锋哥提供的素材，已按站点色重调） ----------
+   素材实测 #0078b8（H201° / S100% / L36%）是满饱和鲜蓝 PPT 底，直接铺会与站点低饱和
+   藏青（H220° / S20%）严重冲突；已在 tools/make_brand_images.py::make_dark_bg() 里
+   重调为 H220° / S22% / L23.5% 并重构构图（顶部柔光曲线 + 底部虚线波纹，中段纯色）。
+   图片基准色 = #3c4559（即 --background，由 DARK_BG_BASE 决定），落地无色差、拼接无缝。仅深色模式生效。 */
+html[data-theme=dark][data-palette="deep-sea-blue"] body {
+  background-color: #3c4559;
+  background-image: url("/img/dark-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+/* 手机端：fixed 在 iOS 上本就不支持，统一改竖版图 + 随页滚动（底色同色，露底也看不出） */
+@media (max-width: 900px) {
+  html[data-theme=dark][data-palette="deep-sea-blue"] body {
+    background-image: url("/img/dark-bg-mobile.jpg");
+    background-attachment: scroll;
+  }
 }
 
 /* ---------- 标题卡（封面回退）也用同一套藏青，跟参考图一致 ---------- */
@@ -447,10 +524,42 @@ html[data-theme=dark][data-palette="deep-sea-blue"] {
   --cover-hero-orb: rgba(255, 255, 255, 0.10);
 }
 .cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
-  --cover-hero-start: #0e1b3a;
-  --cover-hero-end: #22345a;
+  --cover-hero-start: #2b3344;
+  --cover-hero-end: #505a70;
   --cover-hero-text: #f6f7f9;
   --cover-hero-chip: rgba(255, 255, 255, 0.10);
   --cover-hero-border: rgba(255, 255, 255, 0.14);
   --cover-hero-orb: rgba(255, 255, 255, 0.08);
 }
+
+/* =========================================================
+   字体：思源黑体（Noto Sans SC）优先 + 小字加粗，大屏更清晰
+   - 本机已装 Noto Sans SC 可变字体（C:\Windows\Fonts\NotoSansSC-VF.ttf，17.7MB，字重 100–900）
+     笔画比微软雅黑更匀、大字更实；没装该字体的机器自动回落雅黑，不会变差。
+   - "fix-punct" / "confuse-punct" 是主题为中英标点做的 @font-face，必须排在最前。
+   - 标题卡字体沿用主题变量 --cover-fallback-title-font-family，一并换成同一套。
+   ========================================================= */
+:root {
+  --mufeng-font: "fix-punct", "confuse-punct", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC",
+                 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --cover-fallback-title-font-family: var(--mufeng-font);
+}
+body { font-family: var(--mufeng-font); }
+
+/* ---------- 小字加粗到 500：笔画更实，27 寸大屏不发虚 ---------- */
+.sidebar-right { font-weight: 500; }
+.sidebar-right .widget-simple__list a,
+.sidebar-right .widget-simple a,
+.sidebar-right .widget-simple__row { font-weight: 500; }
+.widget-simple--contact .contact-info__label,
+.widget-simple--contact .contact-info__addr { font-weight: 500; }
+.widget-calendar__cell { font-weight: 500; }
+.widget-simple--promo .widget-simple__row { font-weight: 500; }
+.promo-ad__body { font-weight: 500; }
+.share-bar button,
+.share-bar a.share-btn { font-weight: 600; }
+.share-bar__toast { font-weight: 600; }
+
+/* ---------- 去掉半透明，提高对比度（透明度是"发虚"的另一半原因） ---------- */
+.widget-simple__note { opacity: 1; font-weight: 500; }
+.widget-calendar__dow { opacity: .82; font-weight: 700; }

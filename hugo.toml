@@ -75,7 +75,7 @@ copyright = "沐风 · 餐饮实战与美食图文"
 
   # 侧边栏：头像 + 副标题 + 公众号二维码（扫码关注）
   [ params.sidebar ]
-    subtitle = "餐饮实战 · 美食图文 · 个人成长"
+    subtitle = "餐饮实战 · 美食图文 · 知识分享"
     [ params.sidebar.avatar ]
       enabled = true
       local = true
@@ -177,7 +177,7 @@ copyright = "沐风 · 餐饮实战与美食图文"
 
   # SEO
   [ params.seo ]
-    tagline = "餐饮实战 · 美食图文 · 个人成长"
+    tagline = "餐饮实战 · 美食图文 · 知识分享"
     homeDescription = "沐风的个人博客，分享餐饮经营实战、美食配方与图文，以及个人长期写作。"
     descriptionLength = 180
     separator = " · "
@@ -194,7 +194,7 @@ copyright = "沐风 · 餐饮实战与美食图文"
   title = "沐风的个人博客"
   weight = 1
   [ languages.zh-cn.params.sidebar ]
-    subtitle = "餐饮实战 · 美食图文 · 个人成长"
+    subtitle = "餐饮实战 · 美食图文 · 知识分享"
 
 # Markdown 渲染
 [ markup ]
