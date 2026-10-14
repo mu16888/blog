@@ -1,0 +1,113 @@
+[nav.home]
+other = "主頁"
+
+[nav.talks]
+other = "說說"
+
+[nav.archives]
+other = "歸檔"
+
+[nav.search]
+other = "搜尋"
+
+[page.about]
+other = "關於"
+
+[page.guide]
+other = "指南"
+
+[page.links]
+other = "連結"
+
+[language.switch]
+other = "切換語言"
+
+[language.select]
+other = "選擇語言"
+
+[language.current]
+other = "目前語言"
+
+[language.available]
+other = "可用語言"
+
+[language.more]
+other = "更多語言"
+
+[widget.archives.title]
+other = "歸檔"
+
+[widget.archives.more]
+other = "查看更多"
+
+[widget.categoriesCloud.title]
+other = "分類"
+
+[widget.tagCloud.title]
+other = "標籤"
+
+[widget.related.title]
+other = "相關文章"
+
+[widget.backlinks.title]
+other = "引用本文"
+
+[search.title]
+other = "搜尋"
+
+[search.placeholder]
+other = "搜尋文章"
+
+[palette.title]
+other = "配色"
+
+[palette.goldenSummerFields]
+other = "金色夏野"
+
+[palette.softPastelShades]
+other = "柔霧粉彩"
+
+[palette.blackGoldElegance]
+other = "黑金雅韻"
+
+[palette.freshGreens]
+other = "新鮮綠意"
+
+[palette.lightSteel]
+other = "淺鋼銀"
+
+[palette.deepSeaBlue]
+other = "深海藍"
+
+[palette.morandiMist]
+other = "莫蘭迪霧"
+
+[palette.monochromeCore]
+other = "純黑白灰"
+
+[article.tableOfContents]
+other = "目錄"
+
+[article.descriptionLabel]
+other = "簡介"
+
+[error.404.title]
+other = "找不到頁面"
+
+[minMode.toggle]
+other = "極簡"
+
+[minMode.off]
+other = "標準"
+
+[archive.all]
+other = "全部"
+
+[archive.categories]
+other = "分類"
+
+[archive.tags]
+other = "標籤"
+
+[error.404.message]
+other = "你要訪問的頁面不存在，或可能已被移動。"

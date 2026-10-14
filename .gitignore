@@ -1,10 +1,15 @@
 # Hugo 构建产物
 /public/
+/public-preview/
 resources/
 .hugo_build.lock
 
 # 本地工具（hugo 二进制等，不入库）
 /tools/
+
+# 主题附带的演示站点与截图（部署不需要，避免仓库臃肿）
+/themes/*/exampleSite/
+/themes/*/images/
 
 # Python 缓存
 __pycache__/

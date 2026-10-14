@@ -1,0 +1,47 @@
+{{/* 本月日历 widget：高亮有文章的日期，点击跳文章列表 */}}
+{{ with .Context }}
+{{ $now := now }}
+{{ $year := $now.Year }}
+{{ $month := int $now.Month }}
+{{ $firstOfMonth := time.AsTime (printf "%d-%02d-01" $year $month) }}
+{{ $nextMonth := $firstOfMonth.AddDate 0 1 0 }}
+{{ $lastDay := $nextMonth.AddDate 0 0 -1 }}
+{{ $daysInMonth := $lastDay.Day }}
+{{ $dowFirst := int $firstOfMonth.Weekday }}
+{{ $todayStr := $now.Format "2006-01-02" }}
+
+{{/* 收集有文章的日期，用于高亮 */}}
+{{ $postDates := slice }}
+{{ range .Site.RegularPages }}
+  {{ $postDates = $postDates | append (.Date.Format "2006-01-02") }}
+{{ end }}
+
+<div class="widget widget-calendar">
+  <div class="widget-calendar__head"><span>{{ $year }} 年 {{ $month }} 月</span></div>
+  <div class="widget-calendar__grid">
+    <div class="widget-calendar__dow">日</div>
+    <div class="widget-calendar__dow">一</div>
+    <div class="widget-calendar__dow">二</div>
+    <div class="widget-calendar__dow">三</div>
+    <div class="widget-calendar__dow">四</div>
+    <div class="widget-calendar__dow">五</div>
+    <div class="widget-calendar__dow">六</div>
+
+    {{ range seq $dowFirst }}
+      <div class="widget-calendar__cell widget-calendar__cell--empty"></div>
+    {{ end }}
+
+    {{ range seq 1 $daysInMonth }}
+      {{ $day := . }}
+      {{ $dateStr := printf "%d-%02d-%02d" $year $month $day }}
+      {{ $isToday := eq $dateStr $todayStr }}
+      {{ $hasPost := in $postDates $dateStr }}
+      {{ if $hasPost }}
+        <a class="widget-calendar__cell widget-calendar__cell--has-post{{ if $isToday }} widget-calendar__cell--today{{ end }}" href="/posts/" title="本月有更新，点击查看">{{ $day }}</a>
+      {{ else }}
+        <div class="widget-calendar__cell{{ if $isToday }} widget-calendar__cell--today{{ end }}">{{ $day }}</div>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

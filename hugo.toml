@@ -1,0 +1,211 @@
+# ============================================================
+#  沐风的个人博客 · Hugo 配置（pocket-hugo-theme）
+#  注意：pocket 主题要求 Hugo >= 0.149，Cloudflare Pages 默认 0.147 会挂
+#        → 必须在 CF 项目设置 HUGO_VERSION = 0.167.0
+# ============================================================
+
+baseURL = "https://mufeng168.top/"
+title = "沐风的个人博客"
+theme = "pocket-hugo-theme"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+enableRobotsTXT = true
+
+# 首页 / 列表只聚合「文章」；美食 / 文档 / 动态 各自独立栏目
+mainSections = ["posts"]
+
+# 页脚版权起始年
+copyright = "沐风 · 餐饮实战与美食图文"
+
+# 分页 / RSS
+[ pagination ]
+  pagerSize = 8
+[ services.rss ]
+  limit = 10
+
+# 固定链接：用 :filename（文件基名）直接映射 URL，确定性最强、与旧站 /posts/ 一致
+# 注意：Hugo 0.14x 起 :slug 在无 slug 字段时会回退到「标题」生成中文 URL，故统一改用 :filename
+[ permalinks ]
+  posts    = "/posts/:filename/"
+  recipes  = "/recipes/:filename/"
+  docs     = "/docs/:filename/"
+  updates  = "/updates/:filename/"
+
+# 分类（标签暂不使用，但保留分类定义）
+[ taxonomies ]
+  category = "categories"
+
+# 顶部导航（首页由主题硬编码，这里加其余栏目）
+[ menu ]
+  [[ menu.main ]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 1
+  [[ menu.main ]]
+    identifier = "recipes"
+    name = "美食"
+    url = "/recipes/"
+    weight = 2
+  [[ menu.main ]]
+    identifier = "docs"
+    name = "文档"
+    url = "/docs/"
+    weight = 3
+  [[ menu.main ]]
+    identifier = "updates"
+    name = "动态"
+    url = "/updates/"
+    weight = 4
+  [[ menu.main ]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 5
+
+# ---------- 主题参数 ----------
+[ params ]
+  favicon = "/favicon-32.png"
+  appleTouchIcon = "/apple-touch-icon.png"
+  summaryLength = 0
+  articleWords = true
+  backToTop = true
+  viewTransitions = false
+
+  # 侧边栏：头像 + 副标题 + 公众号二维码（扫码关注）
+  [ params.sidebar ]
+    subtitle = "餐饮实战 · 美食图文 · 个人成长"
+    [ params.sidebar.avatar ]
+      enabled = true
+      local = true
+      src = "/avatar.jpg"
+    [ params.sidebar.qr ]
+      # 页面不常驻显示公众号码；该二维码仅在右上角「注册 / 登录」弹窗中展示（扫码关注即注册）
+      enabled = false
+      image = "/gzh-qr.jpg"
+      alt = "扫码关注公众号"
+      width = 120
+      height = 120
+
+  # 文章页设置
+  [ params.article ]
+    backlinks = false
+    showListSummary = true
+    showPageDescription = true
+    toc = true
+    readingTime = true
+
+  # 封面图（字段名 = image；无封面文章自动生成渐变标题卡）
+  [ params.images.cover ]
+    useFill = true
+    cardFill = "640x300 Center q85"
+    taxonomyFill = "640x300 Center q85"
+    openGraphVariant = "card"
+    useDefault = true
+    fallbackMode = "gradient"
+    openGraphUseDefault = true
+    default = "/covers/brand-cover.jpg"
+
+  # 本地搜索（主题内置）
+  [ params.search ]
+    provider = "local"
+    fullText = false
+
+  # 配色：品牌双色「藏青 + 淡白」——复用主题 deep-sea-blue 预设槽位，
+  # 色值在 static/css/custom.css 覆盖（藏青 #1b2a4d / 淡白 #f6f7f9）
+  # 保留深浅切换（浅色=淡白底藏青字；深色=藏青底淡白字），关闭配色选择器以锁定品牌色
+  [ params.colorScheme ]
+    toggle = true
+    default = "auto"
+    preset = "deep-sea-blue"
+    showPicker = false
+
+  # 列表布局：双列宽版
+  [ params.layout ]
+    listMode = "double"
+
+  # 侧边栏 / 文章页 部件
+  # 注：calendar 是我们自建的自定义 widget（layouts/partials/widgets/calendar.html）
+  [ params.widgets ]
+    # 右侧栏最终顺序由 layouts/partials/sidebar-right.html 控制：
+    #   搜索 → 归档 → 分类 → 行业资讯 → 好物推荐 → 联系方式 → 月历（右下角）
+    # 说明：calendar 从本列表移出，改在 sidebar-right.html 末尾手动渲染，以固定它落在最底部
+    homepage = [
+      { type = "search",    params = { limit = 0 } },
+      { type = "archives",  params = { limit = 3 } },
+      { type = "categories", params = { limit = 10 } }
+    ]
+    static = [
+      { type = "search",    params = { limit = 0 } },
+      { type = "archives",  params = { limit = 3 } },
+      { type = "categories", params = { limit = 10 } }
+    ]
+    page = [
+      { type = "toc" }
+    ]
+    [ params.widgets.titleVisibility ]
+      archives = false
+      backlinks = true
+      categories = false
+      related = true
+      search = false
+      toc = true
+
+  # 评论：第一步先关闭，待部署 Waline 后端后改 enabled = true 即可启用
+  # （waline 走 provider = "custom"，接入代码见 layouts/partials/custom/comments.html）
+  [ params.comments ]
+    enabled = false
+    provider = "custom"
+
+  [ params.footer ]
+    since = 2026
+
+  [ params.dateFormat ]
+    published = "2006-01-02"
+    lastUpdated = "2006-01-02"
+
+  # 顶部社交栏（只放主题自带图标的：微信 / 知乎 / RSS）
+  [[ params.social ]]
+    name = "WeChat"
+    url = "/wechat-qr.jpg"
+    icon = "brand-wechat"
+  [[ params.social ]]
+    name = "RSS"
+    url = "/index.xml"
+    icon = "rss"
+
+  # SEO
+  [ params.seo ]
+    tagline = "餐饮实战 · 美食图文 · 个人成长"
+    homeDescription = "沐风的个人博客，分享餐饮经营实战、美食配方与图文，以及个人长期写作。"
+    descriptionLength = 180
+    separator = " · "
+    [ params.seo.title ]
+      home = "[site_name]"
+      post = "[post_title][separator][site_name]"
+      page = "[page_title][separator][site_name]"
+      group = "[group_title][separator][site_name]"
+      archive = "[archive_title][separator][site_name]"
+
+# 中文语言（单语言，不显示语言切换）
+[ languages.zh-cn ]
+  languageName = "中文"
+  title = "沐风的个人博客"
+  weight = 1
+  [ languages.zh-cn.params.sidebar ]
+    subtitle = "餐饮实战 · 美食图文 · 个人成长"
+
+# Markdown 渲染
+[ markup ]
+  [ markup.goldmark ]
+    [ markup.goldmark.renderer ]
+      unsafe = true
+  [ markup.tableOfContents ]
+    startLevel = 2
+    endLevel = 4
+    ordered = true
+  [ markup.highlight ]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true

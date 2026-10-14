@@ -1,0 +1,121 @@
+{{ define "body-class" }}template-single{{ end }}
+
+{{ define "main" }}
+    {{ $sidebarScope := cond (eq .Type "page") "static" "page" }}
+    {{ $transitionBase := partial "helpers/view-transition-name.html" . }}
+    {{ $showPageDescription := .Site.Params.article.showPageDescription | default true }}
+    {{ $showPageTitle := true }}
+    {{ if isset .Params "listtitle" }}
+        {{ $showPageTitle = .Params.listtitle }}
+    {{ end }}
+    {{ $contentImageConfig := .Site.Params.images.content | default dict }}
+    {{ $enableImageMaxHeight := $contentImageConfig.enableMaxHeight | default true }}
+    {{ $mobileImageMaxHeight := $contentImageConfig.mobileMaxHeight | default "160px" }}
+    {{ $tabletImageMaxHeight := $contentImageConfig.tabletMaxHeight | default "250px" }}
+    {{ $desktopImageMaxHeight := $contentImageConfig.desktopMaxHeight | default "350px" }}
+    {{ $fullWidthFit := $contentImageConfig.fullWidthFit | default "cover" }}
+    {{ $limitContentImageHeight := $contentImageConfig.limitHeight | default (.Site.Params.article.limitContentImageHeight | default false) }}
+    {{ $contentImageMaxHeight := $contentImageConfig.unifiedMaxHeight | default (.Site.Params.article.contentImageMaxHeight | default "320px") }}
+    {{ if not $enableImageMaxHeight }}
+        {{ $mobileImageMaxHeight = "none" }}
+        {{ $tabletImageMaxHeight = "none" }}
+        {{ $desktopImageMaxHeight = "none" }}
+    {{ end }}
+    {{ if $limitContentImageHeight }}
+        {{ $mobileImageMaxHeight = $contentImageMaxHeight }}
+        {{ $tabletImageMaxHeight = $contentImageMaxHeight }}
+        {{ $desktopImageMaxHeight = $contentImageMaxHeight }}
+    {{ end }}
+    {{ $articleContentStyle := printf "--article-content-image-mobile-max-height: %s; --article-content-image-tablet-max-height: %s; --article-content-image-desktop-max-height: %s; --article-content-image-fullwidth-fit: %s;" $mobileImageMaxHeight $tabletImageMaxHeight $desktopImageMaxHeight $fullWidthFit }}
+    <article class="article-page">
+        <header class="article-page__header">
+            {{ with partial "helpers/cover.html" (dict "page" . "variant" "single") }}
+                {{ $showPageCover := true }}
+                {{ if and (not $showPageTitle) (eq .kind "gradient") }}
+                    {{ $showPageCover = false }}
+                {{ end }}
+                {{ if and .exists $showPageCover }}
+                    <div class="article-page__cover">
+                        {{ if eq .kind "gradient" }}
+                            {{ partial "helpers/cover-fallback-card.html" (dict "page" $ "variant" "single" "transitionBase" $transitionBase) }}
+                        {{ else }}
+                            <img src="{{ .permalink }}" alt="{{ $.Title }}"{{ if $.Site.Params.viewTransitions }} style="view-transition-name: cover-{{ $transitionBase }};"{{ end }}>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            {{ end }}
+
+            <div class="article-page__meta">
+                {{ if $showPageTitle }}
+                    <h1{{ if .Site.Params.viewTransitions }} style="view-transition-name: title-{{ $transitionBase }};"{{ end }}>{{ .Title }}</h1>
+                {{ end }}
+                <div class="meta-line">
+                    {{ if not .Date.IsZero }}<span>{{ .Date | time.Format (or .Site.Params.dateFormat.published "2006-01-02") }}</span>{{ end }}
+                    {{ with .Params.categories }}
+                        <span class="meta-categories">
+                            {{ range $index, $term := $.GetTerms "categories" }}
+                                {{ if gt $index 0 }}<span class="meta-sep">/</span>{{ end }}
+                                <a href="{{ $term.RelPermalink }}">{{ $term.LinkTitle }}</a>
+                            {{ end }}
+                        </span>
+                    {{ end }}
+                    {{ if (.Params.readingTime | default .Site.Params.article.readingTime) }}<span>{{ if eq .Site.Language.Lang "zh-cn" }}{{ .ReadingTime }} 分钟{{ else }}{{ .ReadingTime }} min read{{ end }}</span>{{ end }}
+                    {{ if (.Params.articleWords | default .Site.Params.articleWords) }}
+                        <span>
+                            {{- if eq .Site.Language.Lang "zh-cn" -}}
+                                {{ .WordCount }} 字
+                            {{- else if eq .Site.Language.Lang "ja" -}}
+                                {{ .WordCount }}語
+                            {{- else if eq .Site.Language.Lang "es" -}}
+                                {{ .WordCount }} palabras
+                            {{- else if eq .Site.Language.Lang "fr" -}}
+                                {{ .WordCount }} mots
+                            {{- else -}}
+                                {{ .WordCount }} words
+                            {{- end -}}
+                        </span>
+                    {{ end }}
+                    {{ partial "helpers/translation-toggle.html" . }}
+                </div>
+                {{ if $showPageDescription }}
+                    {{ with .Description }}
+                        <blockquote class="article-page__description">
+                            <span class="article-page__description-label">{{ T "article.descriptionLabel" | default "Description" }}</span>
+                            {{ . }}
+                        </blockquote>
+                    {{ end }}
+                {{ end }}
+            </div>
+        </header>
+
+        {{ if eq $sidebarScope "page" }}
+            <div class="article-page__toc-mobile">
+                {{ partial "widgets/toc.html" (dict "Context" . "Params" dict) }}
+            </div>
+        {{ end }}
+
+        <div class="article-page__content">
+            <div class="article-content"{{ with $articleContentStyle }} {{ printf "style=%q" . | safeHTMLAttr }}{{ end }}>
+                {{ .Content }}
+            </div>
+        </div>
+
+        <div class="article-backlinks-inline">
+            {{ partial "widgets/backlinks.html" (dict "Context" .) }}
+        </div>
+
+        {{- $relatedPosts := first 5 (.Site.RegularPages.Related .) -}}
+        {{ if gt (len $relatedPosts) 0 }}
+            <div class="article-related-inline">
+                {{ partial "widgets/related.html" (dict "Context" .) }}
+            </div>
+        {{ end }}
+
+        {{ partial "comments/comments.html" . }}
+    </article>
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ $sidebarScope := cond (eq .Type "page") "static" "page" }}
+    {{ partial "sidebar-right.html" (dict "Context" . "Scope" $sidebarScope) }}
+{{ end }}

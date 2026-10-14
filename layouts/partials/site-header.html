@@ -1,0 +1,193 @@
+<header class="site-header">
+    <div class="site-header__inner">
+        <div class="site-brand">
+            {{ $avatar := "/img/logo-default.svg" | relURL }}
+            {{ with .Site.Params.sidebar.avatar }}
+                {{ if and (default true .enabled) .local }}
+                    {{ $avatar = .src | relURL }}
+                {{ end }}
+            {{ end }}
+
+            {{ with $avatar }}
+                <a class="site-brand__avatar" href="{{ $.Site.Home.RelPermalink }}">
+                    <img src="{{ . }}" alt="{{ $.Site.Title }}">
+                </a>
+            {{ end }}
+
+            <div class="site-brand__text">
+                <a class="site-brand__title" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
+                <p class="site-brand__subtitle">{{ with .Site.Params.sidebar.subtitle }}{{ . }}{{ else }}{{ T "site-description" }}{{ end }}</p>
+            </div>
+        </div>
+
+        <div class="site-header__nav">
+            <nav class="main-nav" aria-label="Main navigation">
+                <a class="main-nav__link" href="{{ .Site.Home.RelPermalink }}">{{ T "nav.home" | default "Home" }}</a>
+                {{ range .Site.Menus.main }}
+                    {{ $url := .URL }}
+                    {{ if and (ne $url $.Site.Home.RelPermalink) (not (in $url "/search")) }}
+                        <a class="main-nav__link" href="{{ $url }}" {{ if eq .Params.newTab true }}target="_blank"{{ end }}>{{ .Name }}</a>
+                    {{ end }}
+                {{ end }}
+            </nav>
+
+            {{ with .Site.Params.social }}
+                <nav class="social-nav" aria-label="Social links">
+                    {{ range . }}
+                        {{ $icon := .icon | default "brand-github" }}
+                        {{ $label := .name | default .title | default $icon }}
+                        {{ $url := .url | default .href }}
+                        {{ with $url }}
+                            <a
+                                class="social-nav__link"
+                                href="{{ . }}"
+                                title="{{ $label }}"
+                                {{ if not (or (hasPrefix . "/") (hasPrefix . "#")) }}target="_blank" rel="me noopener noreferrer"{{ end }}
+                            >
+                                {{ partial "helpers/icon.html" $icon }}
+                            </a>
+                        {{ end }}
+                    {{ end }}
+                </nav>
+            {{ end }}
+        </div>
+
+        <div class="header-tools">
+            <!-- 登录：点击弹二维码；扫码确认后自动登录，登录行为记录在浏览器本地 -->
+            <button class="header-tool header-tool--auth" id="auth-button" type="button" aria-haspopup="dialog">
+                <span data-auth-label>登录</span>
+            </button>
+
+            {{ if (or (.Site.Params.colorScheme.toggle | default false) (.Site.Params.colorSchemeToggle | default false)) }}
+                <button class="header-tool header-tool--toggle" id="dark-mode-toggle" type="button" data-toggle-color-scheme aria-label="切换深浅色">
+                    {{ partial "helpers/icon.html" "sun" }}
+                    {{ partial "helpers/icon.html" "moon" }}
+                </button>
+            {{ end }}
+
+            {{ if (or (.Site.Params.colorScheme.showPicker | default false) (.Site.Params.colorScheme.showPalettePicker | default false)) }}
+                <details class="palette-picker translation-toggle__menu" data-palette-picker>
+                    <summary class="header-tool header-tool--icon translation-toggle__summary" aria-label="{{ T "palette.title" | default "Color palette" }}">
+                        {{ partial "helpers/icon.html" "palette" }}
+                    </summary>
+                    <div class="palette-picker__dropdown translation-toggle__dropdown">
+                        {{ range (slice
+                            (dict "value" "golden-summer-fields" "label" (T "palette.goldenSummerFields" | default "Golden Summer Fields"))
+                            (dict "value" "soft-pastel-shades" "label" (T "palette.softPastelShades" | default "Soft Pastel Shades"))
+                            (dict "value" "black-gold-elegance" "label" (T "palette.blackGoldElegance" | default "Black & Gold Elegance"))
+                            (dict "value" "fresh-greens" "label" (T "palette.freshGreens" | default "Fresh Greens"))
+                            (dict "value" "light-steel" "label" (T "palette.lightSteel" | default "Light Steel"))
+                            (dict "value" "deep-sea-blue" "label" (T "palette.deepSeaBlue" | default "Deep Sea Blue"))
+                            (dict "value" "morandi-mist" "label" (T "palette.morandiMist" | default "Morandi Mist"))
+                            (dict "value" "monochrome-core" "label" (T "palette.monochromeCore" | default "Monochrome Core"))
+                        ) }}
+                            <button class="palette-picker__option palette-picker__option--{{ .value }}" type="button" data-palette-value="{{ .value }}" aria-label="{{ .label }}" title="{{ .label }}">
+                                <span class="palette-picker__swatch" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ .label }}</span>
+                            </button>
+                        {{ end }}
+                    </div>
+                </details>
+            {{ end }}
+
+            {{ partial "helpers/translation-toggle.html" (dict "page" .Site.Home "variant" "header") }}
+
+            {{ if (.Site.Params.minMode.enabled | default true) }}
+                {{- $minLabelOn := T "minMode.toggle" -}}
+                {{- if eq $minLabelOn "minMode.toggle" }}{{ $minLabelOn = "Minimal" }}{{ end -}}
+                {{- $minLabelOff := T "minMode.off" -}}
+                {{- if eq $minLabelOff "minMode.off" }}{{ $minLabelOff = "Normal" }}{{ end -}}
+                <button class="header-tool header-tool--min" id="min-mode-toggle" type="button" data-toggle-min aria-pressed="false" data-min-label-on="{{ $minLabelOn }}" data-min-label-off="{{ $minLabelOff }}" title="{{ $minLabelOn }}">
+                    {{ partial "helpers/icon.html" "minimal" }}
+                    {{ partial "helpers/icon.html" "normal" }}
+                </button>
+            {{ end }}
+        </div>
+    </div>
+</header>
+
+<!-- 登录弹窗（微信扫码登录；首次扫码即完成注册并自动登录）
+     登录行为记录在浏览器本地（localStorage: mufeng_auth），含首登时间/次数/最后登录时间 -->
+<div class="auth-modal" id="auth-modal" aria-hidden="true">
+    <div class="auth-modal__mask" data-auth-close></div>
+    <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+        <button class="auth-modal__close" type="button" data-auth-close aria-label="关闭">&times;</button>
+        <h3 class="auth-modal__title" id="auth-modal-title">登录</h3>
+        <img class="auth-modal__qr" src="{{ "/gzh-qr.jpg" | relURL }}" alt="沐风公众号二维码">
+        <p class="auth-modal__hint" id="auth-modal-hint">微信扫码登录：首次扫码即完成注册并自动登录</p>
+        <button class="auth-modal__submit" type="button" id="auth-modal-submit">确认登录</button>
+        <p class="auth-modal__status" id="auth-modal-status" role="status"></p>
+    </div>
+</div>
+
+<script>
+(function () {
+    var KEY = "mufeng_auth";
+    var btn = document.getElementById("auth-button");
+    var modal = document.getElementById("auth-modal");
+    if (!btn || !modal) { return; }
+
+    var label = btn.querySelector("[data-auth-label]");
+    var titleEl = document.getElementById("auth-modal-title");
+    var hintEl = document.getElementById("auth-modal-hint");
+    var submitEl = document.getElementById("auth-modal-submit");
+    var statusEl = document.getElementById("auth-modal-status");
+
+    function readRecord() {
+        try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; }
+    }
+    function writeRecord(rec) {
+        try { localStorage.setItem(KEY, JSON.stringify(rec)); } catch (e) {}
+    }
+
+    function refreshLabel() {
+        // 按钮文案统一为「登录」（首次登录时自动完成注册）
+        if (label) { label.textContent = "登录"; }
+        btn.setAttribute("aria-label", "登录");
+    }
+
+    function openModal() {
+        var rec = readRecord();
+        titleEl.textContent = "登录";
+        if (rec && rec.count) {
+            hintEl.textContent = "微信扫码登录（这将是你的第 " + (rec.count + 1) + " 次登录）";
+        } else {
+            hintEl.textContent = "微信扫码登录：首次扫码即完成注册并自动登录";
+        }
+        submitEl.textContent = "确认登录";
+        statusEl.textContent = "";
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("auth-modal-lock");
+    }
+
+    function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("auth-modal-lock");
+    }
+
+    function confirmLogin() {
+        var now = Date.now();
+        var rec = readRecord() || { firstTs: now, count: 0 };
+        rec.count = (rec.count || 0) + 1;
+        rec.lastTs = now;
+        rec.lastPage = location.pathname;
+        writeRecord(rec);
+        statusEl.textContent = "登录成功，欢迎回来（第 " + rec.count + " 次登录）";
+        refreshLabel();
+        window.setTimeout(closeModal, 1100);
+    }
+
+    btn.addEventListener("click", openModal);
+    submitEl.addEventListener("click", confirmLogin);
+    modal.addEventListener("click", function (e) {
+        if (e.target && e.target.hasAttribute("data-auth-close")) { closeModal(); }
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("is-open")) { closeModal(); }
+    });
+
+    refreshLabel();
+})();
+</script>

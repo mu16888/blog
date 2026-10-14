@@ -1,0 +1,14 @@
+/*
+This file is kept as a small signpost for theme maintainers.
+
+The actual stylesheet source now lives in:
+- assets/css/main/01-root.css
+- assets/css/main/02-title-cards.css
+- assets/css/main/03-framework.css
+- assets/css/main/04-responsive.css
+- assets/css/extensions/katex.css
+
+These files are regenerated from the original theme stylesheet structure
+and concatenated in layouts/_default/baseof.html with Hugo Pipes, while
+still emitting a single /css/main.css asset for browsers.
+*/

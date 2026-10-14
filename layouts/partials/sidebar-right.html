@@ -1,0 +1,41 @@
+{{- $scope := default "homepage" .Scope -}}
+{{- $context := .Context -}}
+{{- with (index $context.Site.Params.widgets $scope) -}}
+<aside class="sidebar-right">
+    {{ if eq $scope "homepage" }}
+        {{ partial "widgets/talk-preview.html" (dict "Context" $context "Class" "widget-simple--talk-sidebar") }}
+    {{ end }}
+
+    {{/* 月历：放到右侧栏顶部（在「几个模块」之上），由 hugo.toml 的 widgets 列表之外手动渲染 */}}
+    {{ if eq $scope "homepage" }}
+        {{ partial "widgets/calendar.html" (dict "Context" $context) }}
+    {{ end }}
+
+    {{/* 主题内置 widget：搜索 / 归档 / 分类（清单见 hugo.toml 的 params.widgets） */}}
+    {{ range $widget := . }}
+        {{ $params := default dict .params }}
+        {{ if eq .type "search" }}
+            {{ partial "widgets/search.html" (dict "Context" $context "Params" $params) }}
+        {{ else if eq .type "archives" }}
+            {{ partial "widgets/archives.html" (dict "Context" $context "Params" $params) }}
+        {{ else if eq .type "categories" }}
+            {{ partial "widgets/categories.html" (dict "Context" $context "Params" $params) }}
+        {{ else if eq .type "tag-cloud" }}
+            {{ partial "widgets/tag-cloud.html" (dict "Context" $context "Params" $params) }}
+        {{ else if eq .type "toc" }}
+            {{ partial "widgets/toc.html" (dict "Context" $context "Params" $params) }}
+        {{ else if eq .type "calendar" }}
+            {{ partial "widgets/calendar.html" (dict "Context" $context "Params" $params) }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq $scope "page" }}
+        {{ partial "widgets/backlinks.html" (dict "Context" $context) }}
+        {{ partial "widgets/related.html" (dict "Context" $context) }}
+    {{ end }}
+
+    <!-- 自定义模块顺序：行业资讯 → 好物推荐（广告位）→ 联系方式（月历已上移至顶部） -->
+    {{ partial "widgets/promo.html" (dict "Context" $context) }}
+    {{ partial "widgets/contact.html" (dict "Context" $context) }}
+</aside>
+{{- end -}}

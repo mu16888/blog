@@ -1,0 +1,4 @@
+# 仅用于本地预览：把所有资源链接改成相对路径，
+# 这样直接用浏览器打开 public-preview/index.html（file://）也能正确加载 CSS/JS/图片，
+# 不必依赖本地服务器。不参与线上部署（线上用 hugo.toml 的绝对路径）。
+relativeURLs = true

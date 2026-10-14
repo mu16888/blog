@@ -1,0 +1,113 @@
+[nav.home]
+other = "主页"
+
+[nav.talks]
+other = "说说"
+
+[nav.archives]
+other = "归档"
+
+[nav.search]
+other = "搜索"
+
+[page.about]
+other = "关于"
+
+[page.guide]
+other = "指南"
+
+[page.links]
+other = "链接"
+
+[language.switch]
+other = "切换语言"
+
+[language.select]
+other = "选择语言"
+
+[language.current]
+other = "当前语言"
+
+[language.available]
+other = "可用语言"
+
+[language.more]
+other = "更多语言"
+
+[widget.archives.title]
+other = "归档"
+
+[widget.archives.more]
+other = "查看更多"
+
+[widget.categoriesCloud.title]
+other = "分类"
+
+[widget.tagCloud.title]
+other = "标签"
+
+[widget.related.title]
+other = "相关文章"
+
+[widget.backlinks.title]
+other = "引用本文"
+
+[search.title]
+other = "搜索"
+
+[search.placeholder]
+other = "搜索文章"
+
+[palette.title]
+other = "配色"
+
+[palette.goldenSummerFields]
+other = "金色夏野"
+
+[palette.softPastelShades]
+other = "柔雾粉彩"
+
+[palette.blackGoldElegance]
+other = "黑金雅韵"
+
+[palette.freshGreens]
+other = "新鲜绿意"
+
+[palette.lightSteel]
+other = "浅钢银"
+
+[palette.deepSeaBlue]
+other = "深海蓝"
+
+[palette.morandiMist]
+  other = "莫兰迪雾"
+
+[palette.monochromeCore]
+  other = "纯黑白灰"
+
+[article.tableOfContents]
+other = "目录"
+
+[article.descriptionLabel]
+other = "简介"
+
+[error.404.title]
+other = "页面未找到"
+
+[minMode.toggle]
+other = "极简"
+
+[minMode.off]
+other = "标准"
+
+[archive.all]
+other = "全部"
+
+[archive.categories]
+other = "分类"
+
+[archive.tags]
+other = "标签"
+
+[error.404.message]
+other = "你访问的页面不存在，或者已经移动到别处。"

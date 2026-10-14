@@ -1,0 +1,13 @@
+name = "pocket-hugo-theme"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A calm, content-first Hugo theme for Pocket Hugo and multilingual writing, built for essays, social notes, and cover-driven reading."
+homepage = "https://github.com/h2dcc/pocket-hugo-theme"
+demosite = "https://theme.leftn.com"
+tags = ["blog", "personal", "minimal", "multilingual", "light", "dark mode"]
+features = ["blog", "search", "taxonomy", "friend-links", "talk-page", "multilingual", "cover-image", "mobile-friendly", "backlinks", "view-transitions", "content-adapters", "responsive-images"]
+min_version = "0.149.0"
+
+[author]
+  name = "Lawtee"
+  homepage = "http://lawtee.com"

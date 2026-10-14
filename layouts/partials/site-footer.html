@@ -1,0 +1,16 @@
+<footer class="site-footer">
+    <!-- 底部不再放联系卡 / 公众号码：联系方式已移到右侧栏「联系沐风」模块，
+         公众号码只在右上角「注册 / 登录」弹窗中展示，避免重复与不协调 -->
+    <p>
+        &copy; {{ now.Year }} {{ .Site.Title }}
+        {{ with .Site.Copyright }} - {{ . }}{{ end }}
+    </p>
+
+    <!-- 不蒜子访问统计（页脚显示访问量；加载失败仅显示 0，不影响页面） -->
+    <p class="site-footer__busuanzi">
+        <span id="busuanzi_container_site_pv">本站总访问 <span id="busuanzi_value_site_pv">0</span> 次</span>
+        &nbsp;·&nbsp;
+        <span id="busuanzi_container_site_uv">访客 <span id="busuanzi_value_site_uv">0</span> 人</span>
+    </p>
+    <script async src="https://busuanzi.9420.ltd/busuanzi.pure.mini.js"></script>
+</footer>

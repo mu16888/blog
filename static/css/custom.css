@@ -1,0 +1,456 @@
+/* =========================================================
+   沐风博客 · 自定义样式（在 pocket 主题 CSS 之后加载）
+   覆盖主题源码之外的扩展：右侧栏模块 / 月历 / 分享条 / 登录弹窗 / 品牌双色
+   主题真实 CSS 变量（无 -color 后缀，务必用这些）：
+     --background    页面底色
+     --foreground     正文文字色
+     --muted          次要文字色
+     --card           卡片底色
+     --border         边框
+     --accent         强调色（链接 / 按钮 / 高亮）
+     --hero-*         封面/标题卡的渐变与文字色
+   品牌双色：藏青 #1b2a4d + 淡白 #f6f7f9（见文件末尾覆盖块）
+   ========================================================= */
+
+/* ---------- 右侧栏：联系方式（左文字 + 右双码并排，按锋哥手绘稿） ---------- */
+.widget-simple--contact .contact-wrap {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+}
+.widget-simple--contact .contact-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.widget-simple--contact .contact-info .widget-simple__title {
+  margin: 0 0 .35rem;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.widget-simple--contact .contact-info__mail {
+  margin: 0;
+  padding-bottom: .4rem;
+  border-bottom: 1px dashed var(--border, #dce2ea);
+  line-height: 1.5;
+}
+.widget-simple--contact .contact-info__label {
+  display: block;
+  font-size: .95rem;
+  color: var(--muted, var(--foreground, #1b2a4d));
+}
+.widget-simple--contact .contact-info__addr {
+  display: block;
+  font-size: .78rem;
+  color: var(--accent, #1b2a4d);
+  word-break: break-all;
+  text-decoration: none;
+}
+.widget-simple--contact .contact-info__addr:hover { text-decoration: underline; }
+.widget-simple--contact .contact-qr {
+  flex: 0 0 auto;
+  display: flex;
+  gap: .5rem;
+  margin: 0;
+}
+.widget-simple--contact .contact-qr__item {
+  margin: 0;
+  width: 64px;
+  text-align: center;
+}
+.widget-simple--contact .contact-qr__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid var(--border, #dce2ea);
+  border-radius: 8px;
+}
+.widget-simple--contact .contact-qr__item figcaption {
+  margin-top: .25rem;
+  font-size: .8rem;
+  color: var(--muted, var(--foreground, #1b2a4d));
+}
+
+/* ---------- 月历 widget ---------- */
+.widget-calendar__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  font-weight: 600;
+  color: var(--foreground, #4f4736);
+}
+.widget-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.widget-calendar__dow {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--foreground, #4f565c);
+  opacity: .55;
+  padding-bottom: .5rem;
+}
+.widget-calendar__cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  color: var(--foreground, #4f4736);
+  text-decoration: none;
+}
+.widget-calendar__cell--empty { visibility: hidden; }
+.widget-calendar__cell--has-post {
+  background: var(--accent, #d4a373);
+  color: #fff;
+  font-weight: 700;
+}
+.widget-calendar__cell--has-post:hover { opacity: .85; }
+.widget-calendar__cell--today {
+  outline: 2px solid var(--accent, #d4a373);
+  outline-offset: -2px;
+  font-weight: 700;
+}
+
+/* ---------- 右侧栏自定义模块：行业资讯 / 好物推荐 ---------- */
+.widget-simple--promo .widget-simple__title { color: var(--foreground, #4f4736); }
+.widget-simple--promo .widget-simple__row {
+  color: var(--foreground, #4f4736);
+  line-height: 1.7;
+  padding: .55rem 0;
+  border-bottom: 1px dashed var(--border, #e9edc9);
+}
+.widget-simple--promo .widget-simple__row:last-child { border-bottom: none; }
+.widget-simple__note {
+  margin: .5rem 0 0;
+  font-size: .95rem;
+  color: var(--foreground, #4f565c);
+  opacity: .6;
+}
+.promo-ad {
+  margin-top: .6rem;
+  padding: .75rem .9rem;
+  border: 1px dashed var(--accent, #d4a373);
+  border-radius: 10px;
+  background: var(--card, #eee);
+  background: color-mix(in srgb, var(--accent, #d4a373) 7%, var(--card, #eee));
+}
+.promo-ad__tag {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent, #d4a373);
+  border-radius: 4px;
+  padding: .05rem .45rem;
+  margin-bottom: .4rem;
+}
+.promo-ad__body {
+  font-size: .82rem;
+  line-height: 1.5;
+  color: var(--foreground, #4f4736);
+}
+
+/* ---------- 文章分享条 ---------- */
+.share-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  margin: 1.8rem 0 0;
+  padding: 1rem 1.2rem;
+  border-top: 1px dashed var(--border, #e9edc9);
+  border-bottom: 1px dashed var(--border, #e9edc9);
+}
+.share-bar__label { font-weight: 700; font-size: .9rem; color: var(--foreground, #4f4736); }
+.share-bar button,
+.share-bar a.share-btn {
+  cursor: pointer;
+  border: 1px solid var(--border, #e9edc9);
+  background: var(--card, #eee);
+  color: var(--foreground, #4f4736);
+  border-radius: 999px;
+  padding: .35rem .9rem;
+  font-size: .82rem;
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.share-bar button:hover,
+.share-bar a.share-btn:hover {
+  background: var(--accent, #d4a373);
+  color: #fff;
+  border-color: var(--accent, #d4a373);
+}
+.share-bar__toast {
+  font-size: .8rem;
+  color: var(--accent, #d4a373);
+  margin-left: .3rem;
+}
+
+/* ---------- 右上角「注册 / 登录」按钮 ---------- */
+/* 主题 .header-tool 是 1.6rem 的纯图标按钮，这里覆盖为文字胶囊按钮 */
+.header-tool--auth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 3px 12px;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--accent, #d4a373);
+  background: transparent;
+  border: 1px solid var(--accent, #d4a373);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s ease;
+}
+.header-tool--auth:hover {
+  color: #fff;
+  background: var(--accent, #d4a373);
+  border-color: var(--accent, #d4a373);
+}
+
+/* ---------- 注册 / 登录弹窗 ---------- */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+.auth-modal.is-open { display: block; }
+.auth-modal__mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+}
+.auth-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(78vw, 264px);
+  margin: 14vh auto 0;
+  padding: 1.1rem 1rem .95rem;
+  text-align: center;
+  background: var(--card, #eee);
+  border: 1px solid var(--border, #e9edc9);
+  border-radius: 16px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .3);
+  animation: auth-pop .18s ease-out;
+}
+@keyframes auth-pop {
+  from { opacity: 0; transform: translateY(-8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.auth-modal__close {
+  position: absolute;
+  top: .35rem;
+  right: .6rem;
+  padding: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--foreground, #4f4736);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.auth-modal__close:hover { color: var(--accent, #d4a373); }
+.auth-modal__title {
+  margin: 0 0 .65rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--foreground, #4f4736);
+}
+.auth-modal__qr {
+  display: block;
+  margin: 0 auto;
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid var(--border, #e9edc9);
+  border-radius: 10px;
+}
+.auth-modal__hint {
+  margin: .6rem 0 0;
+  font-size: .8rem;
+  line-height: 1.55;
+  color: var(--foreground, #4f4736);
+}
+.auth-modal__submit {
+  display: block;
+  width: 100%;
+  margin-top: .8rem;
+  padding: .55rem 1rem;
+  font-size: .85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent, #d4a373);
+  border: 1px solid var(--accent, #d4a373);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: opacity .15s ease;
+}
+.auth-modal__submit:hover { opacity: .88; }
+.auth-modal__status {
+  min-height: 1.3em;
+  margin: .55rem 0 0;
+  font-size: .8rem;
+  color: var(--accent, #d4a373);
+}
+body.auth-modal-lock { overflow: hidden; }
+
+/* =========================================================
+   放大：右侧栏（注册按钮 → 月历）整体图标与字号，看得清
+   ========================================================= */
+
+/* 右上角「注册 / 登录」文字按钮：放大字号与内边距 */
+.header-tool--auth {
+  font-size: .95rem;
+  padding: 6px 16px;
+  letter-spacing: .02em;
+}
+
+/* 页头图标按钮（深浅切换 / 社交 / 极简模式）：克制尺寸，避免与正文失衡 */
+.header-tool {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* 右侧栏整体内容基线放大 */
+.sidebar-right { font-size: 1.05rem; }
+.sidebar-right .widget-simple__title { font-size: 1.6rem; }
+
+/* 主题原生列表（搜索 / 归档 / 分类）链接与行：放大看得清 */
+.sidebar-right .widget-simple__list,
+.sidebar-right .widget-simple__row {
+  font-size: 1.15rem;
+  line-height: 1.85;
+}
+.sidebar-right .widget-simple__list a,
+.sidebar-right .widget-simple a {
+  font-size: 1.15rem;
+}
+/* 搜索框输入框放大 */
+.sidebar-right input,
+.sidebar-right input[type="search"] {
+  font-size: 1.05rem;
+  padding: .6rem .75rem;
+}
+
+/* 月历：外框背景美化 + 字体加大（深浅自动协调） */
+.widget-calendar {
+  background: var(--card, #fffdf0);
+  border: 1px solid var(--border, #e9edc9);
+  border-radius: 14px;
+  padding: 1rem 1.1rem 1.2rem;
+  box-shadow: var(--shadow, 0 8px 22px rgba(104,85,61,.08));
+}
+.widget-calendar__head {
+  font-size: 1.35rem;
+  margin-bottom: .7rem;
+}
+.widget-calendar__grid { gap: 6px; }
+.widget-calendar__dow {
+  font-size: 1rem;
+  font-weight: 700;
+  padding-bottom: .5rem;
+}
+.widget-calendar__cell {
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+/* 右侧栏自定义模块（行业资讯 / 好物推荐）内容放大 */
+.widget-simple--promo .widget-simple__row {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+.widget-simple__note { font-size: .95rem; }
+.promo-ad__tag { font-size: .9rem; }
+.promo-ad__body { font-size: 1.1rem; line-height: 1.7; }
+
+/* =========================================================
+   品牌双色：藏青 + 淡白
+   复用主题 deep-sea-blue 预设槽位，覆盖为其色值（hugo.toml preset="deep-sea-blue"）
+   浅色模式 = 淡白底 + 藏青字；深色模式 = 藏青底 + 淡白字（即同样两种颜色）
+   ========================================================= */
+
+/* ---------- 浅色模式：淡白底 / 藏青字 ---------- */
+html[data-palette="deep-sea-blue"] {
+  --background: #f6f7f9;          /* 淡白 */
+  --foreground: #1b2a4d;          /* 藏青 */
+  --muted: #5c6b86;
+  --card: #ffffff;
+  --card-muted: #eef1f6;
+  --border: #dce2ea;
+  --accent: #1b2a4d;              /* 强调 = 藏青 */
+  --accent-contrast: #ffffff;
+  --danger: #c0574d;
+  --shadow: 0 12px 30px rgba(27, 42, 77, 0.10);
+  --markdown-code-bg: #eef1f6;
+  --markdown-quote: #5c6b86;
+  --accent-soft: #e6eaf1;
+  --accent-soft-text: #1b2a4d;
+  /* 标题卡 / 封面回退：藏青渐变 + 淡白字 */
+  --hero-start: #1b2a4d;
+  --hero-end: #33415c;
+  --hero-text: #f6f7f9;
+  --hero-subtitle: #c9d3e4;
+  --hero-chip: rgba(255, 255, 255, 0.12);
+  --hero-chip-text: #e8eef7;
+  --hero-border: rgba(255, 255, 255, 0.16);
+  --hero-orb: rgba(255, 255, 255, 0.10);
+}
+
+/* ---------- 深色模式：藏青底 / 淡白字 ---------- */
+html[data-theme=dark][data-palette="deep-sea-blue"] {
+  --background: #16264a;          /* 藏青底 */
+  --foreground: #f6f7f9;          /* 淡白字 */
+  --muted: #a7b5cf;
+  --card: #1e2f52;
+  --card-muted: #26385e;
+  --border: #33456a;
+  --accent: #e8eef7;              /* 强调 = 淡白 */
+  --accent-contrast: #16264a;
+  --danger: #f0897c;
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
+  --markdown-code-bg: #13213f;
+  --markdown-quote: #a7b5cf;
+  --accent-soft: #24365c;
+  --accent-soft-text: #e8eef7;
+  --hero-start: #0e1b3a;
+  --hero-end: #22345a;
+  --hero-text: #f6f7f9;
+  --hero-subtitle: #c2cee3;
+  --hero-chip: rgba(255, 255, 255, 0.10);
+  --hero-chip-text: #e8eef7;
+  --hero-border: rgba(255, 255, 255, 0.14);
+  --hero-orb: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- 标题卡（封面回退）也用同一套藏青，跟参考图一致 ---------- */
+.cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="light"] {
+  --cover-hero-start: #1b2a4d;
+  --cover-hero-end: #33415c;
+  --cover-hero-text: #f6f7f9;
+  --cover-hero-chip: rgba(255, 255, 255, 0.12);
+  --cover-hero-border: rgba(255, 255, 255, 0.16);
+  --cover-hero-orb: rgba(255, 255, 255, 0.10);
+}
+.cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
+  --cover-hero-start: #0e1b3a;
+  --cover-hero-end: #22345a;
+  --cover-hero-text: #f6f7f9;
+  --cover-hero-chip: rgba(255, 255, 255, 0.10);
+  --cover-hero-border: rgba(255, 255, 255, 0.14);
+  --cover-hero-orb: rgba(255, 255, 255, 0.08);
+}

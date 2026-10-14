@@ -1,0 +1,4 @@
+{{/* 品牌双色锁定：覆盖主题的「随机分配封面调色板」逻辑，
+   让所有无封面图的文章封面卡统一使用藏青（deep-sea-blue 槽位，色值见 custom.css）。
+   主题原逻辑会给每篇随机分配 8 个调色板之一，不符合站点双色定位。 */}}
+{{ return dict "palette" "deep-sea-blue" "tone" "dark" }}

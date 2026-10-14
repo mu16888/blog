@@ -1,0 +1,24 @@
+<!-- 右侧栏模块：联系方式（左文字 + 右双码，按锋哥手绘稿）
+     布局：左边「联系沐风」标题 + 「投稿邮箱」，右边「微信」「QQ」两个二维码并排
+     二维码尺寸克制（64px），避免整页失衡；公众号码只出现在右上角登录弹窗 -->
+<section class="widget-simple widget-simple--contact">
+    <div class="contact-wrap">
+        <div class="contact-info">
+            <h2 class="widget-simple__title">联系沐风</h2>
+            <p class="contact-info__mail">
+                <span class="contact-info__label">投稿邮箱</span>
+                <a class="contact-info__addr" href="mailto:hello@mufeng168.top">hello@mufeng168.top</a>
+            </p>
+        </div>
+        <div class="contact-qr">
+            <figure class="contact-qr__item">
+                <img src="{{ "/wechat-qr.jpg" | relURL }}" alt="沐风微信二维码" loading="lazy">
+                <figcaption>微信</figcaption>
+            </figure>
+            <figure class="contact-qr__item">
+                <img src="{{ "/qq-qr.jpg" | relURL }}" alt="沐风QQ二维码" loading="lazy">
+                <figcaption>QQ</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>

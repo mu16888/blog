@@ -1,0 +1,113 @@
+[nav.home]
+other = "Home"
+
+[nav.talks]
+other = "Talks"
+
+[nav.archives]
+other = "Archives"
+
+[nav.search]
+other = "Search"
+
+[page.about]
+other = "About"
+
+[page.guide]
+other = "Guide"
+
+[page.links]
+other = "Links"
+
+[language.switch]
+other = "Switch language"
+
+[language.select]
+other = "Choose language"
+
+[language.current]
+other = "Current language"
+
+[language.available]
+other = "Available languages"
+
+[language.more]
+other = "More languages"
+
+[widget.archives.title]
+other = "Archives"
+
+[widget.archives.more]
+other = "More"
+
+[widget.categoriesCloud.title]
+other = "Categories"
+
+[widget.tagCloud.title]
+other = "Tags"
+
+[widget.related.title]
+other = "Related Posts"
+
+[widget.backlinks.title]
+other = "Referenced By"
+
+[search.title]
+other = "Search"
+
+[search.placeholder]
+other = "Search posts"
+
+[palette.title]
+other = "Color palette"
+
+[palette.goldenSummerFields]
+other = "Golden Summer Fields"
+
+[palette.softPastelShades]
+other = "Soft Pastel Shades"
+
+[palette.blackGoldElegance]
+other = "Black & Gold Elegance"
+
+[palette.freshGreens]
+other = "Fresh Greens"
+
+[palette.lightSteel]
+other = "Light Steel"
+
+[palette.deepSeaBlue]
+other = "Deep Sea Blue"
+
+[palette.morandiMist]
+  other = "Morandi Mist"
+
+[palette.monochromeCore]
+  other = "Monochrome Core"
+
+[article.tableOfContents]
+other = "Contents"
+
+[article.descriptionLabel]
+other = "Description"
+
+[error.404.title]
+other = "Page not found"
+
+[minMode.toggle]
+other = "Minimal"
+
+[minMode.off]
+other = "Normal"
+
+[archive.all]
+other = "All"
+
+[archive.categories]
+other = "Categories"
+
+[archive.tags]
+other = "Tags"
+
+[error.404.message]
+other = "The page you requested does not exist or may have moved."

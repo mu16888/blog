@@ -1,0 +1,146 @@
+{{ define "body-class" }}template-archives{{ end }}
+
+{{ define "main" }}
+    {{ $mainSections := .Site.MainSections | default (slice "post" "posts") }}
+    {{ $pages := where .Site.RegularPages "Type" "in" $mainSections }}
+    {{ $pages = where $pages "Params.hidden" "!=" true }}
+
+    {{/* 统计归档范围内每个分类的文章数（与分类 Tab 上显示的数量一致） */}}
+    {{ $catCounts := dict }}
+    {{ range $pages }}
+        {{ range .Params.categories }}
+            {{ $key := . | urlize }}
+            {{ $prev := index $catCounts $key | default 0 }}
+            {{ $catCounts = merge $catCounts (dict $key (add $prev 1)) }}
+        {{ end }}
+    {{ end }}
+
+    {{/* 统计归档范围内每个标签的命中（标签栏只显示属于文章的标签） */}}
+    {{ $tagCounts := dict }}
+    {{ range $pages }}
+        {{ range .Params.tags }}
+            {{ $key := . | urlize }}
+            {{ $prev := index $tagCounts $key | default 0 }}
+            {{ $tagCounts = merge $tagCounts (dict $key (add $prev 1)) }}
+        {{ end }}
+    {{ end }}
+
+    {{- $allLabel := T "archive.all" | default "All" -}}
+    {{- $catLabel := T "archive.categories" | default "Categories" -}}
+    {{- $tagLabel := T "archive.tags" | default "Tags" -}}
+
+    <section class="archives-page">
+        <header class="section-head">
+            <p class="section-head__eyebrow">{{ T "nav.archives" | default "Archive" }}</p>
+            <h1>{{ .Title }}</h1>
+        </header>
+
+        <div class="archive-container">
+            <div class="archive-filter-group">
+                <span class="archive-filter-label">{{ $catLabel }}</span>
+                <div class="archive-tabs" id="archive-tabs">
+                    <button class="tab-btn active" type="button" data-target="all">{{ $allLabel }} ({{ len $pages }})</button>
+                    {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+                        {{ $key := $name | urlize }}
+                        {{ with index $catCounts $key }}
+                            <button class="tab-btn" type="button" data-target="{{ $key }}">{{ $name }} ({{ . }})</button>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="archive-filter-group">
+                <span class="archive-filter-label">{{ $tagLabel }}</span>
+                <div class="archive-tabs" id="archive-tags">
+                    <button class="tab-btn active" type="button" data-target="all">{{ $allLabel }}</button>
+                    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+                        {{ $key := $name | urlize }}
+                        {{ with index $tagCounts $key }}
+                            <button class="tab-btn" type="button" data-target="{{ $key }}">{{ $name }}</button>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="archive-list" id="archive-list">
+                {{ range $pages.GroupByDate "2006" }}
+                    {{ $id := lower (replace .Key " " "-") }}
+                    <section class="archive-year" id="{{ $id }}">
+                        <div class="archive-year__head">
+                            <h2>{{ .Key }}</h2>
+                            <span>{{ len .Pages }}</span>
+                        </div>
+                        <div class="archive-year__list">
+                            {{ range .Pages }}
+                                {{ $cats := slice }}
+                                {{ range .Params.categories }}{{ $cats = $cats | append (. | urlize) }}{{ end }}
+                                {{ $tags := slice }}
+                                {{ range .Params.tags }}{{ $tags = $tags | append (. | urlize) }}{{ end }}
+                                <article class="archive-entry" data-categories="{{ delimit $cats " " }}" data-tags="{{ delimit $tags " " }}">
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                    <time>{{ .Date | time.Format (or .Site.Params.dateFormat.published "2006-01-02") }}</time>
+                                </article>
+                            {{ end }}
+                        </div>
+                    </section>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar-right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+    (function () {
+        var catTabs = document.getElementById('archive-tabs');
+        var tagTabs = document.getElementById('archive-tags');
+        if (!catTabs && !tagTabs) return;
+        var items = document.querySelectorAll('.archive-entry[data-categories]');
+        var blocks = document.querySelectorAll('.archive-year');
+        var activeCategory = 'all';
+        var activeTag = 'all';
+
+        function applyFilters() {
+            items.forEach(function (item) {
+                var cats = (item.getAttribute('data-categories') || '').split(' ');
+                var tags = (item.getAttribute('data-tags') || '').split(' ');
+                var show = (activeCategory === 'all' || cats.indexOf(activeCategory) > -1)
+                    && (activeTag === 'all' || tags.indexOf(activeTag) > -1);
+                item.classList.toggle('is-hidden', !show);
+            });
+
+            blocks.forEach(function (block) {
+                var visible = block.querySelectorAll('.archive-entry:not(.is-hidden)').length;
+                block.classList.toggle('is-empty', visible === 0);
+            });
+        }
+
+        function bindGroup(container, isCategory) {
+            if (!container) return;
+            container.addEventListener('click', function (e) {
+                var btn = e.target.closest('.tab-btn');
+                if (!btn) return;
+
+                container.querySelectorAll('.tab-btn').forEach(function (b) {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+
+                var target = btn.getAttribute('data-target');
+                if (isCategory) {
+                    activeCategory = target;
+                } else {
+                    activeTag = target;
+                }
+                applyFilters();
+            });
+        }
+        bindGroup(catTabs, true);
+        bindGroup(tagTabs, false);
+    })();
+</script>
+{{ end }}

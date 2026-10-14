@@ -1,0 +1,18 @@
+{{- $minMode := .Site.Params.minMode | default dict -}}
+{{- if $minMode.enabled | default true -}}
+<script>
+    (function () {
+        var key = 'PocketMinMode';
+        var stored = null;
+        try {
+            stored = localStorage.getItem(key);
+        } catch (e) {
+            stored = null;
+        }
+        var enabled = stored === 'true' || stored === 'false'
+            ? stored === 'true'
+            : {{ if eq ($minMode.default | default false) true }}true{{ else }}false{{ end }};
+        document.documentElement.dataset.min = enabled ? 'true' : 'false';
+    })();
+</script>
+{{- end -}}
