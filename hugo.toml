@@ -12,8 +12,9 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 enableRobotsTXT = true
 
-# 首页 / 列表只聚合「文章」；美食 / 文档 / 动态 各自独立栏目
-mainSections = ["posts"]
+# 首页 / 列表聚合「文章」+「美食」两栏（2026-10-14 加 recipes：美食配方也要上首页，否则栏目内文章首页看不到）
+# 文档 / 动态 仍各自独立栏目
+mainSections = ["posts", "recipes"]
 
 # 页脚版权起始年
 copyright = "沐风 · 餐饮实战与美食图文"
