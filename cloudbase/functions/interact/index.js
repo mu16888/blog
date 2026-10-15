@@ -90,7 +90,7 @@ async function handler(data, clientKey) {
     }
     const upd = await db.collection("counters").doc(slug).update({ [field]: _.inc(1) }).catch(() => ({ updated: 0 }));
     if (!upd.updated) {
-      await db.collection("counters").doc(slug).set({ _id: slug, [field]: 1 }).catch(() => {});
+      await db.collection("counters").doc(slug).set({ [field]: 1 }).catch(() => {});
     }
     delete cache[slug]; // 失效缓存
     const counts = await readCounts(slug); // 重建缓存 + 返回最新
