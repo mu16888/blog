@@ -226,31 +226,19 @@ def main():
 
     if cmd == "drafts":
         # 真正查询微信草稿箱（list 只列本地文章，不等于草稿箱实际内容）
-        tok = get_token()
-        c = requests.post(
-            f"{API}/cgi-bin/draft/count", params={"access_token": tok}, json={}, timeout=15
-        ).json()
+        c = api_post("/cgi-bin/draft/count", {})
         if "total_count" not in c:
             sys.exit(f"[count失败] {c}")
         total = c["total_count"]
         titles, offset = [], 0
         while offset < total:
-            r = requests.post(
-                f"{API}/cgi-bin/draft/batchget",
-                params={"access_token": tok},
-                json={"offset": offset, "count": 20, "no_content": 1},
-                timeout=20,
-            ).json()
+            r = api_post("/cgi-bin/draft/batchget",
+                         {"offset": offset, "count": 20, "no_content": 1}, timeout=20)
             if "item" not in r:
                 sys.exit(f"[batchget失败] {r}")
             for it in r["item"]:
                 news = (it.get("content") or {}).get("news_item") or [{}]
                 t = news[0].get("title") or ("(无标题)" + it.get("media_id", "")[:16])
-                if "\\u" in t:  # 微信有时把中文二次转义返回，解码后再比对
-                    try:
-                        t = json.loads('"' + t + '"')
-                    except Exception:
-                        pass
                 titles.append(t)
             offset += 20
         print(f"草稿箱共 {total} 篇：")
