@@ -14,3 +14,6 @@ resources/
 # Python 缓存
 __pycache__/
 *.pyc
+
+# Hugo 本地构建测试残留（临时验证用，不入库）
+_buildtest/
