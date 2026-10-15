@@ -67,7 +67,9 @@
     try { var rv = lsGet(readKey); readDone = rv && JSON.parse(rv).date === todayKey(); } catch (e) {}
     if (!readDone) {
       callFn({ action: "incr", slug: slug, field: "reads" }).then(function (r) {
-        lsSet(readKey, JSON.stringify({ date: todayKey() })); // 无论是否 throttled，当天不再重试
+        // 仅在真实写入成功后才落标记：请求失败（网络抖动/超时）时下次访问会重试，
+        // 避免一次失败就当天永久停摆。
+        if (r.ok && !r.throttled) lsSet(readKey, JSON.stringify({ date: todayKey() }));
         if (r.ok) {
           var el = document.getElementById("ms-reads");
           if (el) el.textContent = (r.counts && r.counts.reads) || 0;

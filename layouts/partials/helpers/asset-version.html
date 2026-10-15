@@ -1,0 +1,12 @@
+{{/* 返回文件的 8 位内容指纹，用法：{{ partial "helpers/asset-version.html" "js/site-stats.js" }}
+     静态资源 URL 后拼 ?v=<指纹>，内容一变指纹就变，彻底绕过浏览器/CDN 缓存。 */}}
+{{- $path := . -}}
+{{- $ver := "v1" -}}
+{{- with resources.Get $path -}}
+  {{- $ver = printf "v%s" (substr (crypto.MD5 (.Content | string)) 0 8) -}}
+{{- else -}}
+  {{- with readFile (printf "static/%s" $path) -}}
+    {{- $ver = printf "v%s" (substr (crypto.MD5 .) 0 8) -}}
+  {{- end -}}
+{{- end -}}
+{{- $ver -}}

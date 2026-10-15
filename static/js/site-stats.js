@@ -44,6 +44,8 @@
   }
 
   function boot() {
+    var day = todayKey();
+
     // 1) 先读当前 PV / UV 显示出来
     callFn({ action: "getCounts", slug: "site-pv" }).then(function (r) {
       if (r.ok && r.counts) paint("site-pv", r.counts.reads || 0);
@@ -53,16 +55,24 @@
     });
 
     // 2) 当天首次访问才 +1（PV/UV 同一天只计一次，防刷新刷量）
-    var flag = "site_stat_" + todayKey();
-    if (lsGet(flag) === "1") return;
-    lsSet(flag, "1");
+    //    标记只在「写入成功」后才落盘：请求失败下次访问会重试，
+    //    避免旧实现「先落标记再请求」导致一次失败当天永久停摆。
+    var pvFlag = "site_pv_" + day;
+    var uvFlag = "site_uv_" + day;
 
-    callFn({ action: "incr", slug: "site-pv", field: "reads" }).then(function (r) {
-      if (r.ok && r.counts) paint("site-pv", r.counts.reads || 0);
-    });
-    callFn({ action: "incr", slug: "site-uv", field: "reads" }).then(function (r) {
-      if (r.ok && r.counts) paint("site-uv", r.counts.reads || 0);
-    });
+    if (lsGet(pvFlag) !== "1") {
+      callFn({ action: "incr", slug: "site-pv", field: "reads" }).then(function (r) {
+        if (r.ok && r.counts) paint("site-pv", r.counts.reads || 0);
+        // 仅在真实写入成功（未被限频）时才落标记
+        if (r.ok && !r.throttled) lsSet(pvFlag, "1");
+      });
+    }
+    if (lsGet(uvFlag) !== "1") {
+      callFn({ action: "incr", slug: "site-uv", field: "reads" }).then(function (r) {
+        if (r.ok && r.counts) paint("site-uv", r.counts.reads || 0);
+        if (r.ok && !r.throttled) lsSet(uvFlag, "1");
+      });
+    }
   }
 
   if (document.readyState === "loading") {
