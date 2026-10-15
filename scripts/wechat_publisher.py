@@ -129,6 +129,26 @@ def md_to_wechat_html(body):
 
 
 # ---------------------------------------------------------------- 微信接口
+def api_post(path, payload, timeout=30):
+    """POST JSON，显式 UTF-8 提交 + 显式 utf-8 解码响应。
+
+    两个坑都在这里：
+    1) 提交用 requests 的 json= 会走 ensure_ascii=True，中文被转成 \\uXXXX 而微信
+       未解码 → 后台正文显示乱码。必须 ensure_ascii=False + UTF-8 字节。
+    2) 微信响应没有 charset，requests 的 .json() 会猜成 ISO-8859-1，把 UTF-8 中文
+       解成 mojibake（ä½ å¥½）。必须 content.decode("utf-8") 再 json.loads。
+    """
+    body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    r = requests.post(
+        f"{API}{path}",
+        params={"access_token": get_token()},
+        data=body,
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        timeout=timeout,
+    )
+    return json.loads(r.content.decode("utf-8"))
+
+
 def upload_cover(token, local_path: Path):
     if not local_path.exists():
         sys.exit(f"[封面对不上] 本地找不到 {local_path}")
@@ -144,8 +164,16 @@ def upload_cover(token, local_path: Path):
 
 
 def add_draft(token, article):
-    r = requests.post(f"{API}/cgi-bin/draft/add", params={"access_token": token},
-                      json={"articles": [article]}, timeout=30).json()
+    # 🔴 必须显式 ensure_ascii=False + UTF-8 字节提交：早期用 json= 参数导致中文被
+    # 转义后未被微信正确解码，草稿正文在后台显示成 \uXXXX 乱码。
+    payload = json.dumps({"articles": [article]}, ensure_ascii=False).encode("utf-8")
+    r = requests.post(
+        f"{API}/cgi-bin/draft/add",
+        params={"access_token": token},
+        data=payload,
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        timeout=30,
+    ).json()
     if "media_id" not in r:
         sys.exit(f"[建草稿失败] {r}")
     return r["media_id"]
@@ -240,6 +268,31 @@ def main():
                 print(f"  python scripts/wechat_publisher.py draft {s}    # {t}")
         else:
             print("\n[OK] 本地可发文章在草稿箱均有对应草稿")
+        return
+
+    if cmd == "verify":
+        # 建完草稿必须跑一遍：校验正文是否为正常中文，防乱码事故流向发布
+        total = api_post("/cgi-bin/draft/count", {}).get("total_count", 0)
+        items, offset = [], 0
+        while offset < total:
+            r = api_post("/cgi-bin/draft/batchget",
+                         {"offset": offset, "count": 20, "no_content": 1}, timeout=20)
+            items.extend(r.get("item") or [])
+            offset += 20
+        print(f"校验草稿箱 {len(items)} 篇正文编码：")
+        bad = 0
+        for it in items:
+            obj = api_post("/cgi-bin/draft/get", {"media_id": it["media_id"]}, timeout=25)
+            art = (obj.get("news_item") or [{}])[0]
+            text = re.sub(r"<[^>]+>", "", art.get("content", ""))
+            zh = len(re.findall("[一-龥]", text))
+            if not zh:
+                bad += 1
+            print(f"  {'✅正常' if zh else '❌乱码'}  {art.get('title', '')[:26]:28s} 正文汉字 {zh}")
+        if bad:
+            print(f"\n[结论] 有 {bad} 篇乱码，禁止发布！需重建（内容源在本地 md，重建即可）")
+        else:
+            print("\n[结论] 全部正常，可以发布")
         return
 
     if len(sys.argv) < 3:
