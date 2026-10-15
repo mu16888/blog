@@ -4,6 +4,7 @@ date: 2026-10-13
 draft: false
 tags: ["餐饮经营", "选址", "开店"]
 description: "死得最惨的店，九成是选址埋的雷，不是菜难吃。用一道乘法题讲透选址底层逻辑，附 8 维评分表和签字前必过的避坑清单。"
+image: "/covers/restaurant-site-selection.jpg"
 ---
 
 死得最惨的店，九成是选址埋的雷，不是菜难吃。

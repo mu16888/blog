@@ -1,0 +1,29 @@
+{{ define "body-class" }}template-home{{ end }}
+
+{{ define "main" }}
+    {{ $mainSections := .Site.MainSections | default (slice "post" "posts") }}
+    {{ $pages := where .Site.RegularPages "Kind" "page" }}
+    {{ $pages = where $pages "Type" "in" $mainSections }}
+    {{ $pages = where $pages "Params.hidden" "!=" true }}
+    {{ $pages = $pages.ByDate.Reverse }}
+    {{ $pinned := where $pages "Params.pinned" true }}
+    {{ $others := where $pages "Params.pinned" "!=" true }}
+    {{ $pages = $pinned | append $others }}
+    {{ $paginator := .Paginate $pages }}
+
+    <div class="home-talk-mobile">
+        {{ partial "widgets/talk-preview.html" (dict "Context" . "Class" "widget-simple--talk-mobile") }}
+    </div>
+
+    <!-- PIN-OVERRIDE-ACTIVE --><section class="post-feed post-feed--home">
+        {{ range $paginator.Pages }}
+            {{ partial "article/card.html" . }}
+        {{ end }}
+    </section>
+
+    {{ partial "pagination.html" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar-right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

@@ -174,11 +174,14 @@
   background: var(--card, #eee);
   color: var(--foreground, #4f4736);
   border-radius: 999px;
+  min-height: 40px;                 /* 触控目标：桌面/平板同样保证 40px */
   padding: .68rem 1.7rem;
   font-size: 1.53rem;
   font-weight: 600;
   line-height: 1.4;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   transition: all .15s ease;
 }
 .share-bar button:hover,
@@ -563,3 +566,182 @@ body { font-family: var(--mufeng-font); }
 /* ---------- 去掉半透明，提高对比度（透明度是"发虚"的另一半原因） ---------- */
 .widget-simple__note { opacity: 1; font-weight: 500; }
 .widget-calendar__dow { opacity: .82; font-weight: 700; }
+
+/* =========================================================
+   手机端适配（≤767px · 2026-10-14）
+   背景：本轮字号是按 27 寸宽屏（2560px）调的，而本文件此前除深色背景外
+        没有任何手机端断点 → 桌面尺寸被原样搬到手机上，并且因为本文件在主题
+        之后加载，把主题自带的移动端降档规则也一并盖掉了。
+   由此产生三个硬伤：
+     ① 页头工具是 absolute 定位，主题只给站名留 132px，而三个按钮实际要 163px+
+        → 超出部分直接压在站名上（截图里的 ☰ 叠字）
+     ② 站名文字列被挤到 ~176px，副标题"知识分享"被拆行
+     ③ 搜索框 15px < 16px → iOS Safari 聚焦时强制放大整页
+   另把按大屏调的放大值整体降回手机舒适档（13–14px）。
+   ========================================================= */
+@media (max-width: 767px) {
+
+  /* ---------- ① 页头改三行网格：工具不再浮在站名上 ---------- */
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    row-gap: 14px;
+    padding: 16px;
+    align-items: center;
+  }
+  .site-brand { grid-column: 1 / -1; align-items: center; gap: 12px; }
+  /* 解开外层 div，让「主导航」与「社交图标 + 工具」分别落到各自网格行 */
+  .site-header__nav { display: contents; }
+  .main-nav { grid-column: 1 / -1; }
+  .social-nav { grid-column: 1; justify-self: start; }
+  .header-tools {
+    grid-column: 2;
+    position: static;            /* 关键：取消主题的 absolute，消除与站名的重叠 */
+    top: auto;
+    right: auto;
+    justify-self: end;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  /* ---------- ② 站名恢复整行宽度，副标题不再拆词 ---------- */
+  .site-brand__avatar img { width: 56px; height: 56px; }
+  .site-brand__text { max-width: none; flex: 1 1 auto; min-width: 0; }
+  .site-brand__title { font-size: 2.2rem; }
+  .site-brand__subtitle { margin-top: 2px; font-size: 1.32rem; line-height: 1.5; }
+
+  /* ---------- 导航：单行横向滑动（不换行、不留孤字） ---------- */
+  .main-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 8px;
+    min-width: 0;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .main-nav::-webkit-scrollbar { display: none; }
+  .main-nav__link {
+    flex: 0 0 auto;
+    min-height: 42px;            /* 触控目标：主题移动端只有 34px，偏小 */
+    padding: 0 16px;
+    font-size: 1.4rem;
+  }
+
+  /* ---------- 社交图标 / 工具按钮：手机档尺寸 ---------- */
+  .social-nav { gap: 8px; }
+  .social-nav__link { width: 34px; height: 34px; }
+  .social-nav__link svg { width: 16px; height: 16px; }
+  .header-tool { min-height: 38px; }
+  .header-tool--icon { width: 38px; min-width: 38px; }
+  .header-tool svg,
+  .header-tool--toggle svg { width: 18px; height: 18px; }
+  .header-tool--auth { font-size: 1.25rem; padding: 6px 14px; }
+
+  /* ---------- ③ 搜索框 ≥16px（1.6rem）：消除 iOS 聚焦自动放大 ---------- */
+  .sidebar-right input,
+  .sidebar-right input[type="search"] {
+    font-size: 1.6rem;
+    padding: .55rem .7rem;
+  }
+
+  /* ---------- 大屏档放大值 → 手机舒适档（13–14px） ---------- */
+  .sidebar-right { font-size: 1.3rem; }
+  .sidebar-right .widget-simple__title { font-size: 1.7rem; }
+  .sidebar-right .widget-simple__list,
+  .sidebar-right .widget-simple__row { font-size: 1.4rem; line-height: 1.8; }
+  .sidebar-right .widget-simple__list a,
+  .sidebar-right .widget-simple a { font-size: 1.4rem; }
+
+  .share-bar { gap: .75rem; margin-top: 1.6rem; padding: 1.1rem 1.15rem; }
+  .share-bar__label { font-size: 1.4rem; }
+  .share-bar button,
+  .share-bar a.share-btn {
+    min-height: 40px;            /* 触控目标：实测原高仅 28.5px，手指点不准 */
+    padding: .5rem 1.15rem;
+    font-size: 1.32rem;
+    display: inline-flex;
+    align-items: center;
+  }
+  .share-bar__toast { font-size: 1.25rem; }
+
+  .widget-simple--contact .contact-info .widget-simple__title { font-size: 1.7rem; }
+  .widget-simple--contact .contact-info__label { font-size: 1.25rem; }
+  .widget-simple--contact .contact-info__addr { font-size: 1.25rem; }
+  .widget-simple--contact .contact-qr { gap: .4rem; }
+  .widget-simple--contact .contact-qr__item { width: 62px; }
+
+  .widget-calendar { padding: .8rem .85rem 1rem; }
+  .widget-calendar__head { font-size: 1.45rem; }
+  .widget-calendar__dow { font-size: 1.15rem; }
+  .widget-calendar__cell { font-size: 1.35rem; }
+  .widget-calendar__legend { font-size: 1.15rem; gap: .5rem 1.1rem; }
+
+  .widget-simple--promo .widget-simple__row { font-size: 1.4rem; }
+  .widget-simple__note { font-size: 1.25rem; }
+  .promo-ad__tag { font-size: 1.15rem; }
+  .promo-ad__body { font-size: 1.35rem; }
+
+  /* ---------- 正文元素：宽表格可横滑，不撑破屏幕 ---------- */
+  .article-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ---------- 正文可读性：主题把手机端正文钉在 14px（且带 !important），偏小 ----------
+     中文在手机上 16px 是舒适基准，这里用 !important 覆盖主题的 !important。 */
+  .article-content {
+    font-size: 1.6rem !important;
+    line-height: 1.85 !important;
+    letter-spacing: 0.01em;
+  }
+  /* 文章摘要 / 相关文章 / 评论区同样偏小，一并提到 15px */
+  .article-page__description,
+  .comments-card,
+  .comments-card *,
+  .widget-simple__row--related,
+  .widget-simple__row--related a {
+    font-size: 1.5rem;
+    line-height: 1.8;
+  }
+  /* 卡片标题与摘要：主题手机端仅 14.2px，与正文拉不开层级 */
+  .post-card__title,
+  .post-feed--home .post-card__title,
+  .post-card--taxonomy .post-card__title { font-size: 1.75rem; }
+  .post-card__excerpt { font-size: 1.5rem; line-height: 1.8; }
+
+  /* ---------- 内边距与底部安全区 ---------- */
+  .article-page,
+  .list-page,
+  .archives-page,
+  .search-page { padding: 16px; }
+  .site-shell { padding-bottom: 40px; }
+  .back-to-top {
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* 移动端 hover 无意义，改为按下反馈 */
+  .main-nav__link:active,
+  .header-tool:active,
+  .social-nav__link:active,
+  .share-bar button:active,
+  .share-bar a.share-btn:active { opacity: .82; }
+}
+
+/* 超窄屏（≤400px）：再收一档，保证一行人眼可辨 */
+@media (max-width: 400px) {
+  .site-brand__avatar img { width: 48px; height: 48px; }
+  .site-brand__title { font-size: 2rem; }
+  .main-nav__link { padding: 0 13px; font-size: 1.32rem; }
+  .header-tool--auth { padding: 6px 11px; }
+  .share-bar button,
+  .share-bar a.share-btn { font-size: 1.25rem; padding: .45rem .95rem; }
+  .widget-simple--contact .contact-qr__item { width: 56px; }
+}

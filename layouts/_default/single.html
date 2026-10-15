@@ -114,6 +114,9 @@
         {{/* 分享条（自定义，插入在评论区之前） */}}
         {{ partial "share.html" . }}
 
+        {{/* CloudBase 统计 / 留资 / 登录墙（自定义，挂在评论区之前） */}}
+        {{ partial "stats.html" . }}
+
         {{ partial "comments/comments.html" . }}
     </article>
 {{ end }}

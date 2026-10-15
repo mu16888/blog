@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>美食 - 沐风的个人博客</title><link>https://mufeng168.top/recipes/</link><description>沐风的美食配方与菜谱合集，家常快手、风味复刻、摆盘思路都在这里慢慢收集。</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 14 Oct 2026 15:51:03 +0000</lastBuildDate><atom:link href="https://mufeng168.top/recipes/index.xml" rel="self" type="application/rss+xml"/><item><title>万能蒜蓉酱配方：金银蒜 6:4，摆摊开店都能用</title><link>https://mufeng168.top/recipes/garlic-sauce/</link><pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate><guid>https://mufeng168.top/recipes/garlic-sauce/</guid><description>蒜蓉酱炸出来又苦又黑，问题出在只用了一种蒜。讲透商用金银蒜 6:4 的底层逻辑，附油温锁鲜三步、单份成本测算和批量保存方法。</description><content:encoded><![CDATA[<p>一酱在手，蒜蓉粉丝、烤生蚝、蒸排骨全搞定。</p>
+<p><figure class="article-image">
+    <a class="article-image__link" href="/img/garlic-sauce-01.jpg" data-lightbox-image>
+        <img
+            src="/img/garlic-sauce-01.jpg"
+            alt="蒜蓉酱成品特写"
+            loading="lazy"
+            decoding="async"
+            
+            
+            
+            
+            
+        >
+    </a>
+    
+</figure>
+</p>
+<h2 id="一先搞懂金银蒜这是蒜蓉酱的灵魂">一、先搞懂&quot;金银蒜&quot;，这是蒜蓉酱的灵魂</h2>
+<p>很多新手直接把蒜剁碎下油锅，炸出来又苦又黑。问题出在只用了一种蒜。</p>
+<p>商用做法一定是<strong>金银蒜分开处理</strong>：</p>
+<ul>
+<li><strong>金蒜</strong>：一半蒜末下温油慢炸到金黄、蒜香完全激发。火候是重点——油温别超过 130℃，蒜末一下锅就要不停搅，颜色刚转金黄立刻离火，用余温焖到琥珀色，过了就苦。</li>
+<li><strong>银蒜</strong>：另一半生蒜末，<strong>不炸</strong>，最后拌进去。它保的是那股&quot;鲜辣冲鼻&quot;的生蒜气，烤完一口下去层次才立得住。</li>
+</ul>
+<p>我们店用了多年的比例是 <strong>金蒜 : 银蒜 = 6 : 4</strong>。生蒜多到 5 成以上会发冲、压不住油香；金蒜超过 7 成又没魂。6:4 是试过最稳的。</p>
+<h2 id="二油温和锁鲜两步决定你能不能批量卖">二、油温和&quot;锁鲜&quot;两步，决定你能不能批量卖</h2>
+<p>蒜蓉酱想摆摊、想开店卖，难点不在配方，在<strong>稳定性和保存</strong>。</p>
+<p>三个动作缺一不可：</p>
+<ol>
+<li><strong>底油要香</strong>：用大豆油就行，先下几片姜、一小把葱白小火炼出香味，捞出料渣再炸蒜——这步让酱有&quot;底味&quot;，不是寡淡的蒜加油。</li>
+<li><strong>金银蒜合体</strong>：金蒜连油带蒜倒进银蒜里拌开，趁热加 <strong>盐、糖、鸡精、少许蚝油</strong>（比例约每 500g 蒜末：盐 8g、糖 10g、鸡精 5g、蚝油 15g）。糖是提鲜不是甜，别手重。</li>
+<li><strong>热封保存</strong>：装瓶前瓶子烫一下控干，酱趁热装、留 1 指空，表面淋一层熟油封口隔绝空气。<strong>常温别放，冷藏 7 天、冷冻 1 个月</strong>没问题。我们出摊是头天晚上做、第二天带冰袋，中午前卖完。</li>
+</ol>
+<p><figure class="article-image">
+    <a class="article-image__link" href="/img/garlic-sauce-03.jpg" data-lightbox-image>
+        <img
+            src="/img/garlic-sauce-03.jpg"
+            alt="蒜蓉酱装瓶密封"
+            loading="lazy"
+            decoding="async"
+            
+            
+            
+            
+            
+        >
+    </a>
+    
+</figure>
+</p>
+<h2 id="三算笔账单份成本多少卖多少钱">三、算笔账：单份成本多少，卖多少钱</h2>
+<p>以一份&quot;蒜蓉粉丝虾&quot;用酱 30g 算（下面是按市场价的<strong>示例成本</strong>，你当地物价自己替换）：</p>
+<table>
+	<thead>
+			<tr>
+					<th>项目</th>
+					<th>用量</th>
+					<th>单价</th>
+					<th>成本</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>蒜末</td>
+					<td>30g</td>
+					<td>约 0.012 元/g</td>
+					<td>0.36 元</td>
+			</tr>
+			<tr>
+					<td>底油+调料</td>
+					<td>折算</td>
+					<td>—</td>
+					<td>0.18 元</td>
+			</tr>
+			<tr>
+					<td>包装小盒</td>
+					<td>1 个</td>
+					<td>—</td>
+					<td>0.10 元</td>
+			</tr>
+			<tr>
+					<td><strong>单份合计</strong></td>
+					<td></td>
+					<td></td>
+					<td><strong>约 0.64 元</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p>一份酱成本 6 毛多，摆摊卖 3–5 元一份的蒜蓉酱淋菜，毛利空间非常厚。关键是<strong>标准化</strong>——蒜和油的比例、糖盐量固定下来，谁来做都是一个味，不用你天天盯锅。</p>
+<p><figure class="article-image">
+    <a class="article-image__link" href="/img/garlic-sauce-02.jpg" data-lightbox-image>
+        <img
+            src="/img/garlic-sauce-02.jpg"
+            alt="蒜蓉粉丝虾应用场景"
+            loading="lazy"
+            decoding="async"
+            
+            
+            
+            
+            
+        >
+    </a>
+    
+</figure>
+</p>
+<hr>
+<p>酱是通用的，配方才是你的壁垒。</p>
+<p>这套东西我自己在店里跑了多年，比例和火候都是试出来的，不是抄来的。你按 6:4 先做一小罐试试，火候那一步别偷懒——<strong>宁可差一点离火，也别多炸十秒</strong>，苦味是救不回来的。</p>
+<p>有问题想细聊，或者卡在某个环节，<a href="mailto:hello@mufeng168.top">发邮件</a>
+或者微信找我（右侧栏有二维码），看到就回。</p>
+]]></content:encoded></item></channel></rss>

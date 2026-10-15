@@ -1,0 +1,48 @@
+{{/* 统计 / 留资 / 登录墙 UI（挂在文章页评论区之前） */}}
+{{ $slug := .File.ContentBaseName }}
+<section class="mufeng-stats" data-slug="{{ $slug }}">
+  <style>
+    .mufeng-stats{border:1px solid #e3e6ec;border-radius:12px;padding:14px 16px;margin:18px 0;background:#f6f7f9;font-size:14px;color:#1b2a4d}
+    .mufeng-stats .ms-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .mufeng-stats .ms-views{margin-right:6px;color:#444}
+    .mufeng-stats .ms-btn{border:1px solid #1b2a4d;background:#fff;color:#1b2a4d;border-radius:20px;padding:6px 14px;cursor:pointer;font-size:13px;line-height:1.2}
+    .mufeng-stats .ms-btn:hover{background:#1b2a4d;color:#fff}
+    .mufeng-stats .ms-btn:disabled{opacity:.5;cursor:default}
+    .mufeng-stats .ms-btn.ms-done{background:#e8ebf2;color:#1b2a4d;border-color:#bcc3d0;cursor:default}
+    .mufeng-stats .ms-btn b{margin-left:4px;font-weight:600}
+    .mufeng-stats .ms-lead{margin-top:12px;border-top:1px dashed #d3d7df;padding-top:10px}
+    .mufeng-stats .ms-lead form{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .mufeng-stats .ms-lead input,.mufeng-stats .ms-lead select{border:1px solid #ccd2dc;border-radius:8px;padding:6px 10px;font-size:13px}
+    .mufeng-stats .ms-lead button{border:0;background:#1b2a4d;color:#fff;border-radius:8px;padding:6px 16px;cursor:pointer}
+    .mufeng-stats .ms-lead button:disabled{opacity:.6;cursor:default}
+    .mufeng-stats #ms-lead-msg{color:#0f6e56;font-size:12px;margin:6px 0 0}
+    .mufeng-stats #ms-doc-gate{padding:24px;text-align:center;color:#712b13;background:#faece7;border-radius:10px;margin-top:10px}
+    /* honeypot：屏幕外隐藏字段，真人不可见；机器人自动填充即判定为垃圾 */
+    .mufeng-stats .ms-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0}
+  </style>
+  <div class="ms-row">
+    <span class="ms-views">阅读 <b id="ms-reads">0</b></span>
+    <button class="ms-btn" data-field="likes">赞<b id="ms-likes">0</b></button>
+    <button class="ms-btn" data-field="favorites">收藏<b id="ms-favorites">0</b></button>
+    <button class="ms-btn" data-field="shares">转发<b id="ms-shares">0</b></button>
+    <button class="ms-btn" data-field="follows">关注<b id="ms-follows">0</b></button>
+  </div>
+  <details class="ms-lead">
+    <summary>留资：订阅 / 合作（留微信或邮箱）</summary>
+    <form id="ms-lead-form" autocomplete="off">
+      <input name="contact" placeholder="微信 / 邮箱" required maxlength="60">
+      <select name="type">
+        <option value="wechat">微信</option>
+        <option value="email">邮箱</option>
+      </select>
+      <input name="note" placeholder="备注（可选）" maxlength="200">
+      <input type="text" name="_hp" class="ms-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit">提交</button>
+    </form>
+    <p id="ms-lead-msg"></p>
+  </details>
+  <div id="ms-doc-gate" hidden>该内容为登录用户专享，请先登录后查看。</div>
+  <button id="ms-wechat" class="ms-btn" hidden>微信登录</button>
+</section>
+<script src="/js/cloudbase-config.js"></script>
+<script src="/js/cloudbase-stats.js" defer></script>
