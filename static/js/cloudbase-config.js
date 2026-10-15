@@ -12,7 +12,7 @@ window.CLOUDBASE_CONFIG = {
   // 获取方式：控制台 → 云函数/托管 → 函数 interact → HTTP 访问服务/触发路径
   //   → 开启并把触发路径设为 /interact → 复制形如
   //   https://mufeng-blog-d0g1cd76cd6d944e8.service.tcloudbase.com/interact
-  apiUrl: "PASTE_FUNCTION_HTTP_URL",
+  apiUrl: "https://mufeng-blog-d0g1cd76cd6d944e8-1340448166.ap-shanghai.app.tcloudbase.com/interact",
 
   // 文档类登录墙开关（需要 SDK 登录，当前架构未启用；保留字段备用）
   docGatingEnabled: false,

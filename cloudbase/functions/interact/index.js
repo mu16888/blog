@@ -13,7 +13,8 @@
 // 依赖：@cloudbase/node-sdk（云函数运行时内置）
 // ============================================================
 const cloud = require("@cloudbase/node-sdk");
-const app = cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
+const ENV = cloud.DYNAMIC_CURRENT_ENV || process.env.TCB_ENV || process.env.SCF_NAMESPACE || undefined;
+const app = cloud.init(ENV ? { env: ENV } : undefined);
 const db = app.database();
 const _ = db.command;
 
@@ -61,12 +62,8 @@ async function readCounts(slug) {
   return counts;
 }
 
-// 客户端标识：SDK 登录态 → IP 头 → 兜底 anon
+// 客户端标识：HTTP 直连模式走 IP 头（SDK 登录态在本架构未启用，故不查 auth，避免多一层依赖失败面）
 async function getClientKey(headers) {
-  try {
-    const state = await app.auth().getLoginState();
-    if (state && state.user && state.user.uid) return state.user.uid;
-  } catch (e) { /* HTTP 触发无登录态，走 IP */ }
   const h = headers || {};
   const ip = h["x-real-ip"] || (h["x-forwarded-for"] || "").split(",")[0].trim();
   return ip ? "ip:" + ip : "anon";
