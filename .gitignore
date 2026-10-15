@@ -11,6 +11,10 @@ resources/
 /themes/*/exampleSite/
 /themes/*/images/
 
+# 凭据与本地配置（含 AppSecret，绝不入库！）
+/config/
+_wechat_preview/
+
 # Python 缓存
 __pycache__/
 *.pyc
