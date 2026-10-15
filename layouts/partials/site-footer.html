@@ -6,11 +6,11 @@
         {{ with .Site.Copyright }} - {{ . }}{{ end }}
     </p>
 
-    <!-- 不蒜子访问统计（页脚显示访问量；加载失败仅显示 0，不影响页面） -->
+    <!-- 站点 PV / UV 统计（自建 CloudBase 通道，替代不稳定的第三方不蒜子；加载失败显示 0，不影响页面） -->
     <p class="site-footer__busuanzi">
-        <span id="busuanzi_container_site_pv">本站总访问 <span id="busuanzi_value_site_pv">0</span> 次</span>
+        本站总访问 <span id="site-pv">0</span> 次
         &nbsp;·&nbsp;
-        <span id="busuanzi_container_site_uv">访客 <span id="busuanzi_value_site_uv">0</span> 人</span>
+        访客 <span id="site-uv">0</span> 人
     </p>
-    <script async src="https://busuanzi.9420.ltd/busuanzi.pure.mini.js"></script>
+    <script src="/js/site-stats.js" defer></script>
 </footer>
