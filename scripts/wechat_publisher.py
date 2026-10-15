@@ -168,7 +168,11 @@ def prepare(slug):
     digest = fit_bytes(clean(fm.get("description", "")), 115)
     image_rel = clean(fm.get("image", ""))
     cover = ROOT / "static" / image_rel.lstrip("/") if image_rel else None
-    # 全部文章统一用同一张设计原图（/covers/cover-base.png），按原图直传，不重画不裁切。
+    # 优先用公众号专用封面（2.35:1），避免微信按 2.35:1 居中裁切切到两段式文字上下；
+    # 若不存在则回退到博客头图（4:1）由微信自行裁切。
+    wechat_cover = ROOT / "static" / "covers" / "wechat" / f"{slug}.jpg"
+    if wechat_cover.exists():
+        cover = wechat_cover
     html = md_to_wechat_html(body)
     return title, digest, cover, html, fm, raw_title
 
