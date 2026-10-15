@@ -3,6 +3,8 @@ title: "餐饮人力的「单位经济」：一个员工到底为你赚多少"
 date: 2026-10-16
 draft: true
 tags: ["餐饮经营", "人力", "成本"]
+title_main: "人力单位经济"
+title_sub: "一个员工到底为你赚多少"
 description: "人力不是越省越好。把每个岗位拆成「贡献毛利 － 成本」，算清谁在赚钱、谁在吃利润。"
 image: "/covers/labor-unit-economics.jpg"
 wechat_title: "一个员工到底为你赚多少？算单位经济"

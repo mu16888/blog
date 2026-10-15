@@ -47,7 +47,14 @@
 
             <div class="article-page__meta">
                 {{ if $showPageTitle }}
-                    <h1{{ if .Site.Params.viewTransitions }} style="view-transition-name: title-{{ $transitionBase }};"{{ end }}>{{ .Title }}</h1>
+                    {{ $titleMain := .Params.title_main }}
+                    {{ $titleSub := .Params.title_sub }}
+                    {{ if and $titleMain $titleSub }}
+                        <h1 class="article-page__title-main"{{ if .Site.Params.viewTransitions }} style="view-transition-name: title-{{ $transitionBase }};"{{ end }}>{{ $titleMain }}</h1>
+                        <p class="article-page__title-sub">{{ $titleSub }}</p>
+                    {{ else }}
+                        <h1{{ if .Site.Params.viewTransitions }} style="view-transition-name: title-{{ $transitionBase }};"{{ end }}>{{ .Title }}</h1>
+                    {{ end }}
                 {{ end }}
                 <div class="meta-line">
                     {{ if not .Date.IsZero }}<span>{{ .Date | time.Format (or .Site.Params.dateFormat.published "2006-01-02") }}</span>{{ end }}
