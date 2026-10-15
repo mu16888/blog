@@ -1,7 +1,7 @@
 ---
 title: "菜单工程四象限：用一张表淘汰你的「赔本引流菜」"
 date: 2026-10-14
-draft: true
+draft: false
 tags: ["餐饮经营", "菜单", "利润"]
 title_main: "菜单工程四象限"
 title_sub: "用一张表淘汰你的赔本引流菜"

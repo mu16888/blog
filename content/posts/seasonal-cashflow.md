@@ -1,11 +1,12 @@
 ---
 title: "淡旺季现金流：旺季攒钱、淡季练功的生存算法"
-date: 2026-10-16
-draft: true
+date: 2026-10-15
+draft: false
 tags: ["餐饮经营", "现金流", "淡季"]
 title_main: "淡旺季现金流"
 title_sub: "旺季攒钱、淡季练功的生存算法"
 description: "赚的钱有一大半是旺季给的，但能不能活到旺季看淡季。一套现金流节律，让店不倒在淡季。"
+wechat_title: "旺季攒钱、淡季练功的生存算法"
 image: "/covers/seasonal-cashflow.jpg"
 ---
 
