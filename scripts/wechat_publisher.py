@@ -306,6 +306,18 @@ def main():
         log_draft(slug, media_id, published=False)
         print(f"[草稿OK] {slug} media_id={media_id}\n去 mp.weixin.qq.com 草稿箱可见。发布需另跑 publish 命令。")
 
+    elif cmd == "rm":
+        # 删除草稿箱里某篇草稿（已发布或重复时清理；内容随时可从本地 md 重建）
+        logs = json.loads(DRAFT_LOG.read_text(encoding="utf-8")) if DRAFT_LOG.exists() else {}
+        mid = logs.get(slug, {}).get("media_id")
+        if not mid:
+            sys.exit(f"[无记录] {slug} 不在本地建稿记录里")
+        r = api_post("/cgi-bin/draft/delete", {"media_id": mid})
+        if r.get("errcode") == 0:
+            logs.pop(slug, None)
+            DRAFT_LOG.write_text(json.dumps(logs, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"[删除 {slug}] {r}")
+
     elif cmd == "publish":
         token = get_token()
         thumb = upload_cover(token, cover)
