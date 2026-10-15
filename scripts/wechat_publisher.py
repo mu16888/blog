@@ -196,6 +196,52 @@ def main():
                 print(f"{p.stem:28s} {clean(fm.get('title',''))}")
         return
 
+    if cmd == "drafts":
+        # 真正查询微信草稿箱（list 只列本地文章，不等于草稿箱实际内容）
+        tok = get_token()
+        c = requests.post(
+            f"{API}/cgi-bin/draft/count", params={"access_token": tok}, json={}, timeout=15
+        ).json()
+        if "total_count" not in c:
+            sys.exit(f"[count失败] {c}")
+        total = c["total_count"]
+        titles, offset = [], 0
+        while offset < total:
+            r = requests.post(
+                f"{API}/cgi-bin/draft/batchget",
+                params={"access_token": tok},
+                json={"offset": offset, "count": 20, "no_content": 1},
+                timeout=20,
+            ).json()
+            if "item" not in r:
+                sys.exit(f"[batchget失败] {r}")
+            for it in r["item"]:
+                news = (it.get("content") or {}).get("news_item") or [{}]
+                t = news[0].get("title") or ("(无标题)" + it.get("media_id", "")[:16])
+                if "\\u" in t:  # 微信有时把中文二次转义返回，解码后再比对
+                    try:
+                        t = json.loads('"' + t + '"')
+                    except Exception:
+                        pass
+                titles.append(t)
+            offset += 20
+        print(f"草稿箱共 {total} 篇：")
+        for i, t in enumerate(titles, 1):
+            print(f"  {i:2d}. {t}")
+        local = []
+        for p in sorted(POSTS_DIR.glob("*.md")):
+            fm, _ = load_post(p.stem)
+            if clean(fm.get("draft", "true")).lower() == "false":
+                local.append((p.stem, clean(fm.get("wechat_title", "")) or clean(fm.get("title", ""))))
+        missing = [(s, t) for s, t in local if t not in titles]
+        if missing:
+            print("\n[注意] 本地有文章但草稿箱没有对应草稿，补建命令：")
+            for s, t in missing:
+                print(f"  python scripts/wechat_publisher.py draft {s}    # {t}")
+        else:
+            print("\n[OK] 本地可发文章在草稿箱均有对应草稿")
+        return
+
     if len(sys.argv) < 3:
         sys.exit("缺 slug 参数")
     slug = sys.argv[2]
