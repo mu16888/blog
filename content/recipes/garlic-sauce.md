@@ -4,7 +4,7 @@ date: 2026-10-14
 draft: false
 tags: ["配方", "酱料", "摆摊", "开店", "标准化"]
 description: "蒜蓉酱炸出来又苦又黑，问题出在只用了一种蒜。讲透商用金银蒜 6:4 的底层逻辑，附油温锁鲜三步、单份成本测算和批量保存方法。"
-image: "/img/garlic-sauce-01.jpg"
+image: "/covers/garlic-sauce.jpg"
 ---
 
 一酱在手，蒜蓉粉丝、烤生蚝、蒸排骨全搞定。
