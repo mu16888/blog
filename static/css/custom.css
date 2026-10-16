@@ -771,3 +771,67 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
   .article-page__title-main { font-size: 2.1rem; }
   .article-page__title-sub { font-size: 1.6rem; }
 }
+
+/* ========== 文章页末尾公众号关注引导 ========== */
+.wechat-follow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 40px 0 8px;
+  padding: 22px 26px;
+  background: #f6f7f9;
+  border: 1px solid #e4e7ee;
+  border-radius: 16px;
+}
+.wechat-follow__text { flex: 1; min-width: 0; }
+.wechat-follow__eyebrow {
+  display: inline-block;
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  color: #c9a86a;
+  margin-bottom: 6px;
+}
+.wechat-follow__title {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1b2a4d;
+}
+.wechat-follow__desc {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  line-height: 1.65;
+  color: #5a6478;
+}
+.wechat-follow__hint {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #8a93a5;
+}
+.wechat-follow__qr {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.wechat-follow__qr img {
+  width: 128px;
+  height: 128px;
+  border-radius: 10px;
+  border: 1px solid #e4e7ee;
+  background: #fff;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.wechat-follow__qr span {
+  font-size: 1.2rem;
+  color: #8a93a5;
+}
+
+/* 窄屏 / 紧凑模式：上下堆叠居中，二维码缩小 */
+@media (max-width: 767px) {
+  .wechat-follow { flex-direction: column; text-align: center; gap: 16px; padding: 20px 18px; }
+  .wechat-follow__qr img { width: 104px; height: 104px; }
+}

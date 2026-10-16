@@ -107,6 +107,9 @@
             </div>
         </div>
 
+        {{/* 公众号关注引导（正文结束即见） */}}
+        {{ partial "wechat-follow.html" . }}
+
         <div class="article-backlinks-inline">
             {{ partial "widgets/backlinks.html" (dict "Context" .) }}
         </div>
