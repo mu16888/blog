@@ -12,5 +12,9 @@
         &nbsp;·&nbsp;
         访客 <span id="site-uv">0</span> 人
     </p>
+    {{/* 🔴 必须在页脚先加载 cloudbase-config.js：site-stats.js 依赖 window.CLOUDBASE_CONFIG.apiUrl，读不到会直接 return 空转。
+         此前 config 只在文章页的统计块(stats.html)里加载，导致首页/列表页拿不到 apiUrl、底部计数恒显示 0（文章页正常）。
+         现改为全站页脚统一提供；必须是普通脚本（不加 defer），以保证先于 defer 的 site-stats.js 执行。 */}}
+    <script src="/js/cloudbase-config.js?{{ partial "helpers/asset-version.html" "js/cloudbase-config.js" }}"></script>
     <script src="/js/site-stats.js?{{ partial "helpers/asset-version.html" "js/site-stats.js" }}" defer></script>
 </footer>
