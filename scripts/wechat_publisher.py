@@ -149,6 +149,61 @@ def api_post(path, payload, timeout=30):
     return json.loads(r.content.decode("utf-8"))
 
 
+def find_draft_by_title(token, slug):
+    """本地建稿记录缺失时，按文章标题去草稿箱搜 media_id。
+
+    为什么需要它：log_draft 只在 draft/publish 命令里写记录，若记录被覆盖或
+    建稿时未落盘（如外部重建），rm 就找不到 media_id。多图文群发后次条草稿
+    不会自动移除，必须能按标题删。
+    """
+    md_path = None
+    for p in ROOT.glob("content/**/*.md"):
+        if p.stem == slug:
+            md_path = p
+            break
+    if not md_path:
+        return None
+    text = md_path.read_text(encoding="utf-8")
+    keys = []
+    # 候选标题全拿来比：箱内标题实际用的是 wechat_title（建稿时取的字段），
+    # 与 title_main 常常对不上，必须多源比对。
+    for pat in (r'(?m)^wechat_title:\s*"?(.+?)"?\s*$',
+                r'(?m)^title_main:\s*"?(.+?)"?\s*$',
+                r'(?m)^title:\s*"?(.+?)"?\s*$',
+                r'(?m)^title_sub:\s*"?(.+?)"?\s*$'):
+        m = re.search(pat, text)
+        if m:
+            k = m.group(1).strip()
+            if k and k not in keys:
+                keys.append(k)
+    if not keys:
+        return None
+
+    offset, total = 0, None
+    while True:
+        r = requests.post(
+            f"{API}/cgi-bin/draft/batchget",
+            params={"access_token": token},
+            data=json.dumps({"offset": offset, "count": 20, "no_content": 1}).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            timeout=20,
+        )
+        d = json.loads(r.content.decode("utf-8"))
+        if "item" not in d:
+            return None
+        total = d.get("total_count", 0)
+        for it in d["item"]:
+            news = (it.get("content") or {}).get("news_item") or [{}]
+            title = news[0].get("title") or ""
+            for k in keys:
+                kk = k.rstrip("：:？?")
+                if kk and (kk in title or title.startswith(kk)):
+                    return it.get("media_id")
+        if offset + 20 >= total:
+            return None
+        offset += 20
+
+
 def upload_cover(token, local_path: Path):
     if not local_path.exists():
         sys.exit(f"[封面对不上] 本地找不到 {local_path}")
@@ -310,8 +365,14 @@ def main():
         # 删除草稿箱里某篇草稿（已发布或重复时清理；内容随时可从本地 md 重建）
         logs = json.loads(DRAFT_LOG.read_text(encoding="utf-8")) if DRAFT_LOG.exists() else {}
         mid = logs.get(slug, {}).get("media_id")
+        token = get_token()
         if not mid:
-            sys.exit(f"[无记录] {slug} 不在本地建稿记录里")
+            # 本地无记录：按标题去草稿箱搜（多图文群发后次条草稿不会自动移除，
+            # 这是清理已发布草稿的主路径）
+            mid = find_draft_by_title(token, slug)
+            if not mid:
+                sys.exit(f"[无记录] {slug} 既不在本地建稿记录里，草稿箱也按标题搜不到")
+            print(f"[提示] {slug} 本地无建稿记录，已按标题在草稿箱定位")
         r = api_post("/cgi-bin/draft/delete", {"media_id": mid})
         if r.get("errcode") == 0:
             logs.pop(slug, None)
