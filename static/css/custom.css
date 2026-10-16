@@ -377,13 +377,13 @@ body.auth-modal-lock { overflow: hidden; }
 }
 .widget-calendar__head {
   font-size: 1.7rem;
-  margin-bottom: .7rem;
+  margin-bottom: .4rem;
 }
-.widget-calendar__grid { gap: 6px; }
+.widget-calendar__grid { gap: 3px; }
 .widget-calendar__dow {
   font-size: 1.3rem;
   font-weight: 700;
-  padding-bottom: .5rem;
+  padding-bottom: .3rem;
 }
 .widget-calendar__cell {
   font-size: 1.5rem;
@@ -396,8 +396,8 @@ body.auth-modal-lock { overflow: hidden; }
   flex-wrap: wrap;
   justify-content: center;
   gap: .6rem 1.6rem;
-  margin-top: .9rem;
-  padding-top: .85rem;
+  margin-top: .6rem;
+  padding-top: .6rem;
   border-top: 1px dashed var(--border, #dce2ea);
   font-size: 1.3rem;
   color: var(--muted, var(--foreground, #1b2a4d));
