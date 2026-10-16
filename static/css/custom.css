@@ -835,3 +835,18 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
   .wechat-follow { flex-direction: column; text-align: center; gap: 16px; padding: 20px 18px; }
   .wechat-follow__qr img { width: 104px; height: 104px; }
 }
+
+/* ========== 右侧栏 sticky 超高截断修复 ==========
+   根因：主题在 ≥768px 把 .sidebar-right 设为 position:sticky; top:20px（themes/.../04-responsive.css:353），
+   但未限制高度。当侧栏内容总高超过视口高度（笔记本常见，尤其窗口未最大化或系统缩放后 CSS 视口变矮），
+   侧栏下半部分在页面中部滚动时停留在视口外，表现为“右侧栏从上往下显示不全”。
+   修复：在 sticky 生效的宽度内给侧栏加 max-height + 内部滚动，全部内容可滚动查看。
+   注意：只作用于 ≥768px（窄屏侧栏不 sticky、本就堆叠，无需此限制）。 */
+@media (min-width: 768px) {
+  .sidebar-right {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;        /* 侧栏内部滚到底不带动主页面 */
+    scrollbar-gutter: stable;            /* 预留滚动条位，避免月历 7 列被挤窄 */
+  }
+}
