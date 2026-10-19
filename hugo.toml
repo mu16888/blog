@@ -132,11 +132,11 @@ copyright = "沐风 · AI办公与效率工具"
     listMode = "double"
 
   # 侧边栏 / 文章页 部件
-  # 注：calendar 是我们自建的自定义 widget（layouts/partials/widgets/calendar.html）
+  # 注：calendar（layouts/partials/widgets/calendar.html）曾挂在主页侧栏顶部，
+  #   锋哥于 2026-10-19 令移除，现不再渲染（文件保留备用，不删除）。
   [ params.widgets ]
     # 右侧栏最终顺序由 layouts/partials/sidebar-right.html 控制：
-    #   搜索 → 归档 → 分类 → 行业资讯 → 好物推荐 → 联系方式 → 月历（右下角）
-    # 说明：calendar 从本列表移出，改在 sidebar-right.html 末尾手动渲染，以固定它落在最底部
+    #   搜索 → 归档 → 分类 → 行业资讯 → 好物推荐（广告位）→ 联系方式
     homepage = [
       { type = "search",    params = { limit = 0 } },
       { type = "archives",  params = { limit = 3 } },

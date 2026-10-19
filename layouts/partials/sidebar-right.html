@@ -6,11 +6,6 @@
         {{ partial "widgets/talk-preview.html" (dict "Context" $context "Class" "widget-simple--talk-sidebar") }}
     {{ end }}
 
-    {{/* 月历：放到右侧栏顶部（在「几个模块」之上），由 hugo.toml 的 widgets 列表之外手动渲染 */}}
-    {{ if eq $scope "homepage" }}
-        {{ partial "widgets/calendar.html" (dict "Context" $context) }}
-    {{ end }}
-
     {{/* 主题内置 widget：搜索 / 归档 / 分类（清单见 hugo.toml 的 params.widgets） */}}
     {{ range $widget := . }}
         {{ $params := default dict .params }}
@@ -34,7 +29,7 @@
         {{ partial "widgets/related.html" (dict "Context" $context) }}
     {{ end }}
 
-    <!-- 自定义模块顺序：行业资讯 → 好物推荐（广告位）→ 联系方式（月历已上移至顶部） -->
+    <!-- 自定义模块顺序：行业资讯 → 好物推荐（广告位）→ 联系方式 -->
     {{ partial "widgets/promo.html" (dict "Context" $context) }}
     {{ partial "widgets/contact.html" (dict "Context" $context) }}
 </aside>
