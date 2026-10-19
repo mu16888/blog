@@ -3,9 +3,12 @@ title: "AI 办公不是噱头：普通人怎么用 AI 干掉重复活"
 date: 2026-10-19
 description: "大模型调用成本一年降了一个数量级，AI 办公已经从尝鲜变成标配。普通人怎么真正用起来？三个切入点。"
 image: "/covers/cover-tech-1.png"
-tags: ["AI办公", "效率", "工具"]
+tags: ["AI办公", "效率", "工具", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 这两年一个明显变化：AI 从"贵且不准的玩具"变成了"便宜且能干活的生产力工具"。大模型调用成本几年里下降了一个数量级，office 套件（Microsoft 365 Copilot、WPS AI、钉钉/飞书内置 AI）也纷纷把 AI 做成标配。
 
@@ -31,5 +34,5 @@ AI 不是来"替你决策"的，是来**替你扛重复劳动**的。把规则�
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
 <strong style="color:#1b2a4d;">🛠️ 想把手里的重复活自动化？</strong><br>
-看看我自研的效率工具：<a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>（公文场景一键出国标稿）及更多办公自动化思路，持续在博客更新。
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

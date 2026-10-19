@@ -3,9 +3,12 @@ title: "红头文件格式对照表：照着排就不会错"
 date: 2026-10-19
 description: "红头、发文字号、分隔线、标题、正文、页码——一份对照表把 GB/T 9704 的关键版式列清楚，照着排基本不出错。"
 image: "/covers/cover-tech-1.png"
-tags: ["公文", "格式", "GB/T 9704"]
+tags: ["公文", "格式", "GB/T 9704", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 红头文件最怕"差两毫米"。下面这份对照表，把 GB/T 9704-2012 里最常卡的版式要点列出来，写材料或排版时对着查一遍，能避掉大部分格式返工。
 
@@ -35,6 +38,6 @@ draft: false
 手工调这些容易漏，所以很多人把版式做成模板或脚本，出稿一键套用——省的就是返工的那半天。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">📌 想一键套国标版式？</strong><br>
-试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：21 文种 42 个红头 DOCX 直接填空，配套排版脚本一键出国标 Word。不代写、不编造，正式行文仍须人工复核。
+<strong style="color:#1b2a4d;">📚 想一键套国标版式？</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

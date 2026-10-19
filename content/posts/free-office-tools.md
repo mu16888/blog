@@ -3,9 +3,12 @@ title: "5 个免费办公效率工具，打工人日常能直接用"
 date: 2026-10-19
 description: "不花一分钱，把日常办公里最烦的几件事自动化。5 个免费工具，覆盖搜索、截图标注、PDF、自动化。"
 image: "/covers/cover-tech-1.png"
-tags: ["工具", "效率", "免费"]
+tags: ["工具", "效率", "免费", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 效率不一定靠买贵软件。下面 5 个免费工具，解决的是打工人每天都会撞上的小痛点，装一个就回本。
 
@@ -34,6 +37,6 @@ Windows 自带搜索慢得让人想砸键盘。Everything 索引全盘后，输�
 工具是杠杆，**先想清楚要自动化哪件事，再选工具**，别反过来为用工具而用工具。把上面 5 个里和你痛点重合的装上一两个，日常就能明显轻松些。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">🛠️ 公文档类重复活，我做了个专门工具</strong><br>
-<a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：把国标格式装进 AI，21 文种 42 个红头 DOCX + 一键排版/自检脚本。关注博客，后续还有更多办公自动化分享。
+<strong style="color:#1b2a4d;">🛠️ 公文类重复活，我做了个专门系统</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

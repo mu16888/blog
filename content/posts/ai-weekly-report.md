@@ -3,9 +3,12 @@ title: "用 AI 写周报月报，10 分钟顶半天"
 date: 2026-10-19
 description: "周报月报结构固定、信息分散，最耗时间的是“凑”。用 AI 把要点变成成稿，你只做脱敏和确认。"
 image: "/covers/cover-tech-1.png"
-tags: ["AI办公", "效率", "周报"]
+tags: ["AI办公", "效率", "周报", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 周报、月报是职场里"不得不写、写了又烦"的代表。结构固定、信息分散在聊天记录和脑子里的碎片，最耗时间的其实不是"写"，而是"凑"。
 
@@ -40,5 +43,5 @@ draft: false
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
 <strong style="color:#1b2a4d;">🛠️ 周报月报只是开始</strong><br>
-更重的公文材料，我做了个工具：<a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>——把国标格式装进 AI，开口说要求就出规范草稿。不代写、不编造。
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

@@ -3,9 +3,12 @@ title: "体制内写材料，这几个词千万别乱用"
 date: 2026-10-19
 description: "公文讲究规范书面语。口语词、绝对化词、模糊词混进去，轻则显得不专业，重则表意出错。列几个高频雷词。"
 image: "/covers/cover-tech-1.png"
-tags: ["公文", "语言规范", "效率"]
+tags: ["公文", "语言规范", "效率", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 公文是正式文书，语言要规范、准确、平实。但写的时候，口语词、绝对化词、模糊词很容易顺着手就溜进去。几个高频雷词，写材料时特意避开：
 
@@ -34,6 +37,6 @@ draft: false
 写完通读一遍，凡是"念出来像聊天"的词，基本都要换。或者用自检清单过一遍：有没有口语词？有没有夸口？有没有虚词？三关过了，语言这关就稳。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">📌 语病和禁词想一次查干净？</strong><br>
-试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：内置语言规范参考 + 自检脚本，能揪出禁用词、层次序数、日期写法等 14 项硬伤。不代写、不编造。
+<strong style="color:#1b2a4d;">📚 语病和禁词想一次查干净？</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

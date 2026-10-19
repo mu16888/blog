@@ -3,9 +3,12 @@ title: "请示和报告到底差在哪？新人最容易写混的一对文种"
 date: 2026-10-19
 description: "请示和报告都是上行文，但一个是“要批复”，一个是“只汇报”。搞混了，轻则被打回，重则误事。"
 image: "/covers/cover-tech-1.png"
-tags: ["公文", "文种", "效率"]
+tags: ["公文", "文种", "效率", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 "请示"和"报告"是体制内最高频、也最容易被写混的两个上行文。不少新人把两者混着用，结果该批的不批、该报的被退回。
 
@@ -39,6 +42,6 @@ draft: false
 把这对关系理顺，文种被退回的概率能降一大半。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">📌 文种总拿不准？</strong><br>
-试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：内置国办行文规则，开口说要求就帮你选对文种、按国标排好版，21 文种 42 个红头 DOCX 直接套。不代写、不编造。
+<strong style="color:#1b2a4d;">📚 文种总拿不准？</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

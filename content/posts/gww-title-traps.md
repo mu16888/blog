@@ -3,9 +3,12 @@ title: "公文标题 3 个雷区，踩一个就可能被退回"
 date: 2026-10-19
 description: "标题是公文的第一印象。文种混用、标点滥用、事由含糊——这三个雷区最常见，也最容易让整篇被打回。"
 image: "/covers/cover-tech-1.png"
-tags: ["公文", "格式", "效率"]
+tags: ["公文", "格式", "效率", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 公文标题看着简单，其实最容易被挑刺。很多时候内容写得好好的，标题一处不规范，整篇被打回来重拟。
 
@@ -46,6 +49,6 @@ draft: false
 三句都过关，标题这一关基本就稳了。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">📌 标题和文种总拿不准？</strong><br>
-试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：内置 15 种法定公文 + 事务文书规则，开口说要求就帮你定文种、起标题、排国标版式。不代写、不编造。
+<strong style="color:#1b2a4d;">📚 标题和文种总拿不准？</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>

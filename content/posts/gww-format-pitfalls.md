@@ -3,9 +3,12 @@ title: "体制内写材料，最常被退回的 5 个格式坑"
 date: 2026-10-19
 description: "内容写了三遍，结果只因格式被打回？梳理公文最常被挑刺的 5 个格式细节，照着改就不返工。"
 image: "/covers/cover-tech-1.png"
-tags: ["公文", "格式", "效率"]
+tags: ["公文", "格式", "效率", "公文写作系统"]
 draft: false
 ---
+
+> 📚 本文是《公文写作系统》系列之一。
+
 
 内容写了三遍，结果领导只回了一句"格式不对，重排"——这种事在体制内、国企、事业单位太常见了。内容没问题，偏偏卡在格式上，白白搭进去半天。
 
@@ -37,6 +40,6 @@ draft: false
 这 5 个坑，本质是"规则明确但容易忘"。把规则写进模板、出稿前过一遍，比事后被退回重改省事得多。
 
 <div style="margin:24px 0;padding:16px 18px;border-left:4px solid #1b2a4d;background:#f8f9fc;border-radius:0 8px 8px 0;font-size:14px;color:#444;">
-<strong style="color:#1b2a4d;">📌 想让公文写作少返工？</strong><br>
-试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：把 GB/T 9704 国标装进 AI，21 文种 42 个红头 DOCX + 一键排版/自检脚本，3 分钟出规范草稿。不代写、不编造，重要文书仍须人工复核。
+<strong style="color:#1b2a4d;">📚 想让公文写作少返工？</strong><br>
+试试 <a href="/products/gongwensecpro/" style="color:#1b2a4d;font-weight:700;">公文秒成Pro</a>：给 AI 一句话，它就吐出一份标准（国标）红头文件——把国标格式、文种规则、语言规范、审稿自检整合成一套可反复调用的公文写作系统，装进任意 AI 工具即用，红头、标题、正文、落款一次到位。42 个红头 DOCX 随系统赠送。不代写、不编造，重要文书仍须人工复核。
 </div>
