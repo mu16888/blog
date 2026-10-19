@@ -2,7 +2,7 @@
 title: "AI 办公不是噱头：普通人怎么用 AI 干掉重复活"
 date: 2026-10-19
 description: "大模型调用成本一年降了一个数量级，AI 办公已经从尝鲜变成标配。普通人怎么真正用起来？三个切入点。"
-image: "/covers/cover-tech-1.png"
+image: "/covers/cover-tech-2.png"
 tags: ["AI办公", "效率", "工具"]
 draft: false
 ---

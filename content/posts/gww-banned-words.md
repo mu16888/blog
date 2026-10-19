@@ -2,7 +2,7 @@
 title: "体制内写材料，这几个词千万别乱用"
 date: 2026-10-19
 description: "公文讲究规范书面语。口语词、绝对化词、模糊词混进去，轻则显得不专业，重则表意出错。列几个高频雷词。"
-image: "/covers/cover-tech-1.png"
+image: "/covers/cover-tech-2.png"
 tags: ["公文", "语言规范", "效率"]
 draft: false
 ---

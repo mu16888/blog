@@ -40,6 +40,8 @@
                             {{ partial "helpers/cover-fallback-card.html" (dict "page" $ "variant" "single" "transitionBase" $transitionBase) }}
                         {{ else }}
                             <img src="{{ .permalink }}" alt="{{ $.Title }}"{{ if $.Site.Params.viewTransitions }} style="view-transition-name: cover-{{ $transitionBase }};"{{ end }}>
+                            {{/* 头图两段式标题（2026-10-19） */}}
+                            {{ partial "helpers/cover-title-overlay.html" $ }}
                         {{ end }}
                     </div>
                 {{ end }}

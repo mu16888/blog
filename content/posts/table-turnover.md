@@ -7,7 +7,7 @@ title_main: "翻台率不是越快越好"
 title_sub: "小店该盯坪效，不是翻台次数"
 description: "老板群里天天比翻台，8次9次，赚的钱却没多。翻台是个被资本带偏的指标——次数不等于利润。小店真正该算的是每平米产出。"
 wechat_title: "翻台率不是越快越好"
-image: "/covers/table-turnover.jpg"
+image: "/covers/cover-tech-2.png"
 ---
 
 老板群里有个现象：一到饭点，就有人晒「今天翻了 8 次」「我家翻了 9 次」，底下一片膜拜。

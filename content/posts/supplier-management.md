@@ -6,7 +6,7 @@ tags: ["餐饮经营", "供应链", "采购"]
 title_main: "供应商管理实战"
 title_sub: "让「不被偷斤少两」变成制度"
 description: "后厨省的是小钱，采购守的是大头。三招把「老实人」变成制度：验收铁律、比价台账、退出机制。"
-image: "/covers/supplier-management.jpg"
+image: "/covers/cover-tech-2.png"
 wechat_title: "供应商偷斤少两？用制度治，别靠运气"
 ---
 

@@ -1,0 +1,71 @@
+{{ $page := . }}
+{{ $variant := "" }}
+{{ $showMeta := true }}
+{{ if reflect.IsMap . }}
+    {{ $page = .page }}
+    {{ $variant = .variant | default "" }}
+    {{ $showMeta = .showMeta | default true }}
+{{ end }}
+
+{{ $coverVariant := cond (eq $variant "taxonomy") "taxonomy" "card" }}
+{{ $cover := partial "helpers/cover.html" (dict "page" $page "variant" $coverVariant) }}
+{{ $transitionBase := partial "helpers/view-transition-name.html" $page }}
+{{ $showSummary := $page.Site.Params.article.showListSummary | default ($page.Site.Params.article.showSummary | default true) }}
+{{ $showListTitle := true }}
+{{ if and (eq $cover.kind "gradient") (isset $page.Site.Params.article "listtitle") }}
+    {{ $showListTitle = $page.Site.Params.article.listTitle }}
+{{ end }}
+{{ if isset $page.Params "listtitle" }}
+    {{ $showListTitle = $page.Params.listtitle }}
+{{ end }}
+{{/* 头图已叠两段式标题时，卡片下方不再重复渲染标题（front matter listTitle 可强制开启） */}}
+{{ if and $cover.exists (ne $cover.kind "gradient") (not (isset $page.Params "listtitle")) }}
+    {{ $showListTitle = false }}
+{{ end }}
+{{ $summaryLength := int ($page.Site.Params.summaryLength | default 0) }}
+{{ $summary := "" }}
+{{ with $page.Params.description }}
+    {{ $summary = . | plainify }}
+{{ else }}
+    {{ $summary = $page.Summary | plainify }}
+{{ end }}
+{{ if and (gt $summaryLength 0) $summary }}
+    {{ $summary = truncate $summaryLength $summary }}
+{{ end }}
+<article class="post-card{{ if $cover.exists }} post-card--with-cover{{ end }}{{ with $variant }} post-card--{{ . }}{{ end }}">
+    {{ if $cover.exists }}
+        <a class="post-card__cover" href="{{ $page.RelPermalink }}">
+            {{ if eq $cover.kind "gradient" }}
+                {{ partial "helpers/cover-fallback-card.html" (dict "page" $page "variant" $coverVariant "transitionBase" $transitionBase) }}
+            {{ else }}
+                <img src="{{ $cover.permalink }}" alt="{{ $page.Title }}" loading="lazy"{{ if $page.Site.Params.viewTransitions }} style="view-transition-name: cover-{{ $transitionBase }};"{{ end }}>
+                {{ partial "helpers/cover-title-overlay.html" $page }}
+            {{ end }}
+        </a>
+    {{ end }}
+
+    <div class="post-card__body">
+        {{ if $showListTitle }}
+            <h2 class="post-card__title"{{ if $page.Site.Params.viewTransitions }} style="view-transition-name: title-{{ $transitionBase }};"{{ end }}><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+        {{ end }}
+        {{ if and $showSummary $summary }}
+            <p class="post-card__excerpt">{{ $summary }}</p>
+        {{ end }}
+
+        {{ if $showMeta }}
+            <div class="post-card__meta">
+                {{ if not $page.Date.IsZero }}<span>{{ $page.Date | time.Format (or $page.Site.Params.dateFormat.published "2006-01-02") }}</span>{{ end }}
+                {{ with $page.Params.categories }}
+                    <span class="post-card__categories">
+                        {{ range $index, $term := $page.GetTerms "categories" }}
+                            {{ if gt $index 0 }}<span class="meta-sep">/</span>{{ end }}
+                            <a href="{{ $term.RelPermalink }}">{{ $term.LinkTitle }}</a>
+                        {{ end }}
+                    </span>
+                {{ end }}
+                {{ if ($page.Params.readingTime | default $page.Site.Params.article.readingTime) }}<span>{{ if eq $page.Site.Language.Lang "zh-cn" }}{{ $page.ReadingTime }} 分钟{{ else }}{{ $page.ReadingTime }} min read{{ end }}</span>{{ end }}
+                {{ partial "helpers/translation-toggle.html" $page }}
+            </div>
+        {{ end }}
+    </div>
+</article>

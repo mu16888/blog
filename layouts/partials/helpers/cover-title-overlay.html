@@ -1,0 +1,12 @@
+{{/* 头图两段式标题覆盖层（2026-10-19 锋哥定）
+     标题按中文逗号「，」自动拆两段：第一段=白色主行，其余=淡蓝副行；
+     无逗号则只显示一行。叠在头图左下，配 CSS 深色渐变压底。 */}}
+{{ $t := .Title | plainify }}
+{{ $segs := split $t "，" }}
+{{ $l1 := index $segs 0 }}
+{{ $l2 := "" }}
+{{ if gt (len $segs) 1 }}{{ $l2 = delimit (after 1 $segs) "，" }}{{ end }}
+<div class="cover-title-overlay" aria-hidden="true">
+    <span class="cover-title-overlay__l1">{{ $l1 }}</span>
+    {{ with $l2 }}<span class="cover-title-overlay__l2">{{ . }}</span>{{ end }}
+</div>

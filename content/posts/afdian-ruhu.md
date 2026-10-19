@@ -6,7 +6,7 @@ tags: ["公告", "爱发电"]
 title_main: "我入驻「爱发电」了"
 description: "在爱发电开通创作主页，上架「公文写作神器」AI 公文技能包，含 42 套国标 DOCX 模板。"
 wechat_title: "我入驻「爱发电」了"
-image: "/covers/afdian-ruhu.jpg"
+image: "/covers/cover-tech-2.png"
 ---
 
 想了想，还是找个地方把做的东西安顿下来。

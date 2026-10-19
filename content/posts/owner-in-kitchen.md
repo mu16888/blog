@@ -6,7 +6,7 @@ tags: ["餐饮经营", "老板", "时间管理", "标准化"]
 title_main: "老板亲自下厨"
 title_sub: "是省钱还是赔钱？算清那 4 小时"
 description: "老板顶一个炒锅岗，省下 1 万人工，赔上的可能是 3 万营业额和一支离不开他的后厨。用一道时间账算清这件事。"
-image: "/covers/owner-in-kitchen.jpg"
+image: "/covers/cover-tech-2.png"
 wechat_title: "老板亲自下厨，是省钱还是赔钱"
 ---
 

@@ -4,7 +4,7 @@ date: 2026-10-13
 draft: true
 tags: ["开篇", "随笔"]
 description: "沐风的私人博客，纯粹为了记录工作与学习，分享心得与理解。时尚美食、厨房管理、餐厅运营的实战经验，都在这里。"
-image: "/covers/welcome.jpg"
+image: "/covers/cover-tech-2.png"
 ---
 
 你好，我是 **沐风**。

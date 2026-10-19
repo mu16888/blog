@@ -6,7 +6,7 @@ tags: ["餐饮经营", "菜单", "利润"]
 title_main: "菜单工程四象限"
 title_sub: "用一张表淘汰你的赔本引流菜"
 description: "菜单不是越厚越好。用波士顿矩阵式的四象限，把每道菜按「人气 × 利润」摆上桌，该留该砍一眼看清。"
-image: "/covers/menu-engineering.jpg"
+image: "/covers/cover-tech-2.png"
 wechat_title: "一张表淘汰你的赔本引流菜"
 ---
 
