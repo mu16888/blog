@@ -1,7 +1,7 @@
 ---
 title: "餐饮保本点测算：开张前先算清「每天卖多少才不亏」"
 date: 2026-10-14
-draft: false
+draft: true
 tags: ["餐饮经营", "财务", "保本点"]
 title_main: "餐饮保本点测算"
 title_sub: "开张前先算清每天卖多少才不亏"

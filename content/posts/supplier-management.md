@@ -1,7 +1,7 @@
 ---
 title: "供应商管理实战：让「不被偷斤少两」变成制度而不是运气"
 date: 2026-10-15
-draft: false
+draft: true
 tags: ["餐饮经营", "供应链", "采购"]
 title_main: "供应商管理实战"
 title_sub: "让「不被偷斤少两」变成制度"

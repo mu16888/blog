@@ -1,7 +1,7 @@
 ---
 title: "后厨出餐慢、错单多？根子九成在动线，改对一步提三成"
 date: 2026-10-15
-draft: false
+draft: true
 tags: ["餐饮经营", "后厨", "效率"]
 title_main: "后厨出餐慢、错单多？"
 title_sub: "根子九成在动线，改对一步提三成"

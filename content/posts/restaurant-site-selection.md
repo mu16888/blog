@@ -1,7 +1,7 @@
 ---
 title: "餐饮选址定生死：一道乘法题，14 条血泪避坑清单"
 date: 2026-10-13
-draft: false
+draft: true
 tags: ["餐饮经营", "选址", "开店"]
 title_main: "餐饮选址定生死"
 title_sub: "一道乘法题，14 条血泪避坑清单"

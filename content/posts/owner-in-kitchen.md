@@ -1,7 +1,7 @@
 ---
 title: "老板亲自下厨，是省钱还是赔钱？算清你站灶台那 4 小时"
 date: 2026-10-15
-draft: false
+draft: true
 tags: ["餐饮经营", "老板", "时间管理", "标准化"]
 title_main: "老板亲自下厨"
 title_sub: "是省钱还是赔钱？算清那 4 小时"

@@ -2,22 +2,26 @@
 #  沐风的个人博客 · Hugo 配置（pocket-hugo-theme）
 #  注意：pocket 主题要求 Hugo >= 0.149，Cloudflare Pages 默认 0.147 会挂
 #        → 必须在 CF 项目设置 HUGO_VERSION = 0.167.0
+#  2026-10-19 改造：从「餐饮美食内容站」改为「科技类博客（AI/办公/效率/工具）+ 产品转化」
+#        - 撤掉 recipes（美食）栏目
+#        - 文案定位改为 AI/办公/效率/工具
+#        - 产品落地页放 content/products/（阶段2 建），导航「产品」指向 /products/
 # ============================================================
 
 baseURL = "https://mufeng168.top/"
-title = "沐风的个人博客"
+title = "沐风 · AI办公与效率工具"
 theme = "pocket-hugo-theme"
 languageCode = "zh-CN"
 defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 enableRobotsTXT = true
 
-# 首页 / 列表聚合「文章」+「美食」两栏（2026-10-14 加 recipes：美食配方也要上首页，否则栏目内文章首页看不到）
+# 首页 / 列表聚合「文章」+「产品」两栏（2026-10-19 改：去掉 recipes，产品页独立栏目）
 # 文档 / 动态 仍各自独立栏目
-mainSections = ["posts", "recipes"]
+mainSections = ["posts"]
 
 # 页脚版权起始年
-copyright = "沐风 · 餐饮实战与美食图文"
+copyright = "沐风 · AI办公与效率工具"
 
 # 分页 / RSS
 [ pagination ]
@@ -32,6 +36,7 @@ copyright = "沐风 · 餐饮实战与美食图文"
   recipes  = "/recipes/:filename/"
   docs     = "/docs/:filename/"
   updates  = "/updates/:filename/"
+  products = "/products/:filename/"
 
 # 分类（标签暂不使用，但保留分类定义）
 [ taxonomies ]
@@ -45,9 +50,9 @@ copyright = "沐风 · 餐饮实战与美食图文"
     url = "/posts/"
     weight = 1
   [[ menu.main ]]
-    identifier = "recipes"
-    name = "美食"
-    url = "/recipes/"
+    identifier = "products"
+    name = "产品"
+    url = "/products/"
     weight = 2
   [[ menu.main ]]
     identifier = "docs"
@@ -76,7 +81,7 @@ copyright = "沐风 · 餐饮实战与美食图文"
 
   # 侧边栏：头像 + 副标题 + 公众号二维码（扫码关注）
   [ params.sidebar ]
-    subtitle = "餐饮实战 · 美食图文 · 知识分享"
+    subtitle = "AI · 办公效率 · 工具测评 · 实用技能"
     [ params.sidebar.avatar ]
       enabled = true
       local = true
@@ -178,8 +183,8 @@ copyright = "沐风 · 餐饮实战与美食图文"
 
   # SEO
   [ params.seo ]
-    tagline = "餐饮实战 · 美食图文 · 知识分享"
-    homeDescription = "沐风的个人博客，分享餐饮经营实战、美食配方与图文，以及个人长期写作。"
+    tagline = "AI · 办公效率 · 工具测评 · 实用技能"
+    homeDescription = "沐风的个人博客，分享 AI 办公实战、效率工具测评、自动化技巧与实用技能，以及自研效率产品（公文秒成Pro、一人公司库、文档产品族）。"
     descriptionLength = 180
     separator = " · "
     [ params.seo.title ]
@@ -192,12 +197,12 @@ copyright = "沐风 · 餐饮实战与美食图文"
 # 中文语言（单语言，不显示语言切换）
 [ languages.zh-cn ]
   languageName = "中文"
-  title = "沐风的个人博客"
+  title = "沐风 · AI办公与效率工具"
   weight = 1
   [ languages.zh-cn.params.sidebar ]
-    subtitle = "餐饮实战 · 美食图文 · 知识分享"
+    subtitle = "AI · 办公效率 · 工具测评 · 实用技能"
 
-# Markdown 渲染
+# Markdown 渲染（unsafe=true：文章/页面内可直接写 HTML，用于购买按钮、外链跳转）
 [ markup ]
   [ markup.goldmark ]
     [ markup.goldmark.renderer ]

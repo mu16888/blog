@@ -1,7 +1,7 @@
 ---
 title: "餐饮人力的「单位经济」：一个员工到底为你赚多少"
 date: 2026-10-15
-draft: false
+draft: true
 tags: ["餐饮经营", "人力", "成本"]
 title_main: "人力单位经济"
 title_sub: "一个员工到底为你赚多少"
