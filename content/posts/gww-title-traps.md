@@ -38,6 +38,13 @@ draft: false
 - "关于进一步加强××工作的通知"——就比"关于××的通知"清楚；
 - 事由过长（超过一行）也会显得啰嗦，能具体就具体。
 
+一份文种、要素齐全的标准标题长这样：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-tonggao.jpg" alt="标准模版样张：通告（标准三要素标题）" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：通告（发文机关 + 事由 + 文种，三要素齐全）</figcaption>
+</figure>
+
 ## 一个自检清单
 
 拟完标题问自己三句：

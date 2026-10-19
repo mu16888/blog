@@ -14,6 +14,13 @@ draft: false
 
 其实公文格式是**刚性规则**，出错点很集中。下面 5 个，是实际工作中最常被退回的格式坑。
 
+先看一张标准模版长什么样——对照着看，坑在哪一目了然：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-notify.jpg" alt="标准红头文件模版样张：通知" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：通知（GB/T 9704 版式，21 文种 42 套模版之一）</figcaption>
+</figure>
+
 ## 1. 发文字号写错
 
 - 年份用**六角括号**〔〕，不是方括号 [ ]，也不是圆括号 ( )；

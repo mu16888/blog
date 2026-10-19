@@ -21,12 +21,26 @@ draft: false
 - 一般**事前行文**，等批复后再动手；
 - 结尾要体现"等回复"，如"妥否，请批示""当否，请批复"。
 
+标准模版长这样：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-qingshi.jpg" alt="标准模版样张：请示" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：请示（上行文 · 一文一事 · 要批复）</figcaption>
+</figure>
+
 ## 报告：向你报个信
 
 - 用于**汇报工作、反映情况、答复上级询问**；
 - **不要求批复**，上级看了即可；
 - 可事前、事中、事后；
 - 结尾如"专此报告""以上报告，请审阅"。
+
+对照着看，报告的标准模版：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-baogao.jpg" alt="标准模版样张：报告" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：报告（上行文 · 只汇报 · 不要求批复）</figcaption>
+</figure>
 
 ## 最容易踩的 3 个错
 

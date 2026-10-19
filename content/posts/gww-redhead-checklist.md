@@ -29,6 +29,13 @@ draft: false
 | 印章 | "骑年盖月"，压署名与日期 |
 | 页码 | 4 号半角宋体阿拉伯数字，一般作"- 1 -"形式 |
 
+对照表看着抽象？来一张真实模版样张，每个要素对号入座：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-tongbao.jpg" alt="标准红头文件模版样张：通报" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：通报（红头/发文字号/分隔线/落款/页码全要素）</figcaption>
+</figure>
+
 ## 怎么用这张表
 
 1. **排版前**：先把红头、发文字号、分隔线位置定好，这是"骨架"；

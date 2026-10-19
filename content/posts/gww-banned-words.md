@@ -32,6 +32,13 @@ draft: false
 
 "**赋能**、**抓手**、**闭环**、**颗粒度**"等词在内部材料里泛滥，正式上行文建议慎用，能直说就直说（"提供支持""关键举措""形成回路"）。
 
+规范书面语落到纸面是什么样？看一张标准模版：
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="/img/gw-templates/gw-han.jpg" alt="标准模版样张：函（规范书面语）" style="max-width:100%;width:520px;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <figcaption style="font-size:13px;color:#888;margin-top:8px;">▲ 标准模版样张：函（平行文，通篇规范书面语）</figcaption>
+</figure>
+
 ## 自检小办法
 
 写完通读一遍，凡是"念出来像聊天"的词，基本都要换。或者用自检清单过一遍：有没有口语词？有没有夸口？有没有虚词？三关过了，语言这关就稳。
