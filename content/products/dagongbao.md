@@ -108,8 +108,8 @@ image: "/covers/cover-tech-1.png"
 
 <div style="margin:28px 0;padding:22px;border:1px solid #e5e7eb;border-radius:12px;background:#f8f9fc;text-align:center;">
   <div style="font-size:15px;color:#555;margin-bottom:6px;"><span style="text-decoration:line-through;color:#aaa;">原价 ¥3980</span> &nbsp; <strong style="color:#1b2a4d;font-size:20px;">首发 ¥1980</strong> · 一次性买断 · 永久可用</div>
-  <a href="【网盘分享链接】" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#1b2a4d;color:#fff;font-weight:700;font-size:18px;border-radius:8px;text-decoration:none;margin:10px 0;">获取打工豹 · 百度网盘直发</a>
-  <div style="font-size:13px;color:#888;">百度网盘 V2.0.1 完整包（含提取码 + 解压密码）· 链接有时效，请立即保存</div>
+  <a href="https://pan.baidu.com/s/1q1QeIHc6r7tC27_uvfw_2g?pwd=8888" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#1b2a4d;color:#fff;font-weight:700;font-size:18px;border-radius:8px;text-decoration:none;margin:10px 0;">获取打工豹 · 百度网盘直发</a>
+  <div style="font-size:13px;color:#888;">百度网盘 V2.0.1 完整包 · 提取码 <strong style="color:#1b2a4d;">8888</strong>（已附在链接里）· 下载后打开包内《扫码付款页》完成付款即显示核心资产解压密码 · 链接有时效请尽快保存</div>
 </div>
 
 > 购买后 7 天内安装 / 使用疑问，作者轻量答疑（不建社群）。个人独立作品，暂不能开票。
