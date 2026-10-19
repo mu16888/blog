@@ -86,7 +86,7 @@ image: "/covers/gongwensecpro.png"
 
 ## 四步就能用上
 
-1. 在爱发电完成购买，系统自动私信发送**网盘下载链接 + 提取码 + 解压密码**；
+1. 点击下方「立即购买」完成付款，系统自动跳转**网盘下载链接 + 提取码 + 解压密码**（链接有时效，请立即保存）；
 2. 下载并用 360压缩 / 7-Zip 解压，得到 `gongwen-writing` 文件夹；
 3. 把整个文件夹复制到你的 AI 工具 skills 目录（图文指南里有 Windows / macOS / 各工具的具体路径，5 分钟）；
 4. 跟 AI 说一句"用公文写作技能，帮我写一份关于××的通知"就能开始。
@@ -99,8 +99,8 @@ image: "/covers/gongwensecpro.png"
 
 <div style="margin:28px 0;padding:22px;border:1px solid #e5e7eb;border-radius:12px;background:#f8f9fc;text-align:center;">
   <div style="font-size:15px;color:#555;margin-bottom:12px;">一次性买断 · 永久可用 · 网盘自动发货</div>
-  <a href="https://afdian.com/a/mufengai" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#1b2a4d;color:#fff;font-weight:700;font-size:18px;border-radius:8px;text-decoration:none;">立即购买 ¥399 → 爱发电</a>
-  <div style="font-size:13px;color:#888;margin-top:10px;">付款后系统自动私信发送网盘下载链接、提取码与解压密码</div>
+  <a href="http://dt3.8tupian.com/2/34805a4b39900.pg0" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#1b2a4d;color:#fff;font-weight:700;font-size:18px;border-radius:8px;text-decoration:none;">立即购买 ¥399 · 网盘自动发货</a>
+  <div style="font-size:13px;color:#888;margin-top:10px;">付款后自动跳转网盘下载链接、提取码与解压密码 · 链接有时效，请立即保存</div>
 </div>
 
 > 购买后 7 天内安装 / 使用疑问，作者轻量答疑（不建社群）。个人独立作品，暂不能开票。
