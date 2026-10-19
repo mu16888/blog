@@ -2,7 +2,7 @@
 title: "用 AI 写周报月报，10 分钟顶半天"
 date: 2026-10-19
 description: "周报月报结构固定、信息分散，最耗时间的是“凑”。用 AI 把要点变成成稿，你只做脱敏和确认。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["AI办公", "效率", "周报"]
 draft: false
 ---

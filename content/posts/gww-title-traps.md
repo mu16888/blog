@@ -2,7 +2,7 @@
 title: "公文标题 3 个雷区，踩一个就可能被退回"
 date: 2026-10-19
 description: "标题是公文的第一印象。文种混用、标点滥用、事由含糊——这三个雷区最常见，也最容易让整篇被打回。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["公文", "格式", "效率"]
 draft: false
 ---

@@ -7,7 +7,7 @@ title_main: "淡旺季现金流"
 title_sub: "旺季攒钱、淡季练功的生存算法"
 description: "赚的钱有一大半是旺季给的，但能不能活到旺季看淡季。一套现金流节律，让店不倒在淡季。"
 wechat_title: "旺季攒钱、淡季练功的生存算法"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 ---
 
 很多老板分不清「利润」和「现金流」。月底一算账，盈利；打开账户，没钱。问题往往出在：钱都卡在存货、卡在账期、卡在「看着赚实际没回款」上。

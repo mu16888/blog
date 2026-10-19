@@ -2,7 +2,7 @@
 title: "体制内写材料，最常被退回的 5 个格式坑"
 date: 2026-10-19
 description: "内容写了三遍，结果只因格式被打回？梳理公文最常被挑刺的 5 个格式细节，照着改就不返工。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["公文", "格式", "效率"]
 draft: false
 ---

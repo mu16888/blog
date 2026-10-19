@@ -2,7 +2,7 @@
 title: "请示和报告到底差在哪？新人最容易写混的一对文种"
 date: 2026-10-19
 description: "请示和报告都是上行文，但一个是“要批复”，一个是“只汇报”。搞混了，轻则被打回，重则误事。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["公文", "文种", "效率"]
 draft: false
 ---

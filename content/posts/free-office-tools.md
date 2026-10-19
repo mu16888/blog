@@ -2,7 +2,7 @@
 title: "5 个免费办公效率工具，打工人日常能直接用"
 date: 2026-10-19
 description: "不花一分钱，把日常办公里最烦的几件事自动化。5 个免费工具，覆盖搜索、截图标注、PDF、自动化。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["工具", "效率", "免费"]
 draft: false
 ---

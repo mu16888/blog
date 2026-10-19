@@ -6,7 +6,7 @@ tags: ["餐饮经营", "后厨", "效率"]
 title_main: "后厨出餐慢、错单多？"
 title_sub: "根子九成在动线，改对一步提三成"
 description: "出餐慢、错单多，八成是动线埋的坑。从收货到出餐口，讲透一条「不回头、不交叉」的动线怎么画。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 wechat_title: "后厨出餐慢、错单多？九成是动线的坑"
 ---
 

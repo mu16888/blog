@@ -2,7 +2,7 @@
 title: "红头文件格式对照表：照着排就不会错"
 date: 2026-10-19
 description: "红头、发文字号、分隔线、标题、正文、页码——一份对照表把 GB/T 9704 的关键版式列清楚，照着排基本不出错。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 tags: ["公文", "格式", "GB/T 9704"]
 draft: false
 ---

@@ -6,7 +6,7 @@ tags: ["餐饮经营", "财务", "保本点"]
 title_main: "餐饮保本点测算"
 title_sub: "开张前先算清每天卖多少才不亏"
 description: "九成新店死在不算账。用一道公式讲透餐饮保本点，附分步测算表和三类「看着赚实际亏」的信号。"
-image: "/covers/cover-tech-2.png"
+image: "/covers/cover-tech-1.png"
 wechat_title: "开张前先算：每天卖多少才不亏"
 ---
 
