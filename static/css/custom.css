@@ -850,3 +850,16 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
     scrollbar-gutter: stable;            /* 预留滚动条位，避免月历 7 列被挤窄 */
   }
 }
+
+/* ========== 页头背景换品牌深蓝光效图（2026-10-19 锋哥定） ==========
+   背景：原页头是纯色藏青渐变（主题 .site-header__inner 的
+   radial-gradient + linear-gradient(--hero-start, --hero-end)），
+   锋哥提供深蓝光效背景图（中亮周暗，1080x240 宽幅），要求换上。
+   做法：整块覆盖 background 为「轻藏青叠色 + 图片 cover」，
+   叠色只为保证头像右侧文字对比度；深/浅色模式图本身就是深蓝调，
+   共用同一套，无需分别处理。封面回退渐变（--hero-*）不受影响。 */
+.site-header__inner {
+  background:
+    linear-gradient(rgba(27, 42, 77, 0.22), rgba(27, 42, 77, 0.22)),
+    url("/img/header-bg.jpg") center / cover no-repeat;
+}
