@@ -352,14 +352,15 @@ def main():
     elif cmd == "draft":
         token = get_token()
         thumb = upload_cover(token, cover)
+        source_url = clean(fm.get("wechat_source_url")) or f"{SITE}/posts/{slug}/"
         media_id = add_draft(token, {
             "title": title, "author": CFG.get("author", ""), "digest": digest,
             "content": html, "thumb_media_id": thumb,
             "need_open_comment": 1, "only_fans_can_comment": 0,
-            "content_source_url": f"{SITE}/posts/{slug}/",
+            "content_source_url": source_url,
         })
         log_draft(slug, media_id, published=False)
-        print(f"[草稿OK] {slug} media_id={media_id}\n去 mp.weixin.qq.com 草稿箱可见。发布需另跑 publish 命令。")
+        print(f"[草稿OK] {slug} media_id={media_id} 阅读原文={source_url}\n去 mp.weixin.qq.com 草稿箱可见。发布需另跑 publish 命令。")
 
     elif cmd == "rm":
         # 删除草稿箱里某篇草稿（已发布或重复时清理；内容随时可从本地 md 重建）
@@ -382,11 +383,12 @@ def main():
     elif cmd == "publish":
         token = get_token()
         thumb = upload_cover(token, cover)
+        source_url = clean(fm.get("wechat_source_url")) or f"{SITE}/posts/{slug}/"
         media_id = add_draft(token, {
             "title": title, "author": CFG.get("author", ""), "digest": digest,
             "content": html, "thumb_media_id": thumb,
             "need_open_comment": 1, "only_fans_can_comment": 0,
-            "content_source_url": f"{SITE}/posts/{slug}/",
+            "content_source_url": source_url,
         })
         pub = freepublish(token, media_id)
         ok = pub.get("errcode", 0) == 0
