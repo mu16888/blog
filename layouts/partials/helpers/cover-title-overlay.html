@@ -1,11 +1,25 @@
-{{/* 头图两段式标题覆盖层（2026-10-19 锋哥定）
-     标题按中文逗号「，」自动拆两段：第一段=白色主行，其余=淡蓝副行；
-     无逗号则只显示一行。叠在头图左下，配 CSS 深色渐变压底。 */}}
+{{/* 头图两段式标题覆盖层（2026-10-19 锋哥定，20:26 扩成分隔符+兜底）
+     优先级拆分："，" → "：" → "·" → "—" → "、"；
+     若仍单行且长度≥6，按字符中段截断为两段，保证全站统一两行。
+     第一段=白色主行，第二段=淡蓝副行，叠在头图左下 + 深色渐变压底。 */}}
 {{ $t := .Title | plainify }}
-{{ $segs := split $t "，" }}
-{{ $l1 := index $segs 0 }}
+{{ $l1 := $t }}
 {{ $l2 := "" }}
-{{ if gt (len $segs) 1 }}{{ $l2 = delimit (after 1 $segs) "，" }}{{ end }}
+{{ $try := slice "，" "：" "·" "—" "、" "？" "！" }}
+{{ range $try }}
+    {{ if and (eq $l2 "") (gt (len $l1) 1) }}
+        {{ $parts := split $l1 . }}
+        {{ if gt (len $parts) 1 }}
+            {{ $l1 = index $parts 0 }}
+            {{ $l2 = delimit (after 1 $parts) . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if and (eq $l2 "") (ge (len $t) 6) }}
+    {{ $mid := div (len $t) 2 }}
+    {{ $l1 = substr $t 0 $mid }}
+    {{ $l2 = substr $t $mid }}
+{{ end }}
 <div class="cover-title-overlay" aria-hidden="true">
     <span class="cover-title-overlay__l1">{{ $l1 }}</span>
     {{ with $l2 }}<span class="cover-title-overlay__l2">{{ . }}</span>{{ end }}
