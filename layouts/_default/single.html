@@ -122,8 +122,11 @@
             </div>
         {{ end }}
 
-        {{/* 分享条（自定义，插入在评论区之前） */}}
-        {{ partial "share.html" . }}
+        {{/* 分享条已于 2026-10-21 下线：锋哥判断微博/QQ/邮件三个渠道自己都不运营，
+               留着纯占位；"复制链接"的功能浏览器地址栏自带 Ctrl+C 已覆盖。
+               partial 保留在 layouts/partials/share.html，需要时恢复下面这行即可：
+               {{ partial "share.html" . }}
+        */}}
 
         {{/* CloudBase 统计 / 留资 / 登录墙（自定义，挂在评论区之前） */}}
         {{ partial "stats.html" . }}

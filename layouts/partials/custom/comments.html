@@ -29,6 +29,11 @@
         placeholder: '有问题直接留言，我会逐条回答',
         meta: ['nick', 'mail', 'link'],
         dark: 'html[data-theme="dark"]',
+        // 不渲染收藏/关注：不开启登录（login=disable）时这两个按钮点了没反应，
+        // 是纯死按钮（锋哥 2026-10-21 定）。阅读/赞/转发保留。
+        reaction: true,
+        commentSorting: 'time',
+
         locale: {
             placeholder: '有问题直接留言，我会逐条回答',
             sofa: '有问题尽管问，我会回答',
