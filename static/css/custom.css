@@ -549,6 +549,24 @@ html[data-theme=dark][data-palette="deep-sea-blue"] body {
 }
 body { font-family: var(--mufeng-font); }
 
+/* ---------- 思源宋体（Noto Serif SC）自托管：仅纯文字卡标题使用 ----------
+   整包 woff2 已从 fontsource 抽取放到 static/fonts/，零外部依赖、访客必现真·思源宋体。
+   仅覆盖简体中文区间（chinese-simplified）；生僻/繁体等未覆盖字符自动回落到下方栈的 SimSun/serif。 */
+@font-face {
+  font-family: "Noto Serif SC";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/noto-serif-sc-chinese-simplified-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif SC";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/noto-serif-sc-chinese-simplified-600-normal.woff2") format("woff2");
+}
+
 /* ---------- 小字加粗到 500：笔画更实，27 寸大屏不发虚 ---------- */
 .sidebar-right { font-weight: 500; }
 .sidebar-right .widget-simple__list a,
@@ -715,6 +733,10 @@ body { font-family: var(--mufeng-font); }
   .post-feed--home .post-card__title,
   .post-card--taxonomy .post-card__title { font-size: 1.75rem; }
   .post-card__excerpt { font-size: 1.5rem; line-height: 1.8; }
+
+  /* 纯文字卡标题：手机端保持可读（其规则特异性高于上方通用 .post-card__title 1.75rem） */
+  .post-card--compact .post-card__title { font-size: 1.5rem; }
+  .post-card--compact .post-card__title-l2 { font-size: 1.1rem; }
 
   /* ---------- 内边距与底部安全区 ---------- */
   .article-page,
@@ -964,7 +986,8 @@ html[data-min="true"] .article-page__cover img {
 }
 .post-card--compact .post-card__title {
   margin: 0 0 8px;
-  font-size: 1.15rem;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -982,7 +1005,7 @@ html[data-min="true"] .article-page__cover img {
 .post-card__title-l2 {
   display: block;
   color: #8a93a5;
-  font-size: .95rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-top: 3px;
 }
