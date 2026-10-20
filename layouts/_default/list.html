@@ -38,7 +38,7 @@
                 {{ if $isTaxonomyPage }}
                     {{ partial "article/card.html" (dict "page" . "showMeta" false "variant" "taxonomy") }}
                 {{ else }}
-                    {{ partial "article/card.html" . }}
+                    {{ partial "article/card-compact.html" . }}
                 {{ end }}
             {{ end }}
         </section>

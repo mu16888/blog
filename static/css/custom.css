@@ -956,3 +956,47 @@ html[data-min="true"] .article-page__cover img {
 }
 .products-grid .post-card { margin: 0; }
 
+/* ========== 文章小图列表卡（扒 opc.cn 资讯卡·2026-10-20 锋哥定） ==========
+   左小缩略图(120x86) + 右标题(最多两行)/分类/日期，紧凑列表式。
+   仅首页与文章类列表用（card-compact.html）；产品页网格仍走大卡。 */
+.post-card--compact {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px;
+}
+.post-card--compact .post-card__thumb {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 86px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: block;
+}
+.post-card--compact .post-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.post-card__thumb-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1b2a4d, #3a5380);
+}
+.post-card--compact .post-card__body { flex: 1; min-width: 0; }
+.post-card--compact .post-card__title {
+  margin: 2px 0 8px;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-card--compact .post-card__meta { font-size: .82rem; }
+@media (max-width: 420px) {
+  .post-card--compact .post-card__thumb { flex: 0 0 96px; width: 96px; height: 70px; }
+}
+
