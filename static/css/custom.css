@@ -1908,3 +1908,109 @@ html[data-min="true"] .article-page__cover img {
   .sidebar-right .widget-simple__title { font-size: 1.7rem; }
   .interact-recent__more { padding: 6px 0; display: inline-block; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ★ 移动端只保留浅色主题（2026-10-21 锋哥令）
+   「手机端深浅没有太大区别干脆移动端只有浅色就好了」
+   背景：手机屏小、页头占比大，深浅切换的视觉收益远小于代价
+        （店招是深藏青、浅色模式对比反而更清楚；深色模式小屏反而更压抑）。
+   做法（双保险）：
+     ① CSS：本段用 html[data-theme=dark] 下的 :root 变量覆盖，把深色值全部拉回浅色；
+        写在文件末尾 + 媒体查询内 = 特异性最高，必定生效。
+     ② JS：head 里的初始化脚本 + 主题 main.js 的媒体查询监听都会在
+        「系统偏好为深」时把 data-theme 设成 dark → 用项目级脚本
+        (static/js/mobile-light-lock.js) 在移动端强制改回 light。
+     ③ UI：移动端隐藏深浅切换按钮（没有可点的开关，行为才一致）。
+   桌面端（>768px）完全不受影响，深浅切换照旧。
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* ① CSS 兜底：把深色段的全部变量在移动端拉回浅色值。
+     这里只列「深浅两段定义过、且浅深值不同」的变量，逐项对齐浅色段的值。 */
+  html[data-theme="dark"][data-palette="deep-sea-blue"] {
+    --background: #f6f7f9;
+    --foreground: #1b2a4d;
+    --muted: #5c6b86;
+    --card: #ffffff;
+    --card-muted: #eef1f6;
+    --border: #dce2ea;
+    --accent: #1b2a4d;
+    --accent-contrast: #ffffff;
+    --danger: #c0574d;
+    --shadow: 0 12px 30px rgba(27, 42, 77, 0.10);
+    --markdown-code-bg: #eef1f6;
+    --markdown-quote: #5c6b86;
+    --accent-soft: #e6eaf1;
+    --accent-soft-text: #1b2a4d;
+    --theme-color: #1b2a4d;
+
+    --hero-start: #1b2a4d;
+    --hero-end: #33415c;
+    --hero-text: #f6f7f9;
+    --hero-subtitle: #c9d3e4;
+    --hero-chip: rgba(255, 255, 255, 0.12);
+    --hero-chip-text: #e8eef7;
+    --hero-chip-border: rgba(255, 255, 255, 0.16);
+    --hero-border: rgba(255, 255, 255, 0.16);
+    --hero-orb: rgba(255, 255, 255, 0.10);
+
+    --funnel-start: #e8eef8;
+    --funnel-end: #f2f0f8;
+    --funnel-border: #d5dfef;
+    --funnel-text: #1b2a4d;
+    --funnel-title: #16233f;
+    --funnel-sub: #4a5b7c;
+    --funnel-eyebrow: #6b7fa6;
+    --funnel-card-bg: rgba(27, 42, 77, 0.04);
+    --funnel-card-border: rgba(27, 42, 77, 0.12);
+    --funnel-btn-bg: #1b2a4d;
+    --funnel-btn-bg-hover: #24365f;
+    --funnel-btn-text: #ffffff;
+
+    --panel-card-bg: #ffffff;
+    --panel-card-border: #e4e7ee;
+    --panel-card-hover: #f6f7f9;
+    --panel-title: #1b2a4d;
+    --panel-text: #33405c;
+    --panel-muted: #5a6478;
+    --panel-faint: #8a93a5;
+    --panel-badge-bg: #1b2a4d;
+    --panel-badge-text: #ffffff;
+    --panel-ask-start: #e8eef8;
+    --panel-ask-end: #f2f0f8;
+    --panel-ask-text: #1b2a4d;
+    --panel-ask-sub: #4a5b7c;
+    --panel-ask-chip-bg: rgba(27, 42, 77, 0.04);
+    --panel-ask-chip-border: rgba(27, 42, 77, 0.12);
+    --panel-ask-chip-text: #33405c;
+    --panel-ask-chip-faint: #5a6478;
+    --panel-ask-chip-dash: rgba(27, 42, 77, 0.14);
+
+    --waline-bg: #ffffff;
+    --waline-border: #e3e7ee;
+    --waline-line: #eef1f5;
+    --waline-input-bg: #f7f8fa;
+    --waline-input-focus-bg: #ffffff;
+    --waline-text: #1b2a4d;
+    --waline-content: #333a48;
+    --waline-faint: #8a93a5;
+    --waline-btn: #1b2a4d;
+    --waline-btn-hover: #2c4272;
+    --waline-btn-text: #ffffff;
+  }
+  /* 深色模式专属的背景图 / 暗罩 / 标题卡，在移动端一并撤掉 */
+  html[data-theme="dark"][data-palette="deep-sea-blue"] body {
+    background-color: #f6f7f9;
+    background-image: none;
+  }
+  html[data-theme="dark"] .site-header__inner {
+    background:
+      linear-gradient(rgba(27, 42, 77, 0.22), rgba(27, 42, 77, 0.22)),
+      url("/img/header-bg.jpg") center / cover no-repeat;
+  }
+  html[data-theme="dark"] .cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
+    --cover-hero-start: #354463;
+    --cover-hero-end: #5b6c92;
+  }
+  /* ③ 移动端隐藏深浅切换按钮（浅色/深色 太阳月亮图标）*/
+  .site-header .header-tool--toggle { display: none !important; }
+}

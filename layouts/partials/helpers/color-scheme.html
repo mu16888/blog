@@ -1,0 +1,54 @@
+{{/* ============================================================
+     颜色方案初始化（覆盖主题 themes/pocket-hugo-theme/layouts/partials/helpers/color-scheme.html）
+     ★ 2026-10-21 锋哥令：移动端只保留浅色主题
+       「手机端深浅没有太大区别干脆移动端只有浅色就好了」
+     做法：在主题原有逻辑上叠加「移动端强制 light」。
+       · 判定用 matchMedia('(max-width: 767px)')，与 custom.css 的媒体查询同一断点。
+       · 移动端忽略 localStorage 里的 dark、也忽略系统深色偏好 → 一律 light。
+       · 桌面端逻辑与主题完全一致（深浅切换照旧）。
+     同时注入 static/js/mobile-light-lock.js 兜底：主题 main.js 是 defer 加载的，
+     会在之后再次把 data-theme 改成 dark（监听系统配色变化），需要持续纠正。
+     ============================================================ */}}
+<script>
+    (function () {
+        var key = 'StackColorScheme';
+        var paletteKey = 'PocketPalettePreset';
+        var media = window.matchMedia('(prefers-color-scheme: dark)');
+        var mobile = window.matchMedia('(max-width: 767px)');
+        var defaultTheme = {{ printf "%q" (.Site.Params.colorScheme.default | default "auto") | safeJS }};
+        var defaultPalette = {{ printf "%q" (.Site.Params.colorScheme.preset | default "golden-summer-fields") | safeJS }};
+        var validPalettes = ['golden-summer-fields', 'soft-pastel-shades', 'black-gold-elegance', 'fresh-greens', 'light-steel', 'deep-sea-blue', 'morandi-mist', 'monochrome-core'];
+        var stored = null;
+        var storedPalette = null;
+
+        try {
+            stored = localStorage.getItem(key);
+            storedPalette = localStorage.getItem(paletteKey);
+        } catch (e) {
+            stored = null;
+            storedPalette = null;
+        }
+
+        var resolved = stored === 'dark' || stored === 'light'
+            ? stored
+            : ((defaultTheme === 'dark' || defaultTheme === 'light')
+                ? defaultTheme
+                : (media.matches ? 'dark' : 'light'));
+
+        /* ★ 移动端强制浅色：忽略 localStorage 与系统偏好 */
+        if (mobile.matches) {
+            resolved = 'light';
+        }
+
+        var resolvedPalette = validPalettes.indexOf(storedPalette) > -1
+            ? storedPalette
+            : (validPalettes.indexOf(defaultPalette) > -1 ? defaultPalette : 'golden-summer-fields');
+
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.dataset.scheme = resolved;
+        document.documentElement.dataset.palette = resolvedPalette;
+        document.documentElement.style.colorScheme = resolved;
+    })();
+</script>
+{{/* 移动端浅色锁定兜底脚本（纠正主题 main.js 后续可能写入的 dark） */}}
+<script src="{{ "js/mobile-light-lock.js" | relURL }}" defer></script>
