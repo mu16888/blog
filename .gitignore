@@ -6,6 +6,10 @@ resources/
 
 # 本地工具（hugo 二进制等，不入库）
 /tools/
+# 例外：问答同步工具需要入库（锋哥填答案的入口链）
+!/tools/qa_sync.py
+/tools/_backup/
+/tools/hero_src/
 
 # 主题附带的演示站点与截图（部署不需要，避免仓库臃肿）
 /themes/*/exampleSite/
