@@ -1498,3 +1498,76 @@ html[data-theme="dark"] .waline-container .wl-btn {
     padding: 0;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ★ 页头工具区四按钮最终统一（2026-10-21 锋哥：左边2个跟右边2个统一很难吗）
+   真实根因（前面几轮都没找对）：
+     主题 .main-nav__link/.header-tool 带 `padding: 0 14px`，
+     而项目 custom.css 只把 width 设成 44px（line 340附近）却没清 padding，
+     → 左边两个实际渲染 44+28=72px 宽 × 38px 高 = **横向椭圆**；
+     右边社交按钮是 38×38 无 padding = 正圆。两者形状压根不一样。
+   一次性解法：不写零散补丁，直接给四个按钮下**同一组共同规则**
+   （调色板 / 极简 / 云同步 / RSS 全部命中），padding 清零 → 全部 38×38 正圆，
+   描边、底色、文字色、图标尺寸全部同源，一致不靠运气。
+   ══════════════════════════════════════════════════════════════ */
+.site-header .header-tools .header-tool,
+.site-header .header-tools .social-nav__link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  padding: 0 !important;          /* 关键：清掉主题的 0 14px，否则变椭圆 */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--hero-chip);
+  color: var(--hero-chip-text);
+  line-height: 1;
+  font-size: 0;
+  transition: opacity .15s ease, border-color .15s ease;
+}
+/* 调色板按钮本体是 <summary>，需要额外清掉默认的三角/间距 */
+.site-header .header-tools .palette-picker__summary,
+.site-header .header-tools .translation-toggle__summary {
+  list-style: none;
+  margin: 0;
+}
+.site-header .header-tools .palette-picker__summary::-webkit-details-marker,
+.site-header .header-tools .translation-toggle__summary::-webkit-details-marker {
+  display: none;
+}
+/* 四个按钮的图标：同一尺寸、同一线宽 */
+.site-header .header-tools .header-tool svg,
+.site-header .header-tools .social-nav__link svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke-width: 1.5;
+}
+.site-header .header-tools .header-tool:hover,
+.site-header .header-tools .social-nav__link:hover {
+  opacity: .85;
+}
+.site-header .header-tools .header-tool:active,
+.site-header .header-tools .social-nav__link:active {
+  opacity: .72;
+}
+
+/* 平板 / 手机：统一缩到 34px，其余规则不变（形状依然统一） */
+@media (max-width: 1080px) {
+  .site-header .header-tools .header-tool,
+  .site-header .header-tools .social-nav__link {
+    width: 34px; min-width: 34px; max-width: 34px;
+    height: 34px; min-height: 34px; max-height: 34px;
+  }
+  .site-header .header-tools .header-tool svg,
+  .site-header .header-tools .social-nav__link svg {
+    width: 16px; height: 16px;
+  }
+}
