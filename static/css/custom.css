@@ -1320,3 +1320,64 @@ html[data-theme="dark"] .waline-container .wl-btn {
    实现：Waline 未给这两个按钮独立类名，按 aria-label 精确隐藏，
         同时保留 .wl-like（赞）与 .wl-reaction。
    ══════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════
+   页头右上角工具按钮：合并为单排并右对齐（2026-10-21）
+   问题：桌面端 .header-tools 可换行，导致「调色板 / 极简模式」与
+        「云同步 / RSS」分成上下两排，视觉上散、层级乱。
+   处理：桌面端禁止换行 + 固定靠右；按钮间距收紧。
+        窄屏（<1080px）仍保持单排但不挤压，必要时允许横滑。
+   ══════════════════════════════════════════════════════════ */
+@media (min-width: 1081px) {
+  .site-header .header-tools {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;          /* 关键：禁止换行，强制单排 */
+    align-items: center;
+    justify-content: flex-end;  /* 整体靠右 */
+    gap: 8px;
+    margin-left: auto;          /* 把整组推到导航右侧 */
+  }
+  /* 每一层的子容器（如 social-nav 混编进来时）也要禁止换行 */
+  .site-header .header-tools > * {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+}
+
+/* 中等宽度：空间不够时不要换行，宁可缩小间距 */
+@media (max-width: 1080px) and (min-width: 768px) {
+  .site-header .header-tools,
+  .site-header .header-tools > * {
+    flex-wrap: nowrap !important;
+    gap: 5px;
+  }
+  .site-header .header-tool,
+  .site-header .header-tool--icon {
+    width: 34px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+  .site-header .header-tool svg,
+  .site-header .header-tool--toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* 手机端：横向可滑动，不换行也不挤压 */
+@media (max-width: 767px) {
+  .site-header .header-tools,
+  .site-header .header-tools > * {
+    flex-wrap: nowrap !important;
+    gap: 5px;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-header .header-tools::-webkit-scrollbar { display: none; }
+}
