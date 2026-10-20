@@ -1,0 +1,33 @@
+{{/* 产品名录网格（扒 opc.cn 名录卡·阶段A，2026-10-20）
+     覆盖 _default/list.html：把 products 渲染成自适应网格（套用文章卡样式，隐藏 meta）。
+     只显示已发布产品（draft 默认被 Hugo 排除），绝不编造内容。 */}}
+{{ define "body-class" }}template-list template-products{{ end }}
+
+{{ define "main" }}
+    <section class="list-page">
+        <header class="section-head">
+            <p class="section-head__eyebrow">{{ .Section | default .Type }}</p>
+            <h1>{{ .Title }}</h1>
+            {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+        </header>
+
+        {{ with .Content }}
+            <div class="article-content section-content">{{ . }}</div>
+        {{ end }}
+
+        {{ $pages := .RegularPages.ByDate.Reverse }}
+        {{ $pinned := where $pages "Params.pinned" true }}
+        {{ $others := where $pages "Params.pinned" "!=" true }}
+        {{ $pages = $pinned | append $others }}
+
+        <section class="products-grid">
+            {{ range $pages }}
+                {{ partial "article/card.html" (dict "page" . "showMeta" false) }}
+            {{ end }}
+        </section>
+    </section>
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar-right.html" (dict "Context" . "Scope" "static") }}
+{{ end }}

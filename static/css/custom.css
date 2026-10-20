@@ -910,3 +910,49 @@ html[data-min="true"] .article-page__cover img {
   height: 200px;
 }
 
+/* ========== 首页「一人公司成长漏斗」模块（扒 opc.cn 前端 v3·阶段A，2026-10-20） ========== */
+.home-funnel {
+  margin: 0 0 36px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, #1b2a4d 0%, #243a63 100%);
+  border-radius: 16px;
+  color: #f6f7f9;
+}
+.home-funnel__head { text-align: center; margin-bottom: 22px; }
+.home-funnel__eyebrow { font-size: .82rem; letter-spacing: .14em; color: #9fb2d6; margin: 0 0 6px; }
+.home-funnel__title { font-size: 1.5rem; margin: 0 0 6px; color: #fff; }
+.home-funnel__sub { font-size: .95rem; color: #c9d3e4; margin: 0; }
+.home-funnel__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.funnel-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.funnel-card__icon { font-size: 1.9rem; line-height: 1; margin-bottom: 10px; }
+.funnel-card__stage { font-size: 1.15rem; margin: 0 0 8px; color: #fff; }
+.funnel-card__desc { font-size: .9rem; line-height: 1.65; color: #d4dcec; margin: 0 0 16px; flex: 1; }
+.funnel-card__btn {
+  display: block; text-align: center; padding: 11px 14px;
+  background: #f6f7f9; color: #1b2a4d; font-weight: 700;
+  border-radius: 9px; text-decoration: none; font-size: .95rem;
+}
+.funnel-card__btn:hover { background: #fff; }
+.funnel-card__link { display: block; text-align: center; margin-top: 8px; font-size: .85rem; color: #9fb2d6; text-decoration: none; }
+.funnel-card__link:hover { color: #fff; }
+@media (max-width: 767px) {
+  .home-funnel { padding: 24px 16px; }
+  .home-funnel__grid { grid-template-columns: 1fr; }
+}
+
+/* ========== 产品名录网格（扒 opc.cn 名录卡·阶段A，2026-10-20） ========== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+.products-grid .post-card { margin: 0; }
+
