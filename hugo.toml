@@ -69,6 +69,11 @@ copyright = "沐风 · AI办公与效率工具"
     name = "关于"
     url = "/about/"
     weight = 5
+  [[ menu.main ]]
+    identifier = "cases"
+    name = "案例"
+    url = "/cases/"
+    weight = 6
 
 # ---------- 主题参数 ----------
 [ params ]
