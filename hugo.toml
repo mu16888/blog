@@ -90,7 +90,7 @@ copyright = "沐风 · AI办公与效率工具"
     [ params.sidebar.avatar ]
       enabled = true
       local = true
-      src = "/avatar.jpg"
+      src = "/avatar-2.jpg"
     [ params.sidebar.qr ]
       # 页面不常驻显示公众号码；该二维码仅在右上角「注册 / 登录」弹窗中展示（扫码关注即注册）
       enabled = false
