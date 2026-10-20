@@ -439,6 +439,7 @@ body.auth-modal-lock { overflow: hidden; }
 html[data-palette="deep-sea-blue"] {
   --background: #f6f7f9;          /* 淡白 */
   --foreground: #1b2a4d;          /* 藏青 */
+  --theme-color: #1b2a4d;         /* 文章标题主色（深色模式需翻成淡白，否则藏青字看不见） */
   --muted: #5c6b86;
   --card: #ffffff;
   --card-muted: #eef1f6;
@@ -459,13 +460,13 @@ html[data-palette="deep-sea-blue"] {
      与深色模式几乎同色，页头又占手机首屏一半 → 切换后肉眼几乎无变化。
      → 浅色模式整组翻成「亮底 + 藏青字」；深色模式另有一组（见下方 dark 段）。
      注：标题卡用 --cover-hero-* 独立变量，不受这里影响。 */
-  --hero-text: #16233f;
-  --hero-subtitle: #4a5b7c;
-  --hero-chip: rgba(255, 255, 255, 0.78);
-  --hero-chip-text: #1b2a4d;
-  --hero-chip-border: rgba(27, 42, 77, 0.20);
-  --hero-border: rgba(27, 42, 77, 0.18);
-  --hero-orb: rgba(255, 255, 255, 0.55);
+  --hero-text: #f6f7f9;
+  --hero-subtitle: #c9d3e4;
+  --hero-chip: rgba(255, 255, 255, 0.12);
+  --hero-chip-text: #e8eef7;
+  --hero-chip-border: rgba(255, 255, 255, 0.16);
+  --hero-border: rgba(255, 255, 255, 0.16);
+  --hero-orb: rgba(255, 255, 255, 0.10);
   /* 首页漏斗模块（浅色模式：浅底 + 藏青字，与深色模式拉开对比） */
   --funnel-start: #e8eef8;
   --funnel-end: #f2f0f8;
@@ -479,6 +480,39 @@ html[data-palette="deep-sea-blue"] {
   --funnel-btn-bg: #1b2a4d;
   --funnel-btn-bg-hover: #24365f;
   --funnel-btn-text: #ffffff;
+  /* ---------- 面板/卡片族（互动页等，2026-10-21 深浅主题补齐） ----------
+     这批元素此前写死 #fff / #1b2a4d，两模式完全一样 → 切换主题看着"没变"。
+     浅色：白底卡片 + 藏青字；深色：深底卡片 + 淡白字。 */
+  --panel-card-bg: #ffffff;
+  --panel-card-border: #e4e7ee;
+  --panel-card-hover: #f6f7f9;
+  --panel-title: #1b2a4d;
+  --panel-text: #33405c;
+  --panel-muted: #5a6478;
+  --panel-faint: #8a93a5;
+  --panel-badge-bg: #1b2a4d;
+  --panel-badge-text: #ffffff;
+  --panel-ask-start: #e8eef8;
+  --panel-ask-end: #f2f0f8;
+  --panel-ask-text: #1b2a4d;
+  --panel-ask-sub: #4a5b7c;
+  --panel-ask-chip-bg: rgba(27, 42, 77, 0.04);
+  --panel-ask-chip-border: rgba(27, 42, 77, 0.12);
+  --panel-ask-chip-text: #33405c;
+  --panel-ask-chip-faint: #5a6478;
+  --panel-ask-chip-dash: rgba(27, 42, 77, 0.14);
+  /* ---------- Waline 评论区（浅色） ---------- */
+  --waline-bg: #ffffff;
+  --waline-border: #e3e7ee;
+  --waline-line: #eef1f5;
+  --waline-input-bg: #f7f8fa;
+  --waline-input-focus-bg: #ffffff;
+  --waline-text: #1b2a4d;
+  --waline-content: #333a48;
+  --waline-faint: #8a93a5;
+  --waline-btn: #1b2a4d;
+  --waline-btn-hover: #2c4272;
+  --waline-btn-text: #ffffff;
 }
 
 /* ---------- 深色模式：藏青底 / 淡白字 ----------
@@ -493,6 +527,7 @@ html[data-palette="deep-sea-blue"] {
 html[data-theme=dark][data-palette="deep-sea-blue"] {
   --background: #1f2634;          /* 深色底 · 真正压暗，与浅色模式(#f6f7f9)拉开明显差距 */
   --foreground: #f6f7f9;          /* 淡白字 · 对比 13.4:1 */
+  --theme-color: #f6f7f9;
   --muted: #a8b2c4;               /* 次要字：对比 6.4:1 保可读与层次 */
   --card: #2a3345;
   --card-muted: #333e52;
@@ -527,6 +562,37 @@ html[data-theme=dark][data-palette="deep-sea-blue"] {
   --funnel-btn-bg: #f6f7f9;
   --funnel-btn-bg-hover: #ffffff;
   --funnel-btn-text: #1b2a4d;
+  /* 面板/卡片族（深色模式，见浅色段注释） */
+  --panel-card-bg: #222b3b;
+  --panel-card-border: #3a475f;
+  --panel-card-hover: #2a3345;
+  --panel-title: #eef3fb;
+  --panel-text: #b9c4d6;
+  --panel-muted: #a8b2c4;
+  --panel-faint: #8a93a5;
+  --panel-badge-bg: #3d5a99;
+  --panel-badge-text: #ffffff;
+  --panel-ask-start: #171e2b;
+  --panel-ask-end: #222c3e;
+  --panel-ask-text: #eef3fb;
+  --panel-ask-sub: #b9c4d6;
+  --panel-ask-chip-bg: rgba(255, 255, 255, 0.045);
+  --panel-ask-chip-border: rgba(255, 255, 255, 0.11);
+  --panel-ask-chip-text: #c3cddd;
+  --panel-ask-chip-faint: #93a3bd;
+  --panel-ask-chip-dash: rgba(255, 255, 255, 0.16);
+  /* Waline 评论区（深色） */
+  --waline-bg: #1a1d24;
+  --waline-border: #2a2f3a;
+  --waline-line: #2a2f3a;
+  --waline-input-bg: #22262f;
+  --waline-input-focus-bg: #262b35;
+  --waline-text: #d8dce4;
+  --waline-content: #c3c8d2;
+  --waline-faint: #8b93a3;
+  --waline-btn: #3d5a99;
+  --waline-btn-hover: #4a6bb0;
+  --waline-btn-text: #ffffff;
 }
 
 /* ---------- 深色模式主题背景：藏青纹理底（锋哥提供的素材，已按站点色重调） ----------
@@ -566,6 +632,17 @@ html[data-theme=dark][data-palette="deep-sea-blue"] body {
   --cover-hero-chip: rgba(255, 255, 255, 0.10);
   --cover-hero-border: rgba(255, 255, 255, 0.14);
   --cover-hero-orb: rgba(255, 255, 255, 0.08);
+}
+/* ★ 标题卡深浅分档（2026-10-21）：浅色模式用稍亮的藏青，与深色模式拉开一档。
+   注：不用 html:not([data-theme="dark"]) 写规则 —— 它与 html[data-theme="dark"]
+   同特异性(0,2,1)，顺序放错会反压深色模式（踩过一次）。这里靠"基础规则 + 深色规则在后"实现。 */
+.cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
+  --cover-hero-start: #354463;
+  --cover-hero-end: #5b6c92;
+}
+html[data-theme="dark"] .cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
+  --cover-hero-start: #232b3a;
+  --cover-hero-end: #414c63;
 }
 
 /* =========================================================
@@ -798,7 +875,7 @@ body { font-family: var(--mufeng-font); }
   font-size: 1.7rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #5a6478;
+  color: var(--muted);
   border-left: 3px solid #c9a86a;
   padding-left: 10px;
 }
@@ -817,8 +894,8 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
   gap: 24px;
   margin: 40px 0 8px;
   padding: 22px 26px;
-  background: #f6f7f9;
-  border: 1px solid #e4e7ee;
+  background: var(--card-muted);
+  border: 1px solid var(--border);
   border-radius: 16px;
 }
 .wechat-follow__text { flex: 1; min-width: 0; }
@@ -834,18 +911,18 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.25;
-  color: #1b2a4d;
+  color: var(--foreground);
 }
 .wechat-follow__desc {
   margin: 0 0 6px;
   font-size: 1.4rem;
   line-height: 1.65;
-  color: #5a6478;
+  color: var(--muted);
 }
 .wechat-follow__hint {
   margin: 0;
   font-size: 1.3rem;
-  color: #8a93a5;
+  color: var(--muted);
 }
 .wechat-follow__qr {
   flex-shrink: 0;
@@ -865,7 +942,7 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
 }
 .wechat-follow__qr span {
   font-size: 1.2rem;
-  color: #8a93a5;
+  color: var(--muted);
 }
 
 /* 窄屏 / 紧凑模式：上下堆叠居中，二维码缩小 */
@@ -907,26 +984,15 @@ html[data-theme="dark"] .site-header__inner {
     linear-gradient(rgba(10, 15, 26, 0.62), rgba(10, 15, 26, 0.62)),
     url("/img/header-bg.jpg") center / cover no-repeat;
 }
-/* ★ 浅色模式页头改亮底（2026-10-21 锋哥令：手机端深浅调换没区别）
-   根因：浅色模式页头原本也是「深藏青底 + 淡白字」，与深色模式（同一张图 + 暗罩）
-   视觉几乎一致；页头在手机端又占首屏近一半 → 切换主题肉眼看不出变化。
-   对策：浅色模式换成同源淡化版底图（header-bg-light.jpg，浅蓝白、保留光效纹理），
-   文字/按钮翻成藏青（--hero-* 变量已在浅色段改为亮底藏青字）。
-   → 两模式页头一浅一深，一眼可辨。 */
-html[data-theme="light"] .site-header__inner,
-html:not([data-theme="dark"]) .site-header__inner {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10)),
-    url("/img/header-bg-light.jpg") center / cover no-repeat;
-}
-/* ★ 浅色页头底变浅 → 导航胶囊/工具按钮的描边与底色要跟着加深，否则浮在浅底上看不见
-   （描边色走变量 --hero-chip-border，两模式各自给值，避免用 :not([data-theme]) 写规则
-     —— 那种写法特异性会反压深色模式） */
-.site-header .main-nav__link,
-.site-header .header-tools .header-tool,
-.site-header .header-tools .social-nav__link {
-  border-color: var(--hero-chip-border, var(--border));
-}
+/* ★ 2026-10-21 锋哥令「店招不要动」：撤销上一版浅色页头方案
+   上一版把浅色模式页头换成浅蓝白底（header-bg-light.jpg），结果：
+     ① 锋哥指出「店招不要动」——页头是品牌识别区，深浅两模式都该保持藏青深底；
+     ② 规则写成 html:not([data-theme="dark"]) .site-header__inner，
+        与 html[data-theme="dark"] 同特异性(0,2,1) 且排在后面 → 反压深色模式，
+        实测深色模式页头也被翻成浅色（锋哥手机截图：页头浅、正文深）。
+   → 页头两模式统一回到「藏青深底 + 淡白字」，深浅差异只体现在页身内容区。
+   → 浅色底图 header-bg-light.jpg 不再使用（文件保留待用/可删）。
+   → 深浅两套配色一律走变量，杜绝顺序型覆盖。 */
 
 /* ========== 头图两段式标题（2026-10-19 锋哥定） ==========
    文章头图统一为深蓝电路风（/covers/cover-tech-2.png），
@@ -1050,7 +1116,7 @@ html[data-min="true"] .article-page__cover img {
 .post-card__title-l1 { display: block; }
 .post-card__title-l2 {
   display: block;
-  color: #8a93a5;
+  color: var(--muted);
   font-size: 1.6rem;
   font-weight: 500;
   margin-top: 6px;
@@ -1073,7 +1139,7 @@ html[data-min="true"] .article-page__cover img {
   margin: 10px 0 0;
   font-size: 1.5rem;
   line-height: 1.75;
-  color: #5a6478;
+  color: var(--panel-muted);
   max-width: 62ch;
 }
 
@@ -1081,58 +1147,58 @@ html[data-min="true"] .article-page__cover img {
 .interact-ask {
   margin: 0 0 34px;
   padding: 26px 26px 24px;
-  background: linear-gradient(135deg, #1b2a4d 0%, #243a63 100%);
+  background: linear-gradient(135deg, var(--panel-ask-start) 0%, var(--panel-ask-end) 100%);
   border-radius: 16px;
-  color: #f6f7f9;
+  color: var(--panel-ask-text);
 }
-.interact-ask__title { margin: 0 0 8px; font-size: 1.9rem; color: #fff; }
-.interact-ask__desc { margin: 0 0 18px; font-size: 1.35rem; line-height: 1.7; color: #c9d3e4; }
+.interact-ask__title { margin: 0 0 8px; font-size: 1.9rem; color: var(--panel-ask-text); }
+.interact-ask__desc { margin: 0 0 18px; font-size: 1.35rem; line-height: 1.7; color: var(--panel-ask-sub); }
 
 /* Waline 未就位时的降级通道 */
 .interact-fallback {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--panel-ask-chip-bg);
+  border: 1px solid var(--panel-ask-chip-border);
   border-radius: 13px;
   padding: 20px 22px;
 }
 .interact-fallback__row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .interact-fallback__item { min-width: 0; }
-.interact-fallback__title { margin: 0 0 6px; font-size: 1.35rem; color: #fff; }
-.interact-fallback__desc { margin: 0; font-size: 1.25rem; line-height: 1.7; color: #d4dcec; }
+.interact-fallback__title { margin: 0 0 6px; font-size: 1.35rem; color: var(--panel-ask-text); }
+.interact-fallback__desc { margin: 0; font-size: 1.25rem; line-height: 1.7; color: var(--panel-ask-chip-text); }
 .interact-fallback__note {
   margin: 16px 0 0;
   padding-top: 14px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  border-top: 1px dashed var(--panel-ask-chip-dash);
   font-size: 1.2rem;
   line-height: 1.65;
-  color: #9fb2d6;
+  color: var(--panel-ask-chip-faint);
 }
 .interact-comments { margin-top: 20px; }
-.interact-comments__title { margin: 0 0 14px; font-size: 1.5rem; color: #fff; }
-.waline-container { background: #fff; border-radius: 12px; padding: 14px 16px; }
+.interact-comments__title { margin: 0 0 14px; font-size: 1.5rem; color: var(--panel-ask-text); }
+.waline-container { background: var(--panel-card-bg); border-radius: 12px; padding: 14px 16px; }
 
 /* ---------- 问答区 ---------- */
 .interact-qa { margin: 0 0 34px; }
 .interact-qa__title {
   display: flex; align-items: center; gap: 10px;
-  margin: 0 0 6px; font-size: 1.9rem; color: #1b2a4d;
+  margin: 0 0 6px; font-size: 1.9rem; color: var(--panel-title);
 }
 .interact-qa__count {
   display: inline-block; min-width: 26px; padding: 1px 8px;
   font-size: 1.2rem; font-weight: 700; text-align: center;
-  color: #fff; background: #1b2a4d; border-radius: 999px;
+  color: var(--panel-badge-text); background: var(--panel-badge-bg); border-radius: 999px;
 }
-.interact-qa__hint { margin: 0 0 18px; font-size: 1.3rem; line-height: 1.7; color: #5a6478; }
+.interact-qa__hint { margin: 0 0 18px; font-size: 1.3rem; line-height: 1.7; color: var(--panel-muted); }
 .interact-qa__cat {
   margin: 22px 0 10px;
-  font-size: 1.35rem; color: #1b2a4d;
+  font-size: 1.35rem; color: var(--panel-title);
   padding-left: 12px; border-left: 4px solid #c9a86a;
 }
 .interact-qa__items { display: flex; flex-direction: column; gap: 10px; }
 
 .qa-item {
-  background: #fff;
-  border: 1px solid #e4e7ee;
+  background: var(--panel-card-bg);
+  border: 1px solid var(--panel-card-border);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -1140,18 +1206,18 @@ html[data-min="true"] .article-page__cover img {
   display: flex; align-items: flex-start; gap: 12px;
   padding: 16px 18px;
   font-size: 1.5rem; font-weight: 600; line-height: 1.6;
-  color: #1b2a4d;
+  color: var(--panel-title);
   cursor: pointer;
   list-style: none;
 }
 .qa-item__q::-webkit-details-marker { display: none; }
-.qa-item__q:hover { background: #f6f7f9; }
+.qa-item__q:hover { background: var(--panel-card-hover); }
 .qa-item__mark {
   flex: 0 0 auto;
   width: 26px; height: 26px; margin-top: 2px;
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 1.2rem; font-weight: 700;
-  color: #fff; background: #1b2a4d; border-radius: 50%;
+  color: var(--panel-badge-text); background: var(--panel-badge-bg); border-radius: 50%;
 }
 .qa-item__text { flex: 1 1 auto; min-width: 0; }
 .qa-item__badge {
@@ -1163,38 +1229,38 @@ html[data-min="true"] .article-page__cover img {
 .qa-item__badge--todo { color: #8a6a1f; background: #f7f0dc; }
 .qa-item__a {
   padding: 4px 20px 18px 56px;
-  font-size: 1.4rem; line-height: 1.85; color: #33405c;
+  font-size: 1.4rem; line-height: 1.85; color: var(--panel-text);
 }
 .qa-item__a-label {
   margin: 0 0 6px !important;
   font-weight: 700; color: #c9a86a;
 }
 .qa-item__a--todo {
-  color: #8a93a5; font-style: italic;
+  color: var(--panel-faint); font-style: italic;
 }
 
 /* ---------- 最新进展（替代原「动态」板块，自动聚合零维护） ---------- */
 .interact-recent { margin: 0 0 34px; }
-.interact-recent__title { margin: 0 0 6px; font-size: 1.9rem; color: #1b2a4d; }
-.interact-recent__desc { margin: 0 0 16px; font-size: 1.3rem; color: #5a6478; }
+.interact-recent__title { margin: 0 0 6px; font-size: 1.9rem; color: var(--panel-title); }
+.interact-recent__desc { margin: 0 0 16px; font-size: 1.3rem; color: var(--panel-muted); }
 .interact-recent__list {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
 }
 .interact-recent__item {
   display: flex; align-items: baseline; gap: 12px;
   padding: 12px 16px;
-  background: #fff; border: 1px solid #e4e7ee; border-radius: 10px;
+  background: var(--panel-card-bg); border: 1px solid var(--panel-card-border); border-radius: 10px;
   text-decoration: none;
 }
-.interact-recent__item:hover { border-color: #c9d3e4; background: #f6f7f9; }
-.interact-recent__date { flex: 0 0 auto; font-size: 1.15rem; color: #8a93a5; }
+.interact-recent__item:hover { border-color: var(--panel-card-border); background: var(--panel-card-hover); }
+.interact-recent__date { flex: 0 0 auto; font-size: 1.15rem; color: var(--panel-faint); }
 .interact-recent__title {
   flex: 1 1 auto; min-width: 0;
-  font-size: 1.4rem; font-weight: 500; color: #1b2a4d;
+  font-size: 1.4rem; font-weight: 500; color: var(--panel-title);
 }
 .interact-recent__more {
   display: inline-block; margin-top: 14px;
-  font-size: 1.3rem; color: #1b2a4d; text-decoration: none;
+  font-size: 1.3rem; color: var(--panel-title); text-decoration: none;
 }
 .interact-recent__more:hover { text-decoration: underline; }
 
@@ -1215,13 +1281,13 @@ html[data-min="true"] .article-page__cover img {
 .waline-container {
   margin-top: 8px;
   padding: 32px 28px;
-  background: #fff;
-  border: 1px solid #e3e7ee;
+  background: var(--waline-bg);
+  border: 1px solid var(--waline-border);
   border-radius: 4px;
 }
 .waline-container .waline-panel {
   border: 0;
-  border-bottom: 1px solid #eef1f5;
+  border-bottom: 1px solid var(--waline-line);
   padding-bottom: 20px;
   margin-bottom: 24px;
 }
@@ -1237,20 +1303,20 @@ html[data-min="true"] .article-page__cover img {
 }
 .waline-container .input-wrap .input__wrap {
   margin: 0;
-  background: #f7f8fa;
-  border: 1px solid #e3e7ee;
+  background: var(--waline-input-bg);
+  border: 1px solid var(--waline-border);
   border-radius: 3px;
   transition: border-color .2s;
 }
 .waline-container .input-wrap .input__wrap:focus-within {
-  border-color: #1b2a4d;
-  background: #fff;
+  border-color: var(--waline-btn);
+  background: var(--waline-input-focus-bg);
 }
 .waline-container .input-wrap input,
 .waline-container .input-wrap textarea {
   background: transparent !important;
   border: 0 !important;
-  color: #1b2a4d;
+  color: var(--waline-text);
   font-size: 1.35rem;
   padding: 10px 12px;
   width: 100%;
@@ -1266,7 +1332,7 @@ html[data-min="true"] .article-page__cover img {
   left: 12px;
   top: 10px;
   font-size: 1.2rem;
-  color: #8a93a5;
+  color: var(--waline-faint);
   background: transparent;
   padding: 0;
   transform-origin: left top;
@@ -1280,19 +1346,19 @@ html[data-min="true"] .article-page__cover img {
 }
 /* 提交按钮：藏青实心，与博客 CTA 盒一致 */
 .waline-container .wl-btn {
-  background: #1b2a4d;
+  background: var(--waline-btn);
   border: 0;
   border-radius: 3px;
-  color: #fff;
+  color: var(--waline-btn-text);
   font-size: 1.35rem;
   font-weight: 500;
   padding: 9px 26px;
   cursor: pointer;
   transition: background .2s;
 }
-.waline-container .wl-btn:hover { background: #2c4272; }
+.waline-container .wl-btn:hover { background: var(--waline-btn-hover); }
 .waline-container .wl-btn.primary {
-  background: #1b2a4d;
+  background: var(--waline-btn);
   text-shadow: none;
   font-weight: 500;
 }
@@ -1301,17 +1367,17 @@ html[data-min="true"] .article-page__cover img {
   margin-top: 8px;
 }
 .waline-container .waline-item {
-  border-top: 1px solid #eef1f5;
+  border-top: 1px solid var(--waline-line);
   padding: 18px 0;
 }
 .waline-container .waline-item:first-child { border-top: 0; }
 .waline-container .screen-name {
-  color: #1b2a4d;
+  color: var(--waline-text);
   font-weight: 600;
 }
 .waline-container .badge {
-  background: #1b2a4d;
-  color: #fff;
+  background: var(--waline-btn);
+  color: var(--waline-btn-text);
   border-radius: 2px;
   font-size: 1.1rem;
 }
@@ -1319,56 +1385,29 @@ html[data-min="true"] .article-page__cover img {
   border-radius: 50%;
 }
 .waline-container .waline-comment__content {
-  color: #333a48;
+  color: var(--waline-content);
   font-size: 1.4rem;
   line-height: 1.8;
 }
 /* 元信息行 */
 .waline-container .waline-meta {
   font-size: 1.15rem;
-  color: #8a93a5;
+  color: var(--waline-faint);
 }
 /* 底部功能条 */
 .waline-container .waline-emoji,
 .waline-container .waline-sort,
 .waline-container .wl-btn.sort {
   background: transparent;
-  border: 1px solid #e3e7ee;
+  border: 1px solid var(--waline-border);
   border-radius: 3px;
-  color: #8a93a5;
+  color: var(--waline-faint);
 }
 .waline-container .wl-btn.sort:hover {
-  border-color: #1b2a4d;
-  color: #1b2a4d;
+  border-color: var(--waline-btn);
+  color: var(--waline-btn);
 }
-/* 深色模式跟随主题 */
-html[data-theme="dark"] .waline-container {
-  background: #1a1d24;
-  border-color: #2a2f3a;
-}
-html[data-theme="dark"] .waline-container .input-wrap .input__wrap {
-  background: #22262f;
-  border-color: #2a2f3a;
-}
-html[data-theme="dark"] .waline-container .input-wrap input,
-html[data-theme="dark"] .waline-container .input-wrap textarea,
-html[data-theme="dark"] .waline-container .screen-name {
-  color: #d8dce4;
-}
-html[data-theme="dark"] .waline-container .input-wrap label,
-html[data-theme="dark"] .waline-container .waline-meta {
-  color: #8b93a3;
-}
-html[data-theme="dark"] .waline-container .waline-item {
-  border-top-color: #2a2f3a;
-}
-html[data-theme="dark"] .waline-container .waline-comment__content {
-  color: #c3c8d2;
-}
-html[data-theme="dark"] .waline-container .wl-btn {
-  background: #3d5a99;
-  color: #fff;
-}
+/* 深色模式：全部由 --waline-* 变量接管，无需再写 html[data-theme="dark"] 补偿段 */
 
 @media (max-width: 767px) {
   .waline-container { padding: 22px 18px; }
