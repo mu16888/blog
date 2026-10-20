@@ -1614,3 +1614,15 @@ html[data-theme="dark"] .waline-container .wl-btn {
     min-width: 0;
   }
 }
+
+/* ★ 头像保留证件照原有红蓝圆环（2026-10-21 锋哥令：红圈必须显示）
+   原图自带红/蓝双圈，若继续 border-radius:50% 会把圆环再切掉一圈、变形。
+   → 改为直角方形显示，完整保留原图圆环；同时加深背景衬色避免白底突兀。 */
+.site-header .site-brand__avatar img {
+  border-radius: 6px;
+  background: #fff;
+}
+/* 桌面端那条 .site-header .site-brand__avatar img{border-radius:50%} 特异性更高，这里覆盖掉 */
+@media (min-width: 1081px) {
+  .site-header .site-brand__avatar img { border-radius: 6px; }
+}
