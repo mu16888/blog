@@ -1381,3 +1381,60 @@ html[data-theme="dark"] .waline-container .wl-btn {
   }
   .site-header .header-tools::-webkit-scrollbar { display: none; }
 }
+
+/* ===== 页头工具区：云同步 / RSS 并入单排（2026-10-21锋哥令4个按钮同排，登录按钮已下线） ===== */
+.site-header .header-tools .social-nav--tools {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.site-header .social-nav--tools .social-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  border: 1px solid #e3e7ee;
+  border-radius: 4px;
+  color: #1b2a4d;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.site-header .social-nav--tools .social-nav__link:hover {
+  background: #f2f4f8;
+  border-color: #cfd6e2;
+}
+.site-header .social-nav--tools .social-nav__link svg {
+  width: 18px;
+  height: 18px;
+}
+html[data-theme="dark"] .site-header .social-nav--tools .social-nav__link {
+  border-color: #2a2f3a;
+  color: #cfd6e2;
+}
+html[data-theme="dark"] .site-header .social-nav--tools .social-nav__link:hover {
+  background: #22262f;
+}
+
+@media (min-width: 1081px) {
+  .site-header .social-nav--tools { gap: 8px; }
+}
+@media (max-width: 1080px) and (min-width: 768px) {
+  .site-header .header-tools { gap: 5px !important; }
+  .site-header .social-nav--tools { gap: 5px; }
+  .site-header .social-nav--tools .social-nav__link {
+    width: 34px; min-width: 34px; height: 34px;
+  }
+  .site-header .social-nav--tools .social-nav__link svg { width: 16px; height: 16px; }
+}
+@media (max-width: 767px) {
+  .site-header .social-nav--tools { gap: 5px; }
+  .site-header .social-nav--tools .social-nav__link {
+    width: 34px; min-width: 34px; height: 34px;
+  }
+  .site-header .social-nav--tools .social-nav__link svg { width: 16px; height: 16px; }
+}

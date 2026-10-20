@@ -31,33 +31,9 @@
                 {{ end }}
             </nav>
 
-            {{ with .Site.Params.social }}
-                <nav class="social-nav" aria-label="Social links">
-                    {{ range . }}
-                        {{ $icon := .icon | default "brand-github" }}
-                        {{ $label := .name | default .title | default $icon }}
-                        {{ $url := .url | default .href }}
-                        {{ with $url }}
-                            <a
-                                class="social-nav__link"
-                                href="{{ . }}"
-                                title="{{ $label }}"
-                                {{ if not (or (hasPrefix . "/") (hasPrefix . "#")) }}target="_blank" rel="me noopener noreferrer"{{ end }}
-                            >
-                                {{ partial "helpers/icon.html" $icon }}
-                            </a>
-                        {{ end }}
-                    {{ end }}
-                </nav>
-            {{ end }}
         </div>
 
         <div class="header-tools">
-            <!-- 登录：点击弹二维码；扫码确认后自动登录，登录行为记录在浏览器本地 -->
-            <button class="header-tool header-tool--auth" id="auth-button" type="button" aria-haspopup="dialog">
-                <span data-auth-label>登录</span>
-            </button>
-
             {{ if (or (.Site.Params.colorScheme.toggle | default false) (.Site.Params.colorSchemeToggle | default false)) }}
                 <button class="header-tool header-tool--toggle" id="dark-mode-toggle" type="button" data-toggle-color-scheme aria-label="切换深浅色">
                     {{ partial "helpers/icon.html" "sun" }}
@@ -102,10 +78,32 @@
                     {{ partial "helpers/icon.html" "normal" }}
                 </button>
             {{ end }}
+            {{ with .Site.Params.social }}
+                <nav class="social-nav social-nav--tools" aria-label="Social links">
+                    {{ range . }}
+                        {{ $icon := .icon | default "brand-github" }}
+                        {{ $label := .name | default .title | default $icon }}
+                        {{ $url := .url | default .href }}
+                        {{ with $url }}
+                            <a
+                                class="social-nav__link"
+                                href="{{ . }}"
+                                title="{{ $label }}"
+                                {{ if not (or (hasPrefix . "/") (hasPrefix . "#")) }}target="_blank" rel="me noopener noreferrer"{{ end }}
+                            >
+                                {{ partial "helpers/icon.html" $icon }}
+                            </a>
+                        {{ end }}
+                    {{ end }}
+                </nav>
+            {{ end }}
         </div>
     </div>
 </header>
 
+{{/* 登录弹窗已于 2026-10-21 下线（锋哥：博客无会员体系，登录按钮无意义）。
+     整段保留在文件里注释状态，需要恢复时去掉 {{/* */}} 注释符即可。 */}}
+{{/*
 <!-- 登录弹窗（微信扫码登录；首次扫码即完成注册并自动登录）
      登录行为记录在浏览器本地（localStorage: mufeng_auth），含首登时间/次数/最后登录时间 -->
 <div class="auth-modal" id="auth-modal" aria-hidden="true">
@@ -191,3 +189,4 @@
     refreshLabel();
 })();
 </script>
+*/}}
