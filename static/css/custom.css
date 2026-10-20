@@ -1000,3 +1000,145 @@ html[data-min="true"] .article-page__cover img {
   }
 }
 
+/* ========== 互动页 /interact/（2026-10-20 锋哥令：动态→互动，用于咨询答疑） ==========
+   定位：单向承接（我方精选问答 + 访客提问引导），不做 opc 那种 UGC 社区。
+   视觉：沿用品牌藏青 #1b2a4d / 淡白 #f6f7f9。 */
+.interact-page .section-head { margin-bottom: 26px; }
+.interact-page .section-head h1 { font-size: 2.6rem; }
+.interact-page .section-head > p {
+  margin: 10px 0 0;
+  font-size: 1.5rem;
+  line-height: 1.75;
+  color: #5a6478;
+  max-width: 62ch;
+}
+
+/* ---------- 提问区（置顶） ---------- */
+.interact-ask {
+  margin: 0 0 34px;
+  padding: 26px 26px 24px;
+  background: linear-gradient(135deg, #1b2a4d 0%, #243a63 100%);
+  border-radius: 16px;
+  color: #f6f7f9;
+}
+.interact-ask__title { margin: 0 0 8px; font-size: 1.9rem; color: #fff; }
+.interact-ask__desc { margin: 0 0 18px; font-size: 1.35rem; line-height: 1.7; color: #c9d3e4; }
+
+/* Waline 未就位时的降级通道 */
+.interact-fallback {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 13px;
+  padding: 20px 22px;
+}
+.interact-fallback__row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.interact-fallback__item { min-width: 0; }
+.interact-fallback__title { margin: 0 0 6px; font-size: 1.35rem; color: #fff; }
+.interact-fallback__desc { margin: 0; font-size: 1.25rem; line-height: 1.7; color: #d4dcec; }
+.interact-fallback__note {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: #9fb2d6;
+}
+.interact-comments { margin-top: 20px; }
+.interact-comments__title { margin: 0 0 14px; font-size: 1.5rem; color: #fff; }
+.waline-container { background: #fff; border-radius: 12px; padding: 14px 16px; }
+
+/* ---------- 问答区 ---------- */
+.interact-qa { margin: 0 0 34px; }
+.interact-qa__title {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0 0 6px; font-size: 1.9rem; color: #1b2a4d;
+}
+.interact-qa__count {
+  display: inline-block; min-width: 26px; padding: 1px 8px;
+  font-size: 1.2rem; font-weight: 700; text-align: center;
+  color: #fff; background: #1b2a4d; border-radius: 999px;
+}
+.interact-qa__hint { margin: 0 0 18px; font-size: 1.3rem; line-height: 1.7; color: #5a6478; }
+.interact-qa__cat {
+  margin: 22px 0 10px;
+  font-size: 1.35rem; color: #1b2a4d;
+  padding-left: 12px; border-left: 4px solid #c9a86a;
+}
+.interact-qa__items { display: flex; flex-direction: column; gap: 10px; }
+
+.qa-item {
+  background: #fff;
+  border: 1px solid #e4e7ee;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.qa-item__q {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px 18px;
+  font-size: 1.5rem; font-weight: 600; line-height: 1.6;
+  color: #1b2a4d;
+  cursor: pointer;
+  list-style: none;
+}
+.qa-item__q::-webkit-details-marker { display: none; }
+.qa-item__q:hover { background: #f6f7f9; }
+.qa-item__mark {
+  flex: 0 0 auto;
+  width: 26px; height: 26px; margin-top: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 700;
+  color: #fff; background: #1b2a4d; border-radius: 50%;
+}
+.qa-item__text { flex: 1 1 auto; min-width: 0; }
+.qa-item__badge {
+  flex: 0 0 auto; align-self: flex-start; margin-top: 3px;
+  padding: 2px 10px; border-radius: 999px;
+  font-size: 1.1rem; font-weight: 700;
+}
+.qa-item__badge--done { color: #2f6b4f; background: #e6f2ec; }
+.qa-item__badge--todo { color: #8a6a1f; background: #f7f0dc; }
+.qa-item__a {
+  padding: 4px 20px 18px 56px;
+  font-size: 1.4rem; line-height: 1.85; color: #33405c;
+}
+.qa-item__a-label {
+  margin: 0 0 6px !important;
+  font-weight: 700; color: #c9a86a;
+}
+.qa-item__a--todo {
+  color: #8a93a5; font-style: italic;
+}
+
+/* ---------- 最新进展（替代原「动态」板块，自动聚合零维护） ---------- */
+.interact-recent { margin: 0 0 34px; }
+.interact-recent__title { margin: 0 0 6px; font-size: 1.9rem; color: #1b2a4d; }
+.interact-recent__desc { margin: 0 0 16px; font-size: 1.3rem; color: #5a6478; }
+.interact-recent__list {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+}
+.interact-recent__item {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 12px 16px;
+  background: #fff; border: 1px solid #e4e7ee; border-radius: 10px;
+  text-decoration: none;
+}
+.interact-recent__item:hover { border-color: #c9d3e4; background: #f6f7f9; }
+.interact-recent__date { flex: 0 0 auto; font-size: 1.15rem; color: #8a93a5; }
+.interact-recent__title {
+  flex: 1 1 auto; min-width: 0;
+  font-size: 1.4rem; font-weight: 500; color: #1b2a4d;
+}
+.interact-recent__more {
+  display: inline-block; margin-top: 14px;
+  font-size: 1.3rem; color: #1b2a4d; text-decoration: none;
+}
+.interact-recent__more:hover { text-decoration: underline; }
+
+@media (max-width: 767px) {
+  .interact-page .section-head h1 { font-size: 2.1rem; }
+  .interact-fallback__row { grid-template-columns: 1fr; gap: 14px; }
+  .interact-recent__list { grid-template-columns: 1fr; }
+  .qa-item__a { padding-left: 20px; }
+  .qa-item__q { font-size: 1.4rem; }
+}
+

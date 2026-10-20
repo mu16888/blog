@@ -1,0 +1,122 @@
+# 互动页 · 高频问答清单
+# ─────────────────────────────────────────────────────────────
+# 锋哥填写说明（每条只需改 answer 那行，写完存盘即可上线）：
+#   · answer: ""  → 该条显示为「待补充」，前端会引导访客直接留言提问
+#   · answer: "你的答案" → 前端展示答案
+#   · 答案里可以用 Markdown（加粗、列表、代码都行）
+#   · 想下线某条：把 whole: true 改成 false（或删掉整条）
+#
+# question : 访客看到的问题（不用改，除非你想换措辞）
+# category : 分类标签，页面会按此分组
+# answer   : 你的答案 ←←← 只有这里需要你动
+# whole    : 该条是否已答完整（false = 待补充）
+
+- question: "AI 写的公文能不能直接发？会不会一眼被看出是 AI 写的？"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "红头文件格式到底有哪几个必错项？能不能给张对照表？"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "请示和报告到底怎么区分？我老是写混。"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "公文标题怎么起才不被人挑刺？"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "体制内写材料，哪些词是雷区不能用？"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "英文缩写、标点、序号这些细节，到底哪些是硬性规范？"
+  category: "公文写作"
+  answer: ""
+  whole: false
+
+- question: "一个人真的能当一家公司吗？我该从哪一步开始？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "AI 团队到底怎么搭？需要哪几个岗位？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "用 AI 当员工，比真招人省多少钱？怎么算这笔账？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "不会写代码、不会英语，能用起来这套东西吗？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "一人公司最常见的坑有哪些？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "我想卖自己的东西（知识/模板/服务），第一步该怎么定价？"
+  category: "一人公司"
+  answer: ""
+  whole: false
+
+- question: "餐饮开店前，最该先算清楚哪个数？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "小店怎么选址？有没有可复用的判断标准？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "菜单上哪些菜该砍掉？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "淡旺季现金流怎么管，才不至于旺季忙完旺季穷？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "后厨出餐慢、错单多，是不是人的问题？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "供应商怎么管才不会被偷斤少两？"
+  category: "餐饮经营"
+  answer: ""
+  whole: false
+
+- question: "普通人用 AI 干重复活，最容易上手的是哪几件事？"
+  category: "AI 办公"
+  answer: ""
+  whole: false
+
+- question: "有哪些免费好用的办公效率工具？"
+  category: "AI 办公"
+  answer: ""
+  whole: false
+
+- question: "AI 写的周报月报，怎么用才不假？"
+  category: "AI 办公"
+  answer: ""
+  whole: false
+
+- question: "为什么你听的 AI 课都是 PPT 理论？"
+  category: "AI 办公"
+  answer: ""
+  whole: false

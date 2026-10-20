@@ -60,9 +60,9 @@ copyright = "沐风 · AI办公与效率工具"
     url = "/docs/"
     weight = 3
   [[ menu.main ]]
-    identifier = "updates"
-    name = "动态"
-    url = "/updates/"
+    identifier = "interact"
+    name = "互动"
+    url = "/interact/"
     weight = 4
   [[ menu.main ]]
     identifier = "about"
@@ -168,6 +168,11 @@ copyright = "沐风 · AI办公与效率工具"
   [ params.comments ]
     enabled = false
     provider = "custom"
+
+  # Waline 服务端地址：等部署好（Vercel）后把地址填进来，
+  # 并把上面 comments.enabled 改成 true，互动页留言框会自动出现。
+  [ params.waline ]
+    serverURL = ""
 
   [ params.footer ]
     since = 2026

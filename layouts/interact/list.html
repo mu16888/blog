@@ -1,0 +1,116 @@
+{{/* 互动页（/interact/）—— 咨询答疑 + 高频问答 + 最新进展
+     锋哥令：原「动态」板块内容为空，换成「互动」用于咨询答疑。
+     定位：不是 opc 那种社区（UGC 静态站做不了），而是「我方精选问答 + 访客留言提问」的单向承接。
+     数据：问答清单读 data/qa.yaml（锋哥填 answer 字段即可上线）。 */}}
+{{ define "body-class" }}template-list{{ end }}
+
+{{ define "main" }}
+{{ $qa := site.Data.qa }}
+{{ $all := $qa }}
+{{ $answered := slice }}
+{{ $pending := slice }}
+{{ range $all }}
+    {{ if .whole }}{{ $answered = $answered | append . }}{{ else }}{{ $pending = $pending | append . }}{{ end }}
+{{ end }}
+
+<section class="list-page interact-page">
+
+    <header class="section-head">
+        <p class="section-head__eyebrow">互动</p>
+        <h1>有问题，直接问</h1>
+        <p>这里汇总我被问得最多的真问题，已答的写清楚，还没答的直接留言——我看到就回。急事走右侧联系方式更快。</p>
+    </header>
+
+    {{/* ---------- 提问通道（置顶，最重要） ---------- */}}
+    <section class="interact-ask">
+        <h2 class="interact-ask__title">先在这里问</h2>
+        <p class="interact-ask__desc">留言会直接出现在下面「待回答」区，我答完会标成「已答」。也可以直接找我私聊。</p>
+        {{ partial "interact/ask-form.html" . }}
+    </section>
+
+    {{/* ---------- 已回答 ---------- */}}
+    {{ if $answered }}
+    <section class="interact-qa">
+        <h2 class="interact-qa__title">已回答 <span class="interact-qa__count">{{ len $answered }}</span></h2>
+        <div class="interact-qa__group">
+            {{ $cats := slice }}
+            {{ range $answered }}{{ if not (in $cats .category) }}{{ $cats = $cats | append .category }}{{ end }}{{ end }}
+            {{ range $cat := $cats }}
+                <h3 class="interact-qa__cat">{{ $cat }}</h3>
+                <div class="interact-qa__items">
+                    {{ range $answered }}
+                        {{ if eq .category $cat }}
+                        <details class="qa-item" open>
+                            <summary class="qa-item__q">
+                                <span class="qa-item__mark">Q</span>
+                                <span class="qa-item__text">{{ .question }}</span>
+                                <span class="qa-item__badge qa-item__badge--done">已答</span>
+                            </summary>
+                            <div class="qa-item__a article-content">
+                                <p class="qa-item__a-label">A</p>
+                                {{ .answer | markdownify }}
+                            </div>
+                        </details>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    {{/* ---------- 待回答：问题已列出，答案留白等锋哥填 ---------- */}}
+    {{ if $pending }}
+    <section class="interact-qa interact-qa--pending">
+        <h2 class="interact-qa__title">待回答 <span class="interact-qa__count">{{ len $pending }}</span></h2>
+        <p class="interact-qa__hint">这些问题已经被问到了，但答案还没写出来。如果你正好懂，欢迎在评论区补充；也可以直接问我。</p>
+        <div class="interact-qa__group">
+            {{ $cats := slice }}
+            {{ range $pending }}{{ if not (in $cats .category) }}{{ $cats = $cats | append .category }}{{ end }}{{ end }}
+            {{ range $cat := $cats }}
+                <h3 class="interact-qa__cat">{{ $cat }}</h3>
+                <div class="interact-qa__items">
+                    {{ range $pending }}
+                        {{ if eq .category $cat }}
+                        <details class="qa-item">
+                            <summary class="qa-item__q">
+                                <span class="qa-item__mark">Q</span>
+                                <span class="qa-item__text">{{ .question }}</span>
+                                <span class="qa-item__badge qa-item__badge--todo">待答</span>
+                            </summary>
+                            <div class="qa-item__a qa-item__a--todo">
+                                <p>这条我还没写答案 —— 有想问的细节，直接在下面留言区补充，我看到就答。</p>
+                            </div>
+                        </details>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    {{/* ---------- 最新进展（替代原「动态」板块，零维护自动聚合） ---------- */}}
+    {{ $recent := first 8 (where site.RegularPages "Section" "posts") }}
+    {{ if $recent }}
+    <section class="interact-recent">
+        <h2 class="interact-recent__title">最新进展</h2>
+        <p class="interact-recent__desc">最近在写什么、做了什么，实时同步。</p>
+        <div class="interact-recent__list">
+            {{ range $recent }}
+                <a class="interact-recent__item" href="{{ .RelPermalink }}">
+                    <span class="interact-recent__date">{{ .Date | time.Format "2006-01-02" }}</span>
+                    <span class="interact-recent__title">{{ .Title }}</span>
+                </a>
+            {{ end }}
+        </div>
+        <a class="interact-recent__more" href="/posts/">看全部文章 →</a>
+    </section>
+    {{ end }}
+
+</section>
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar-right.html" (dict "Context" . "Scope" "static") }}
+{{ end }}

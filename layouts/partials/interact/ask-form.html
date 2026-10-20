@@ -1,0 +1,45 @@
+{{/* 互动页 · 提问区
+     Waline 后端还没部署时：不显示空白评论区（避免半成品报错框），
+     改显示「留言区 + 联系方式引导」，访客可直接问到锋哥。
+     等 Waline 部署好、hugo.toml 里 comments.enabled = true 且
+     params.waline.serverURL 配好后，这里会自动切换成真正的留言框。 */}}
+
+{{ $walineURL := site.Params.waline.serverURL | default "" }}
+{{ $commentsOn := site.Params.comments.enabled | default false }}
+
+{{ if and $commentsOn $walineURL }}
+    {{/* ---- Waline 已就位：真留言框 ---- */}}
+    <section class="interact-comments">
+        <h3 class="interact-comments__title">留言提问</h3>
+        <div id="waline" class="waline-container"></div>
+        <script type="module">
+            import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
+            init({
+                el: '#waline',
+                serverURL: '{{ $walineURL }}',
+                pageview: false,
+                comment: true,
+                login: 'disable',
+                requiredMeta: ['nick'],
+                placeholder: '你的问题在这儿问，我会回答',
+            });
+        </script>
+    </section>
+{{ else }}
+    {{/* ---- Waline 未就位：先用能立刻工作的通道 ---- */}}
+    <div class="interact-fallback">
+        <div class="interact-fallback__row">
+            <div class="interact-fallback__item">
+                <h4 class="interact-fallback__title">微信 / 公众号</h4>
+                <p class="interact-fallback__desc">右侧「联系方式」有二维码，扫码直接问我，问题当场就回。</p>
+            </div>
+            <div class="interact-fallback__item">
+                <h4 class="interact-fallback__title">邮箱</h4>
+                <p class="interact-fallback__desc">复杂问题、需求合作，写邮件更清楚，右侧有邮箱地址。</p>
+            </div>
+        </div>
+        <p class="interact-fallback__note">
+            站内留言框正在部署中（部署完成会自动出现在这里）。先走上面两个通道，同样能问到人。
+        </p>
+    </div>
+{{ end }}

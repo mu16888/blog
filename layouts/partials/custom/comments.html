@@ -1,19 +1,31 @@
-{{/* 评论接入点（provider = "custom"）
-   —— 当前第一步先不启用，避免无后端时显示报错框（半成品）。
-   启用步骤（待锋哥部署好 Waline 后端后）：
-   1) 在 Vercel / 自有服务器部署 Waline 后端，拿到 serverURL
-   2) 取消下面这段注释，把 serverURL 改成你的真实地址
-   3) 在 hugo.toml 把 [params.comments] 的 enabled = false 改为 enabled = true
-   4) 重新推送，评论区即生效（自带浏览量统计 + 点赞反应）
-
+{{/* Waline 评论区（provider = "custom"）
+   ─────────────────────────────────────────────────────────
+   启用步骤（锋哥部署好 Waline 后端后）：
+   1) 在 Vercel 部署 Waline（serverless 版，零成本），拿到地址，如
+      https://waline-mufeng.vercel.app
+   2) 把 hugo.toml 里 [params.waline] serverURL 填成该地址
+   3) 把 hugo.toml 里 [params.comments] enabled 改成 true
+   4) 重新推送 → 文章页底部 + 互动页留言框自动出现
+   ─────────────────────────────────────────────────────────
+   零成本提醒：
+   · 必须用 LeanCloud 国际版（leancloud.app）免费开发版，**不要用国内版**
+     （国内版要备案域名 + 独立 IP，￥50/月）。
+   · 或者用官方推荐的免部署服务 https://waline.wuyuan.dev
+     （省掉注册 LeanCloud，但第三方托管、可用性不如自建）。
+   ───────────────────────────────────────────────────────── */}}
+{{ $walineURL := site.Params.waline.serverURL | default "" }}
+{{ if $walineURL }}
 <section id="waline" class="waline-container"></section>
 <script type="module">
-  import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
-  init({
-    el: '#waline',
-    serverURL: 'https://your-waline.example.com',
-    pageview: true,
-    comment: true,
-  });
+    import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
+    init({
+        el: '#waline',
+        serverURL: '{{ $walineURL }}',
+        pageview: true,
+        comment: true,
+        login: 'disable',
+        requiredMeta: ['nick'],
+        placeholder: '有问题直接留言，我会回答',
+    });
 </script>
-*/}}
+{{ end }}
