@@ -1,11 +1,8 @@
-{{/* 文章小图卡（扒 opc.cn 资讯卡·2026-10-20 锋哥定）
-     左小缩略图 + 右标题/分类/日期，紧凑列表式。仅首页与文章列表使用；
-     产品页仍走 card.html 大卡。无封面文章用品牌渐变小占位块。
-     2026-10-20 追加：标题两段式拆分（与头图两段式同口径：，→：→·→—→、→？→！，
-     拆不动且≥6字按中段截断），第一段主行、第二段副行灰蓝。 */}}
+{{/* 文章列表卡·纯文字版（2026-10-20 锋哥定）
+     原小缩略图版弃用：全站封面统一深蓝电路风，缩到 120px 全是同款色块、
+     零辨识度（锋哥令去掉）。改纯文字紧凑卡：两段式标题 + 分类/日期。
+     两段式拆分与头图同口径：，→：→·→—→、→？→！，拆不动且≥6字按中段截断。 */}}
 {{ $page := . }}
-{{ $cover := partial "helpers/cover.html" (dict "page" $page "variant" "card") }}
-{{ $hasThumb := and $cover.exists (ne $cover.kind "gradient") }}
 
 {{ $t := $page.Title | plainify }}
 {{ $l1 := $t }}
@@ -26,14 +23,7 @@
     {{ $l2 = substr $t $mid }}
 {{ end }}
 
-<article class="post-card post-card--compact{{ if $hasThumb }} post-card--with-cover{{ end }}">
-    <a class="post-card__thumb" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
-        {{ if $hasThumb }}
-            <img src="{{ $cover.permalink }}" alt="{{ $page.Title }}" loading="lazy">
-        {{ else }}
-            <span class="post-card__thumb-fallback" aria-hidden="true"></span>
-        {{ end }}
-    </a>
+<article class="post-card post-card--compact">
     <div class="post-card__body">
         <h2 class="post-card__title post-card__title--split">
             <a href="{{ $page.RelPermalink }}">
