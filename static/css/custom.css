@@ -1457,3 +1457,28 @@ html[data-theme="dark"] .waline-container .wl-btn {
   .site-header .site-header__nav::-webkit-scrollbar { display: none; }
   .site-header .main-nav--row { flex-wrap: nowrap; }
 }
+
+/* ========== 第二排导航右边缘与第一排工具区右边缘像素级对齐（2026-10-21） ==========
+   问题：.header-tools 是 absolute right:24px（相对 padding box），
+        导航排是流式 width:100% + flex-end，两者右边缘在部分宽度下差几个像素，视觉不齐。
+   做法：桌面端让导航排也走 absolute 定位，同用 --hdr-edge:24px 这个基准，
+        right 一致 → 右边缘必然完全对齐。
+        同时给 .site-header__inner 加 padding-bottom 预留导航排高度（原padding 24 + gap 18 + 钮高 38 = 80）。
+   仅桌面（>1080px）生效；平板/手机仍是流式右对齐，不受影响。 */
+@media (min-width: 1081px) {
+  .site-header .site-header__inner { padding-bottom: 80px; }
+  .site-header .site-header__nav {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+  }
+}
