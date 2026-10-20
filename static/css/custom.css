@@ -717,8 +717,9 @@ body { font-family: var(--mufeng-font); }
   .post-card__excerpt { font-size: 1.5rem; line-height: 1.8; }
 
   /* 纯文字卡标题：手机端保持可读（其规则特异性高于上方通用 .post-card__title 1.75rem） */
-  .post-card--compact .post-card__title { font-size: 1.5rem; }
-  .post-card--compact .post-card__title-l2 { font-size: 1.1rem; }
+  .post-card--compact .post-card__title { font-size: 1.8rem; }
+  .post-card--compact .post-card__title-l2 { font-size: 1.3rem; }
+  .post-card--compact .post-card__meta { font-size: 1rem; }
 
   /* ---------- 内边距与底部安全区 ---------- */
   .article-page,
@@ -964,19 +965,19 @@ html[data-min="true"] .article-page__cover img {
    原小缩略图版弃用：全站封面统一深蓝电路风，缩到 120px 全是同款色块、
    零辨识度且难看（锋哥令去掉）。改纯文字紧凑卡：两段式标题 + 分类/日期。 */
 .post-card--compact {
-  padding: 16px 18px;
+  padding: 22px 24px;
 }
 .post-card--compact .post-card__title {
-  margin: 0 0 8px;
-  font-size: 1.35rem;
+  margin: 0 0 10px;
+  font-size: 2.7rem;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 .post-card--compact .post-card__title a {
   color: var(--text, #1b2a4d);
   font-weight: 600;
 }
-.post-card--compact .post-card__meta { font-size: .85rem; }
+.post-card--compact .post-card__meta { font-size: 1.1rem; }
 
 /* 两段式标题（与头图两段式同口径）：第一段主行，第二段副行灰蓝 */
 .post-card--compact .post-card__title--split {
@@ -986,9 +987,9 @@ html[data-min="true"] .article-page__cover img {
 .post-card__title-l2 {
   display: block;
   color: #8a93a5;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 500;
-  margin-top: 3px;
+  margin-top: 6px;
 }
 
 /* 列表页（/posts/ 等裸 .post-feed）补双列：主题 double 规则只挂了
