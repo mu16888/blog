@@ -1,0 +1,652 @@
+{
+ "viewport": {
+  "w": 390,
+  "h": 844,
+  "dpr": 2
+ },
+ "docScrollWidth": 390,
+ "bodyScrollWidth": 390,
+ "docScrollHeight": 4619,
+ "hasHorizontalOverflow": false,
+ "overflowPx": 0,
+ "metaViewport": "width=device-width, initial-scale=1",
+ "overflowCount": 4,
+ "overflowElements": [
+  {
+   "el": "a.main-nav__link",
+   "left": -191.8,
+   "right": -141.4,
+   "width": 50.4,
+   "height": 42,
+   "text": "主页",
+   "clippedBy": {
+    "el": "nav.main-nav.main-nav--row",
+    "overflowX": "auto",
+    "scrollW": 170,
+    "clientW": 170
+   },
+   "selfScrollable": null
+  },
+  {
+   "el": "a.main-nav__link",
+   "left": -135.4,
+   "right": -85,
+   "width": 50.4,
+   "height": 42,
+   "text": "文章",
+   "clippedBy": {
+    "el": "nav.main-nav.main-nav--row",
+    "overflowX": "auto",
+    "scrollW": 170,
+    "clientW": 170
+   },
+   "selfScrollable": null
+  },
+  {
+   "el": "a.main-nav__link",
+   "left": -79,
+   "right": -28.6,
+   "width": 50.4,
+   "height": 42,
+   "text": "产品",
+   "clippedBy": {
+    "el": "nav.main-nav.main-nav--row",
+    "overflowX": "auto",
+    "scrollW": 170,
+    "clientW": 170
+   },
+   "selfScrollable": null
+  },
+  {
+   "el": "a.main-nav__link",
+   "left": -22.6,
+   "right": 27.8,
+   "width": 50.4,
+   "height": 42,
+   "text": "文档",
+   "clippedBy": {
+    "el": "nav.main-nav.main-nav--row",
+    "overflowX": "auto",
+    "scrollW": 170,
+    "clientW": 170
+   },
+   "selfScrollable": null
+  }
+ ],
+ "contentRoot": "main.site-main",
+ "paraFontSizeStats": {
+  "15px / 26.25px": 1,
+  "13.5px / 22.95px": 1,
+  "13px / 22.1px": 1,
+  "14px / 25.9px": 22,
+  "13px / 22.75px": 1
+ },
+ "paraSamples": [
+  {
+   "el": "p",
+   "fontSize": "15px",
+   "lineHeight": "26.25px",
+   "fontFamily": "fix-punct"
+  },
+  {
+   "el": "p.interact-ask__desc",
+   "fontSize": "13.5px",
+   "lineHeight": "22.95px",
+   "fontFamily": "fix-punct"
+  },
+  {
+   "el": "p.interact-qa__hint",
+   "fontSize": "13px",
+   "lineHeight": "22.1px",
+   "fontFamily": "fix-punct"
+  }
+ ],
+ "contentRect": {
+  "width": 370,
+  "left": 10,
+  "right": 380
+ },
+ "contentRootFontSize": "16px",
+ "contentRootLineHeight": "28px",
+ "headingSizes": [
+  {
+   "el": "h1",
+   "fontSize": "21px",
+   "width": 336,
+   "right": 363,
+   "text": "有问题，直接问"
+  },
+  {
+   "el": "h2.interact-ask__title",
+   "fontSize": "19px",
+   "width": 284,
+   "right": 337,
+   "text": "先在这里问"
+  },
+  {
+   "el": "h3.interact-comments__title",
+   "fontSize": "15px",
+   "width": 284,
+   "right": 337,
+   "text": "留言提问"
+  },
+  {
+   "el": "h2.interact-qa__title",
+   "fontSize": "19px",
+   "width": 336,
+   "right": 363,
+   "text": "待回答 22"
+  },
+  {
+   "el": "h3.interact-qa__cat",
+   "fontSize": "13.5px",
+   "width": 336,
+   "right": 363,
+   "text": "公文写作"
+  },
+  {
+   "el": "h3.interact-qa__cat",
+   "fontSize": "13.5px",
+   "width": 336,
+   "right": 363,
+   "text": "一人公司"
+  },
+  {
+   "el": "h3.interact-qa__cat",
+   "fontSize": "13.5px",
+   "width": 336,
+   "right": 363,
+   "text": "餐饮经营"
+  },
+  {
+   "el": "h3.interact-qa__cat",
+   "fontSize": "13.5px",
+   "width": 336,
+   "right": 363,
+   "text": "AI 办公"
+  },
+  {
+   "el": "h2.interact-recent__title",
+   "fontSize": "14px",
+   "width": 336,
+   "right": 363,
+   "text": "最新进展"
+  },
+  {
+   "el": "h2.widget-simple__title",
+   "fontSize": "17px",
+   "width": 332,
+   "right": 361,
+   "text": "效率资讯"
+  },
+  {
+   "el": "h2.widget-simple__title",
+   "fontSize": "17px",
+   "width": 332,
+   "right": 361,
+   "text": "好物推荐"
+  },
+  {
+   "el": "h2.widget-simple__title",
+   "fontSize": "17px",
+   "width": 207.5,
+   "right": 236.5,
+   "text": "联系沐风"
+  }
+ ],
+ "smallTapTargets": [
+  {
+   "tag": "a",
+   "el": "a.site-brand__title",
+   "height": 35,
+   "width": 276,
+   "display": "block",
+   "text": "沐风 · AI办公与效率工具",
+   "inContent": false,
+   "href": "/"
+  },
+  {
+   "tag": "button",
+   "el": "button#dark-mode-toggle.header-tool.header-tool--toggle",
+   "height": 34,
+   "width": 34,
+   "display": "flex",
+   "text": "",
+   "inContent": false,
+   "href": ""
+  },
+  {
+   "tag": "button",
+   "el": "button#min-mode-toggle.header-tool.header-tool--min",
+   "height": 34,
+   "width": 34,
+   "display": "flex",
+   "text": "",
+   "inContent": false,
+   "href": ""
+  },
+  {
+   "tag": "a",
+   "el": "a.social-nav__link",
+   "height": 34,
+   "width": 34,
+   "display": "flex",
+   "text": "",
+   "inContent": false,
+   "href": "/wechat-qr.jpg"
+  },
+  {
+   "tag": "a",
+   "el": "a.social-nav__link",
+   "height": 34,
+   "width": 34,
+   "display": "flex",
+   "text": "",
+   "inContent": false,
+   "href": "/index.xml"
+  },
+  {
+   "tag": "a",
+   "el": "a.interact-recent__more",
+   "height": 22.8,
+   "width": 80.9,
+   "display": "inline-block",
+   "text": "看全部文章 →",
+   "inContent": true,
+   "href": "/posts/"
+  },
+  {
+   "tag": "a",
+   "el": "a",
+   "height": 20,
+   "width": 73.2,
+   "display": "inline",
+   "text": "查看详情 →",
+   "inContent": false,
+   "href": "/products/gongwensecpro/"
+  },
+  {
+   "tag": "a",
+   "el": "a.contact-info__addr",
+   "height": 21,
+   "width": 207.5,
+   "display": "block",
+   "text": "hello@mufeng168.top",
+   "inContent": false,
+   "href": "mailto:hello@mufeng168.top"
+  }
+ ],
+ "smallTapTargetCount": 8,
+ "clickableTotal": 24,
+ "headers": [
+  {
+   "el": "header.site-header",
+   "x": 10,
+   "y": 0,
+   "w": 370,
+   "h": 178.8,
+   "scrollW": 370,
+   "clientW": 370,
+   "display": "block",
+   "children": [
+    {
+     "el": "div.site-header__inner",
+     "x": 10,
+     "y": 16,
+     "w": 370,
+     "h": 148.8,
+     "text": "沐风 · AI办公与效率工具 AI · 办公效率",
+     "fs": "16px",
+     "src": ""
+    },
+    {
+     "el": "div.site-brand",
+     "x": 27,
+     "y": 33,
+     "w": 336,
+     "h": 56.8,
+     "text": "沐风 · AI办公与效率工具 AI · 办公效率",
+     "fs": "16px",
+     "src": ""
+    },
+    {
+     "el": "img",
+     "x": 27,
+     "y": 37.4,
+     "w": 48,
+     "h": 48,
+     "text": "",
+     "fs": "16px",
+     "src": "/avatar-feng-v4.png"
+    },
+    {
+     "el": "div.site-brand__text",
+     "x": 87,
+     "y": 33,
+     "w": 276,
+     "h": 56.8,
+     "text": "沐风 · AI办公与效率工具 AI · 办公效率",
+     "fs": "16px",
+     "src": ""
+    },
+    {
+     "el": "a.site-brand__title",
+     "x": 87,
+     "y": 33,
+     "w": 276,
+     "h": 35,
+     "text": "沐风 · AI办公与效率工具",
+     "fs": "20px",
+     "src": ""
+    },
+    {
+     "el": "div.site-header__nav",
+     "x": 27,
+     "y": 103.8,
+     "w": 170,
+     "h": 44,
+     "text": "主页 文章 产品 文档 互动 关于 案例",
+     "fs": "16px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -191.8,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "主页",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -135.4,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "文章",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -79,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "产品",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -22.6,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "文档",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 33.8,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "互动",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 90.2,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "关于",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 146.6,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "案例",
+     "fs": "13.2px",
+     "src": ""
+    }
+   ]
+  },
+  {
+   "el": "nav.main-nav.main-nav--row",
+   "x": 27,
+   "y": 103.8,
+   "w": 170,
+   "h": 44,
+   "scrollW": 170,
+   "clientW": 170,
+   "display": "flex",
+   "children": [
+    {
+     "el": "a.main-nav__link",
+     "x": -191.8,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "主页",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -135.4,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "文章",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -79,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "产品",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": -22.6,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "文档",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 33.8,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "互动",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 90.2,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "关于",
+     "fs": "13.2px",
+     "src": ""
+    },
+    {
+     "el": "a.main-nav__link",
+     "x": 146.6,
+     "y": 103.8,
+     "w": 50.4,
+     "h": 42,
+     "text": "案例",
+     "fs": "13.2px",
+     "src": ""
+    }
+   ]
+  },
+  {
+   "el": "nav.social-nav.social-nav--tools",
+   "x": 287,
+   "y": 108.8,
+   "w": 76,
+   "h": 34,
+   "scrollW": 76,
+   "clientW": 76,
+   "display": "flex",
+   "children": []
+  },
+  {
+   "el": "header.section-head",
+   "x": 27,
+   "y": 233.8,
+   "w": 336,
+   "h": 142.3,
+   "scrollW": 336,
+   "clientW": 336,
+   "display": "block",
+   "children": [
+    {
+     "el": "h1",
+     "x": 27,
+     "y": 260,
+     "w": 336,
+     "h": 27.3,
+     "text": "有问题，直接问",
+     "fs": "21px",
+     "src": ""
+    }
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "el": "img",
+   "width": 48,
+   "height": 48,
+   "right": 75,
+   "scrollW": 48,
+   "clientW": 48,
+   "selfOverflowX": "clip",
+   "natural": "400x400",
+   "parent": {
+    "el": "a.site-brand__avatar",
+    "overflowX": "visible",
+    "scrollW": 48,
+    "clientW": 48
+   },
+   "src": "/avatar-feng-v4.png"
+  },
+  {
+   "el": "figure.contact-qr__item",
+   "width": 56,
+   "height": 80.4,
+   "right": 301,
+   "scrollW": 56,
+   "clientW": 56,
+   "selfOverflowX": "visible",
+   "natural": null,
+   "parent": {
+    "el": "div.contact-qr",
+    "overflowX": "visible",
+    "scrollW": 116,
+    "clientW": 116
+   },
+   "src": ""
+  },
+  {
+   "el": "img",
+   "width": 56,
+   "height": 56,
+   "right": 301,
+   "scrollW": 54,
+   "clientW": 54,
+   "selfOverflowX": "clip",
+   "natural": "1280x1280",
+   "parent": {
+    "el": "figure.contact-qr__item",
+    "overflowX": "visible",
+    "scrollW": 56,
+    "clientW": 56
+   },
+   "src": "/wechat-qr.jpg"
+  },
+  {
+   "el": "figure.contact-qr__item",
+   "width": 56,
+   "height": 80.4,
+   "right": 361,
+   "scrollW": 56,
+   "clientW": 56,
+   "selfOverflowX": "visible",
+   "natural": null,
+   "parent": {
+    "el": "div.contact-qr",
+    "overflowX": "visible",
+    "scrollW": 116,
+    "clientW": 116
+   },
+   "src": ""
+  },
+  {
+   "el": "img",
+   "width": 56,
+   "height": 56,
+   "right": 361,
+   "scrollW": 54,
+   "clientW": 54,
+   "selfOverflowX": "clip",
+   "natural": "1280x1280",
+   "parent": {
+    "el": "figure.contact-qr__item",
+    "overflowX": "visible",
+    "scrollW": 56,
+    "clientW": 56
+   },
+   "src": "/qq-qr.jpg"
+  }
+ ],
+ "oversizeBlocks": [],
+ "formControls": [
+  {
+   "el": "input",
+   "type": "search",
+   "width": 332,
+   "height": 44,
+   "right": 361,
+   "fontSize": "16px",
+   "overflowX": "clip",
+   "placeholder": ""
+  }
+ ],
+ "waline": [
+  {
+   "el": "div#waline.waline-container",
+   "w": 284,
+   "h": 46,
+   "right": 337,
+   "scrollW": 282,
+   "clientW": 282
+  }
+ ],
+ "url": "https://mufeng168.top/interact/",
+ "finalUrl": "https://mufeng168.top/interact/"
+}
