@@ -460,6 +460,16 @@ html[data-palette="deep-sea-blue"] {
   --hero-chip-text: #e8eef7;
   --hero-border: rgba(255, 255, 255, 0.16);
   --hero-orb: rgba(255, 255, 255, 0.10);
+  /* 首页漏斗模块（浅色模式：浅底 + 藏青字，与深色模式拉开对比） */
+  --funnel-start: #e8eef8;
+  --funnel-end: #f2f0f8;
+  --funnel-border: #d5dfef;
+  --funnel-text: #1b2a4d;
+  --funnel-title: #16233f;
+  --funnel-sub: #4a5b7c;
+  --funnel-eyebrow: #6b7fa6;
+  --funnel-card-bg: rgba(27, 42, 77, 0.04);
+  --funnel-card-border: rgba(27, 42, 77, 0.12);
 }
 
 /* ---------- 深色模式：藏青底 / 淡白字 ----------
@@ -472,28 +482,38 @@ html[data-palette="deep-sea-blue"] {
    纯功能色（danger 暖红、纯黑阴影、白色半透明）不动。
    两个系数 kS / kL 就是总开关，想更浅或更蓝改它们即可。 */
 html[data-theme=dark][data-palette="deep-sea-blue"] {
-  --background: #3c4559;          /* 深色底 · 去蓝去灰后整体提亮一档 */
-  --foreground: #f6f7f9;          /* 淡白字 · 对比 8.96:1 */
-  --muted: #b6bcc6;               /* 次要字：只去蓝，提亮到 5.03:1 保可读与层次 */
-  --card: #485266;
-  --card-muted: #566176;
-  --border: #6a7489;
+  --background: #1f2634;          /* 深色底 · 真正压暗，与浅色模式(#f6f7f9)拉开明显差距 */
+  --foreground: #f6f7f9;          /* 淡白字 · 对比 13.4:1 */
+  --muted: #a8b2c4;               /* 次要字：对比 6.4:1 保可读与层次 */
+  --card: #2a3345;
+  --card-muted: #333e52;
+  --border: #46536b;
   --accent: #e8eef7;              /* 强调 = 淡白 */
-  --accent-contrast: #3c4559;
+  --accent-contrast: #1f2634;
   --danger: #f0897c;
-  --shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
-  --markdown-code-bg: #333b4c;
-  --markdown-quote: #b6bcc6;
-  --accent-soft: #535d73;
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  --markdown-code-bg: #222b3b;
+  --markdown-quote: #a8b2c4;
+  --accent-soft: #384357;
   --accent-soft-text: #e8eef7;
-  --hero-start: #2b3344;
-  --hero-end: #505a70;
+  --hero-start: #161d29;
+  --hero-end: #2b3446;
   --hero-text: #f6f7f9;
-  --hero-subtitle: #ccd2dc;
-  --hero-chip: rgba(255, 255, 255, 0.10);
+  --hero-subtitle: #c3cddd;
+  --hero-chip: rgba(255, 255, 255, 0.09);
   --hero-chip-text: #e8eef7;
-  --hero-border: rgba(255, 255, 255, 0.14);
-  --hero-orb: rgba(255, 255, 255, 0.08);
+  --hero-border: rgba(255, 255, 255, 0.13);
+  --hero-orb: rgba(255, 255, 255, 0.07);
+  /* 首页漏斗模块（深色模式：深底 + 淡白字） */
+  --funnel-start: #171e2b;
+  --funnel-end: #222c3e;
+  --funnel-border: #2f3a4e;
+  --funnel-text: #eef3fb;
+  --funnel-title: #ffffff;
+  --funnel-sub: #b9c4d6;
+  --funnel-eyebrow: #8fa2c0;
+  --funnel-card-bg: rgba(255, 255, 255, 0.045);
+  --funnel-card-border: rgba(255, 255, 255, 0.11);
 }
 
 /* ---------- 深色模式主题背景：藏青纹理底（锋哥提供的素材，已按站点色重调） ----------
@@ -502,8 +522,8 @@ html[data-theme=dark][data-palette="deep-sea-blue"] {
    重调为 H220° / S22% / L23.5% 并重构构图（顶部柔光曲线 + 底部虚线波纹，中段纯色）。
    图片基准色 = #3c4559（即 --background，由 DARK_BG_BASE 决定），落地无色差、拼接无缝。仅深色模式生效。 */
 html[data-theme=dark][data-palette="deep-sea-blue"] body {
-  background-color: #3c4559;
-  background-image: url("/img/dark-bg.jpg");
+  background-color: #222938;
+  background-image: url("/img/dark-bg-deep.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -512,7 +532,7 @@ html[data-theme=dark][data-palette="deep-sea-blue"] body {
 /* 手机端：fixed 在 iOS 上本就不支持，统一改竖版图 + 随页滚动（底色同色，露底也看不出） */
 @media (max-width: 900px) {
   html[data-theme=dark][data-palette="deep-sea-blue"] body {
-    background-image: url("/img/dark-bg-mobile.jpg");
+    background-image: url("/img/dark-bg-mobile-deep.jpg");
     background-attachment: scroll;
   }
 }
@@ -868,6 +888,12 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
     linear-gradient(rgba(27, 42, 77, 0.22), rgba(27, 42, 77, 0.22)),
     url("/img/header-bg.jpg") center / cover no-repeat;
 }
+/* 深色模式：页头光效图加一层暗罩，与深色页身融合（2026-10-21） */
+html[data-theme="dark"] .site-header__inner {
+  background:
+    linear-gradient(rgba(10, 15, 26, 0.62), rgba(10, 15, 26, 0.62)),
+    url("/img/header-bg.jpg") center / cover no-repeat;
+}
 
 /* ========== 头图两段式标题（2026-10-19 锋哥定） ==========
    文章头图统一为深蓝电路风（/covers/cover-tech-2.png），
@@ -919,34 +945,37 @@ html[data-min="true"] .article-page__cover img {
 .home-funnel {
   margin: 0 0 36px;
   padding: 28px 24px;
-  background: linear-gradient(135deg, #1b2a4d 0%, #243a63 100%);
+  /* ★ 改为跟随主题变量：浅色模式 = 浅底藏青字，深色模式 = 深底淡白字，
+     两模式才有明显区别（2026-10-21 锋哥：深浅主题颜色没有太大区别） */
+  background: linear-gradient(135deg, var(--funnel-start) 0%, var(--funnel-end) 100%);
+  border: 1px solid var(--funnel-border);
   border-radius: 16px;
-  color: #f6f7f9;
+  color: var(--funnel-text);
 }
 .home-funnel__head { text-align: center; margin-bottom: 22px; }
-.home-funnel__eyebrow { font-size: .82rem; letter-spacing: .14em; color: #9fb2d6; margin: 0 0 6px; }
-.home-funnel__title { font-size: 1.5rem; margin: 0 0 6px; color: #fff; }
-.home-funnel__sub { font-size: .95rem; color: #c9d3e4; margin: 0; }
+.home-funnel__eyebrow { font-size: .82rem; letter-spacing: .14em; color: var(--funnel-eyebrow); margin: 0 0 6px; }
+.home-funnel__title { font-size: 1.5rem; margin: 0 0 6px; color: var(--funnel-title); }
+.home-funnel__sub { font-size: .95rem; color: var(--funnel-sub); margin: 0; }
 .home-funnel__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .funnel-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--funnel-card-bg);
+  border: 1px solid var(--funnel-card-border);
   border-radius: 14px;
   padding: 22px 20px;
   display: flex;
   flex-direction: column;
 }
 .funnel-card__icon { font-size: 1.9rem; line-height: 1; margin-bottom: 10px; }
-.funnel-card__stage { font-size: 1.15rem; margin: 0 0 8px; color: #fff; }
-.funnel-card__desc { font-size: .9rem; line-height: 1.65; color: #d4dcec; margin: 0 0 16px; flex: 1; }
+.funnel-card__stage { font-size: 1.15rem; margin: 0 0 8px; color: var(--funnel-title); }
+.funnel-card__desc { font-size: .9rem; line-height: 1.65; color: var(--funnel-sub); margin: 0 0 16px; flex: 1; }
 .funnel-card__btn {
   display: block; text-align: center; padding: 11px 14px;
   background: #f6f7f9; color: #1b2a4d; font-weight: 700;
   border-radius: 9px; text-decoration: none; font-size: .95rem;
 }
 .funnel-card__btn:hover { background: #fff; }
-.funnel-card__link { display: block; text-align: center; margin-top: 8px; font-size: .85rem; color: #9fb2d6; text-decoration: none; }
-.funnel-card__link:hover { color: #fff; }
+.funnel-card__link { display: block; text-align: center; margin-top: 8px; font-size: .85rem; color: var(--funnel-eyebrow); text-decoration: none; }
+.funnel-card__link:hover { color: var(--funnel-title); }
 @media (max-width: 767px) {
   .home-funnel { padding: 24px 16px; }
   .home-funnel__grid { grid-template-columns: 1fr; }
