@@ -20,8 +20,11 @@
             </div>
         </div>
 
-        <div class="site-header__nav">
-            <nav class="main-nav" aria-label="Main navigation">
+        {{/* 主导航已于 2026-10-21 移入 .header-tools（锋哥：整排选项统一靠右）。
+               代码保留在本行注释处，需要恢复时把下面 .header-tools 内的 main-nav 块移回即可。 */}}
+
+        <div class="header-tools">
+            <nav class="main-nav main-nav--tools" aria-label="Main navigation">
                 <a class="main-nav__link" href="{{ .Site.Home.RelPermalink }}">{{ T "nav.home" | default "Home" }}</a>
                 {{ range .Site.Menus.main }}
                     {{ $url := .URL }}
@@ -31,9 +34,6 @@
                 {{ end }}
             </nav>
 
-        </div>
-
-        <div class="header-tools">
             {{ if (or (.Site.Params.colorScheme.toggle | default false) (.Site.Params.colorSchemeToggle | default false)) }}
                 <button class="header-tool header-tool--toggle" id="dark-mode-toggle" type="button" data-toggle-color-scheme aria-label="切换深浅色">
                     {{ partial "helpers/icon.html" "sun" }}
