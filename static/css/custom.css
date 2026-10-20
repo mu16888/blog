@@ -1142,3 +1142,172 @@ html[data-min="true"] .article-page__cover img {
   .qa-item__q { font-size: 1.4rem; }
 }
 
+
+/* ══════════════════════════════════════════════════════════
+   Waline 评论区美化（2026-10-21）
+   背景：Waline 自带样式偏圆润扁平，跟博客的「藏青直角卡片」风格不搭，
+        这里统一到博客主色 #1b2a4d，线条改直角，整体留白加大。
+   ══════════════════════════════════════════════════════════ */
+.waline-container {
+  margin-top: 8px;
+  padding: 32px 28px;
+  background: #fff;
+  border: 1px solid #e3e7ee;
+  border-radius: 4px;
+}
+.waline-container .waline-panel {
+  border: 0;
+  border-bottom: 1px solid #eef1f5;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+/* 输入框组：改成横向三栏铺开，不再挤成左对齐窄条 */
+.waline-container .waline-form {
+  background: transparent;
+}
+.waline-container .input-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.waline-container .input-wrap .input__wrap {
+  margin: 0;
+  background: #f7f8fa;
+  border: 1px solid #e3e7ee;
+  border-radius: 3px;
+  transition: border-color .2s;
+}
+.waline-container .input-wrap .input__wrap:focus-within {
+  border-color: #1b2a4d;
+  background: #fff;
+}
+.waline-container .input-wrap input,
+.waline-container .input-wrap textarea {
+  background: transparent !important;
+  border: 0 !important;
+  color: #1b2a4d;
+  font-size: 1.35rem;
+  padding: 10px 12px;
+  width: 100%;
+}
+.waline-container .input-wrap textarea {
+  min-height: 110px;
+  line-height: 1.7;
+  resize: vertical;
+}
+/* 占位符与标签：去掉浏览器默认的灰底子标签 */
+.waline-container .input-wrap label {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 1.2rem;
+  color: #8a93a5;
+  background: transparent;
+  padding: 0;
+  transform-origin: left top;
+  transition: transform .18s ease-out, opacity .18s ease-out;
+}
+.waline-container .input-wrap input:focus + label,
+.waline-container .input-wrap textarea:focus + label,
+.waline-container .input-wrap input:not(:placeholder-shown) + label {
+  transform: translateY(-9px) scale(.72);
+  opacity: .7;
+}
+/* 提交按钮：藏青实心，与博客 CTA 盒一致 */
+.waline-container .wl-btn {
+  background: #1b2a4d;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  padding: 9px 26px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.waline-container .wl-btn:hover { background: #2c4272; }
+.waline-container .wl-btn.primary {
+  background: #1b2a4d;
+  text-shadow: none;
+  font-weight: 500;
+}
+/* 评论条目 */
+.waline-container .waline-list {
+  margin-top: 8px;
+}
+.waline-container .waline-item {
+  border-top: 1px solid #eef1f5;
+  padding: 18px 0;
+}
+.waline-container .waline-item:first-child { border-top: 0; }
+.waline-container .screen-name {
+  color: #1b2a4d;
+  font-weight: 600;
+}
+.waline-container .badge {
+  background: #1b2a4d;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 1.1rem;
+}
+.waline-container .waline-avatar {
+  border-radius: 50%;
+}
+.waline-container .waline-comment__content {
+  color: #333a48;
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+/* 元信息行 */
+.waline-container .waline-meta {
+  font-size: 1.15rem;
+  color: #8a93a5;
+}
+/* 底部功能条 */
+.waline-container .waline-emoji,
+.waline-container .waline-sort,
+.waline-container .wl-btn.sort {
+  background: transparent;
+  border: 1px solid #e3e7ee;
+  border-radius: 3px;
+  color: #8a93a5;
+}
+.waline-container .wl-btn.sort:hover {
+  border-color: #1b2a4d;
+  color: #1b2a4d;
+}
+/* 深色模式跟随主题 */
+html[data-theme="dark"] .waline-container {
+  background: #1a1d24;
+  border-color: #2a2f3a;
+}
+html[data-theme="dark"] .waline-container .input-wrap .input__wrap {
+  background: #22262f;
+  border-color: #2a2f3a;
+}
+html[data-theme="dark"] .waline-container .input-wrap input,
+html[data-theme="dark"] .waline-container .input-wrap textarea,
+html[data-theme="dark"] .waline-container .screen-name {
+  color: #d8dce4;
+}
+html[data-theme="dark"] .waline-container .input-wrap label,
+html[data-theme="dark"] .waline-container .waline-meta {
+  color: #8b93a3;
+}
+html[data-theme="dark"] .waline-container .waline-item {
+  border-top-color: #2a2f3a;
+}
+html[data-theme="dark"] .waline-container .waline-comment__content {
+  color: #c3c8d2;
+}
+html[data-theme="dark"] .waline-container .wl-btn {
+  background: #3d5a99;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .waline-container { padding: 22px 18px; }
+  .waline-container .input-wrap { grid-template-columns: 1fr; gap: 10px; }
+  .waline-container .waline-comment__content { font-size: 1.3rem; }
+}

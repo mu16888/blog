@@ -15,17 +15,34 @@
    ───────────────────────────────────────────────────────── */}}
 {{ $walineURL := site.Params.waline.serverURL | default "" }}
 {{ if $walineURL }}
+<link rel="stylesheet" href="/waline/waline.css" />
 <section id="waline" class="waline-container"></section>
 <script type="module">
-    import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
+    import { init } from '/waline/waline.js';
     init({
         el: '#waline',
         serverURL: '{{ $walineURL }}',
         pageview: true,
         comment: true,
         login: 'disable',
-        requiredMeta: ['nick'],
-        placeholder: '有问题直接留言，我会回答',
+        requiredMeta: ['nick', 'mail'],
+        placeholder: '有问题直接留言，我会逐条回答',
+        meta: ['nick', 'mail', 'link'],
+        dark: 'html[data-theme="dark"]',
+        locale: {
+            placeholder: '有问题直接留言，我会逐条回答',
+            sofa: '有问题尽管问，我会回答',
+            sofaLink: '/interact/',
+            nick: '昵称',
+            nickError: '请填写昵称',
+            mail: '邮箱',
+            mailError: '请填写邮箱（仅用于显示头像，不会公开）',
+            link: '网站',
+            optional: '可选',
+            sofaMsg: '欢迎留言',
+            level: '',
+            admin: '博主',
+        },
     });
 </script>
 {{ end }}
