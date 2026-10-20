@@ -1571,3 +1571,46 @@ html[data-theme="dark"] .waline-container .wl-btn {
     width: 16px; height: 16px;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ★ 站名区下沉居中 + 整体放大（2026-10-21 锋哥令）
+   需求：「把左面头像区下沉放大到中间（文字同步放大下沉）」
+   做法：
+     ① 页头容器给最小高度 + flex 垂直居中 → 站名区从「贴顶」变成「上下居中」；
+        （导航排是 absolute bottom，不占文档流，不会被居中逻辑带跑）
+     ② 头像 84 → 108px、标题 3rem → 3.8rem、副标题 1.32 → 1.62rem，同步放大；
+     ③ 头像与文字间距同步放大，保持比例协调。
+   桌面端（>1080px）为准；平板/手机沿用各自已有档位，不动。
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 1081px) {
+  .site-header .site-header__inner {
+    min-height: 232px;                    /* 容纳放大的头像 + 上下留白 */
+    justify-content: center;              /* ★ 站名区垂直居中（原来贴顶） */
+    padding-top: 40px;
+  }
+  .site-header .site-brand {
+    align-items: center;
+    gap: 24px;                            /* 头像↔文字间距同步放大 */
+  }
+  .site-header .site-brand__avatar img {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .site-header .site-brand__title {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .site-header .site-brand__subtitle {
+    margin-top: 10px;
+    font-size: 1.62rem;
+    line-height: 1.5;
+    color: var(--hero-subtitle);
+  }
+  .site-header .site-brand__text {
+    max-width: none;
+    min-width: 0;
+  }
+}
