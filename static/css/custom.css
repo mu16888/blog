@@ -1382,7 +1382,9 @@ html[data-theme="dark"] .waline-container .wl-btn {
   .site-header .header-tools::-webkit-scrollbar { display: none; }
 }
 
-/* ===== 页头工具区：云同步 / RSS 并入单排（2026-10-21锋哥令4个按钮同排，登录按钮已下线） ===== */
+/* ===== 页头工具区：云同步 / RSS 并入单排（2026-10-21 锋哥令 4 个按钮同排，登录按钮已下线） =====
+   注意：颜色不写死，全部继承主题变量 --hero-chip-text / --hero-border，
+   否则深色 hero 区 + 浅色配色方案下图标会跟背景糊在一起看不见（踩过一次坑）。 */
 .site-header .header-tools .social-nav--tools {
   display: flex;
   flex-direction: row;
@@ -1399,25 +1401,13 @@ html[data-theme="dark"] .waline-container .wl-btn {
   width: 38px;
   min-width: 38px;
   height: 38px;
-  border: 1px solid #e3e7ee;
   border-radius: 4px;
-  color: #1b2a4d;
-  transition: background-color .15s ease, border-color .15s ease;
-}
-.site-header .social-nav--tools .social-nav__link:hover {
-  background: #f2f4f8;
-  border-color: #cfd6e2;
+  color: inherit;
 }
 .site-header .social-nav--tools .social-nav__link svg {
   width: 18px;
   height: 18px;
-}
-html[data-theme="dark"] .site-header .social-nav--tools .social-nav__link {
-  border-color: #2a2f3a;
-  color: #cfd6e2;
-}
-html[data-theme="dark"] .site-header .social-nav--tools .social-nav__link:hover {
-  background: #22262f;
+  stroke-width: 1.6;
 }
 
 @media (min-width: 1081px) {
