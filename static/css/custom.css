@@ -1426,40 +1426,34 @@ html[data-theme="dark"] .waline-container .wl-btn {
   .site-header .social-nav--tools .social-nav__link svg { width: 16px; height: 16px; }
 }
 
-/* ========== 主导航并入右上工具区（2026-10-21 锋哥：下面一排选项全部移到右边） ==========
-   实现：main-nav 已从 .site-header__nav 移入 .header-tools 内最前，
-        与调色板/极简/云同步/RSS 同排靠右；导航与工具之间加一道视觉分隔间距。
-        尺寸沿用主题（不重画装饰），只对齐间距。 */
-.site-header .header-tools .main-nav--tools {
+/* ========== 主导航保留第二排、整体右对齐（2026-10-21 锋哥令） ==========
+   锋哥原话：「不是在右上角工具区，是在下面一排（平移到右边）」。
+   实现：导航留在 .site-header__nav 这一排不动，只把它从左对齐改成右对齐 + 单排不换行。
+        右上工具区只保留调色板 / 极简 / 云同步 / RSS 四项。 */
+.site-header .site-header__nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: flex-end;   /* 平移到右边 */
+  gap: 0;
+  width: 100%;
+}
+.site-header .main-nav--row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
   gap: 8px;
-  margin: 0 14px 0 0;         /* 与右侧工具组之间留白，两组视觉分层 */
-  padding: 0 14px 0 0;
-  border-right: 1px solid var(--hero-border, rgba(255,255,255,0.16));
 }
 @media (max-width: 1080px) {
-  .site-header .header-tools .main-nav--tools {
-    margin-right: 10px;
-    padding-right: 10px;
-    gap: 6px;
-  }
-  .site-header .header-tools .main-nav--tools .main-nav__link {
-    padding: 0 11px;
-  }
+  .site-header .main-nav--row { gap: 6px; }
+  .site-header .main-nav--row .main-nav__link { padding: 0 11px; }
 }
-/* 极窄屏：先保住工具按钮，导航允许横向滑动不换行 */
+/* 极窄屏：导航横向滑动，不换行不挤压 */
 @media (max-width: 767px) {
-  .site-header .header-tools { overflow-x: auto; }
-  .site-header .header-tools .main-nav--tools { flex-wrap: nowrap; }
-}
-
-/* 导航并入后，桌面端右上区变宽，站名/副标题要给出让位空间（不再被挤成两行） */
-@media (min-width: 1081px) {
-  .site-header .site-brand__title,
-  .site-header .site-brand__subtitle {
-    max-width: calc(100% - 760px);   /* 给右上整排（导航+工具）留出约 760px */
-  }
+  .site-header .site-header__nav { overflow-x: auto; scrollbar-width: none; }
+  .site-header .site-header__nav::-webkit-scrollbar { display: none; }
+  .site-header .main-nav--row { flex-wrap: nowrap; }
 }
