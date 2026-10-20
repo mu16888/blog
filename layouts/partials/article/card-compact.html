@@ -1,9 +1,31 @@
 {{/* 文章小图卡（扒 opc.cn 资讯卡·2026-10-20 锋哥定）
      左小缩略图 + 右标题/分类/日期，紧凑列表式。仅首页与文章列表使用；
-     产品页仍走 card.html 大卡。无封面文章用品牌渐变小占位块。 */}}
+     产品页仍走 card.html 大卡。无封面文章用品牌渐变小占位块。
+     2026-10-20 追加：标题两段式拆分（与头图两段式同口径：，→：→·→—→、→？→！，
+     拆不动且≥6字按中段截断），第一段主行、第二段副行灰蓝。 */}}
 {{ $page := . }}
 {{ $cover := partial "helpers/cover.html" (dict "page" $page "variant" "card") }}
 {{ $hasThumb := and $cover.exists (ne $cover.kind "gradient") }}
+
+{{ $t := $page.Title | plainify }}
+{{ $l1 := $t }}
+{{ $l2 := "" }}
+{{ $try := slice "，" "：" "·" "—" "、" "？" "！" }}
+{{ range $try }}
+    {{ if and (eq $l2 "") (gt (len $l1) 1) }}
+        {{ $parts := split $l1 . }}
+        {{ if gt (len $parts) 1 }}
+            {{ $l1 = index $parts 0 }}
+            {{ $l2 = delimit (after 1 $parts) . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if and (eq $l2 "") (ge (len $t) 6) }}
+    {{ $mid := div (len $t) 2 }}
+    {{ $l1 = substr $t 0 $mid }}
+    {{ $l2 = substr $t $mid }}
+{{ end }}
+
 <article class="post-card post-card--compact{{ if $hasThumb }} post-card--with-cover{{ end }}">
     <a class="post-card__thumb" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
         {{ if $hasThumb }}
@@ -13,7 +35,12 @@
         {{ end }}
     </a>
     <div class="post-card__body">
-        <h2 class="post-card__title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+        <h2 class="post-card__title post-card__title--split">
+            <a href="{{ $page.RelPermalink }}">
+                <span class="post-card__title-l1">{{ $l1 }}</span>
+                {{ with $l2 }}<span class="post-card__title-l2">{{ . }}</span>{{ end }}
+            </a>
+        </h2>
         <div class="post-card__meta">
             {{ with $page.Params.categories }}
                 <span class="post-card__categories">

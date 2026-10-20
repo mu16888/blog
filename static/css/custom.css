@@ -996,6 +996,21 @@ html[data-min="true"] .article-page__cover img {
   overflow: hidden;
 }
 .post-card--compact .post-card__meta { font-size: .82rem; }
+
+/* 小图卡两段式标题（2026-10-20 锋哥定，与头图两段式同口径）：
+   第一段主行（继承主题标题色），第二段副行灰蓝小一号；两行自然排布，不再做行数截断 */
+.post-card--compact .post-card__title--split {
+  display: block;
+  overflow: visible;
+}
+.post-card__title-l1 { display: block; }
+.post-card__title-l2 {
+  display: block;
+  color: #8a93a5;
+  font-size: .88em;
+  font-weight: 500;
+  margin-top: 2px;
+}
 @media (max-width: 420px) {
   .post-card--compact .post-card__thumb { flex: 0 0 96px; width: 96px; height: 70px; }
 }
