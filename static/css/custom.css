@@ -1695,3 +1695,9 @@ html[data-theme="dark"] .waline-container .wl-btn {
 .post-feed--taxonomy > .post-card:hover {
   background: transparent;
 }
+
+/* 分割线加粗（2026-10-21 锋哥：分割线可加粗） */
+.post-feed > .post-card--compact,
+.post-feed--taxonomy > .post-card {
+  border-bottom: 2px solid var(--border);
+}
