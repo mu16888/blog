@@ -1637,3 +1637,15 @@ html[data-theme="dark"] .waline-container .wl-btn {
 @media (min-width: 1081px) {
   .site-header .site-brand__avatar img { border-radius: 50%; }
 }
+
+/* ★ 头像：圆形由图片自带的透明角实现（2026-10-21，v4 定稿）
+   v4 已把红蓝双圈完整烧进图内、四角透明，CSS 若再 border-radius:50%
+   会把贴边的红圈切掉半像素 → 改为 border-radius:0 + background 透明。 */
+.site-header .site-brand__avatar img {
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+}
+@media (min-width: 1081px) {
+  .site-header .site-brand__avatar img { border-radius: 0; object-fit: contain; }
+}
