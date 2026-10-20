@@ -1400,6 +1400,7 @@ html[data-theme="dark"] .waline-container .wl-btn {
   width: 38px;
   min-width: 38px;
   height: 38px;
+  border-radius: 999px;   /* 显式声明：与调色板/极简按钮同款圆形（主题虽有999px，但被项目其它规则挤掉了） */
 }
 .site-header .social-nav--tools .social-nav__link svg {
   width: 16px;
