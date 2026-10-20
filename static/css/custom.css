@@ -900,3 +900,13 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
 @media (max-width: 767px) {
   .cover-title-overlay { padding: 34px 14px 12px; }
 }
+
+/* ---- 文章页头图高度减半（锋哥 2026-10-20：宽度不变，高度 400→200）---- */
+.article-page__cover img {
+  max-height: 200px;
+}
+/* 精简模式（data-min="true"）下主题写死 height:250px，特异性更高，一并压到 200 */
+html[data-min="true"] .article-page__cover img {
+  height: 200px;
+}
+
