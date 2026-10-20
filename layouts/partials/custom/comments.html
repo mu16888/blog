@@ -50,4 +50,118 @@
         },
     });
 </script>
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   Waline 评论区增强：清理无效按钮 + 修复转发
+   ──────────────────────────────────────────────────────────────────
+   背景（2026-10-21，锋哥定）：
+   1)「收藏」「关注」两个按钮在 Waline v3.16.1 前端包里查不到任何代码
+      （JS 搜 collect/follow 均 0 次，CSS 搜同类名也只有 wal-star 评分条），
+      是 ZeroCat 托管版在服务端注入的。而本博客 login='disable' 不提供账号体系，
+      收藏/关注都依赖登录态，点了必然是死按钮 → 直接移除。
+   2)「转发」原本也只是计数，点击无反应 → 改为点击弹出文章链接供复制。
+   实现：MutationObserver 监听评论区渲染完成后按文字精准移除，
+        不依赖任何不确定的 class 名（避免 aria-label 盲改失败）。
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var DEAD_WORDS = ['收藏', '关注'];
+  var SHARE_WORD = '转发';
+  var cleanTimer = null;
+
+  function labelOf(el) {
+    return (el && el.textContent || '').replace(/\s+/g, '');
+  }
+
+  /** 在统计区（wl-meta-head / wl-cards / wl-meta-foot）里按文字找元素 */
+  function findByWord(root, word) {
+    var zones = root.querySelectorAll(
+      '.wl-meta-head, .wl-cards, .wl-meta-foot, .wl-operation, .wl-head'
+    );
+    var zonesArr = Array.prototype.slice.call(zones);
+    zonesArr.push(root);
+    for (var z = 0; z < zonesArr.length; z++) {
+      var all = zonesArr[z].querySelectorAll('span, div, button, a');
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        if (labelOf(el).indexOf(word) === 0) return el;
+      }
+    }
+    return null;
+  }
+
+  function copyLink() {
+    var url = window.location.href;
+    var done = function () { toast('链接已复制'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { showBox(url); });
+    } else {
+      showBox(url);
+    }
+  }
+
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.setAttribute('style',
+      'position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;' +
+      'background:#1b2a4d;color:#fff;padding:9px 20px;border-radius:3px;font-size:14px;');
+    document.body.appendChild(t);
+    setTimeout(function () { t.remove(); }, 1800);
+  }
+
+  function showBox(url) {
+    var box = document.createElement('textarea');
+    box.value = url;
+    box.setAttribute('readonly', '');
+    box.setAttribute('style',
+      'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99999;' +
+      'width:min(80vw,560px);height:110px;padding:12px;font-size:13px;' +
+      'border:1px solid #1b2a4d;border-radius:4px;background:#fff;color:#1b2a4d;');
+    box.id = 'waline-link-box';
+    document.body.appendChild(box);
+    box.select();
+    box.focus();
+    var close = function () { box.remove(); document.removeEventListener('keydown', onKey); };
+    var onKey = function (e) { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    box.addEventListener('blur', close);
+  }
+
+  function cleanup() {
+    var root = document.getElementById('waline');
+    if (!root) return;
+
+    // 1) 移除收藏 / 关注
+    DEAD_WORDS.forEach(function (w) {
+      var el = findByWord(root, w);
+      if (el && el.parentNode) {
+        el.style.setProperty('display', 'none', 'important');
+        el.setAttribute('data-waline-removed', w);
+      }
+    });
+
+    // 2) 让「转发」可点击 → 弹出文章链接
+    var share = findByWord(root, SHARE_WORD);
+    if (share && !share.dataset.fixed) {
+      share.dataset.fixed = '1';
+      share.style.setProperty('cursor', 'pointer', 'important');
+      share.setAttribute('title', '点击复制本页链接');
+      share.addEventListener('click', copyLink);
+    }
+  }
+
+  // Waline 是异步渲染的，用观察器 + 兜底定时器确保清理生效
+  var mo = new MutationObserver(function () {
+    if (cleanTimer) clearTimeout(cleanTimer);
+    cleanTimer = setTimeout(cleanup, 120);
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
+
+  cleanup();
+  setTimeout(cleanup, 800);
+  setTimeout(cleanup, 2000);
+})();
+</script>
 {{ end }}

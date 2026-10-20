@@ -1320,19 +1320,3 @@ html[data-theme="dark"] .waline-container .wl-btn {
    实现：Waline 未给这两个按钮独立类名，按 aria-label 精确隐藏，
         同时保留 .wl-like（赞）与 .wl-reaction。
    ══════════════════════════════════════════════════════════ */
-.waline-container [aria-label="Collect"],
-.waline-container [aria-label="收藏"],
-.waline-container [aria-label="Follow"],
-.waline-container [aria-label="关注"],
-.waline-container [aria-label="Star"],
-.waline-container [aria-label="分享"],
-.waline-container [aria-label="Share"] {
-  display: none !important;
-}
-/* 隐藏后元信息排版会散，给容器补一条竖分隔与间距 */
-.waline-container .wl-meta-head {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-}
