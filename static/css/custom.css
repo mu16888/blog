@@ -1626,3 +1626,14 @@ html[data-theme="dark"] .waline-container .wl-btn {
 @media (min-width: 1081px) {
   .site-header .site-brand__avatar img { border-radius: 6px; }
 }
+
+/* ★ 头像改回圆形显示（2026-10-21 锋哥令：图片是圆形框，怎么变方形了）
+   已把原图四角白底裁掉、只留红蓝圈人像（avatar-feng-v3.jpg），
+   所以这里恢复 border-radius:50% 圆显示，红圈正好当头像的外边框。 */
+.site-header .site-brand__avatar img {
+  border-radius: 50%;
+  background: transparent;
+}
+@media (min-width: 1081px) {
+  .site-header .site-brand__avatar img { border-radius: 50%; }
+}
