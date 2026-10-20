@@ -163,16 +163,16 @@ copyright = "沐风 · AI办公与效率工具"
       search = false
       toc = true
 
-  # 评论：第一步先关闭，待部署 Waline 后端后改 enabled = true 即可启用
+  # 评论已启用：后端为 ZeroCat 托管的 Waline（零成本，免部署）
   # （waline 走 provider = "custom"，接入代码见 layouts/partials/custom/comments.html）
   [ params.comments ]
-    enabled = false
+    enabled = true
     provider = "custom"
 
-  # Waline 服务端地址：等部署好（Vercel）后把地址填进来，
-  # 并把上面 comments.enabled 改成 true，互动页留言框会自动出现。
+  # Waline 服务端地址：ZeroCat 托管空间「沐风博客评论」
+  # 已绑定域名 mufeng168.top（Waline secureDomains 安全域名白名单）
   [ params.waline ]
-    serverURL = ""
+    serverURL = "https://api.zerocat.dev/comment/4d4a8e42a29e7ebd79fbd2b1bfe8e921"
 
   [ params.footer ]
     since = 2026

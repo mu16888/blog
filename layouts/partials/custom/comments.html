@@ -1,17 +1,17 @@
 {{/* Waline 评论区（provider = "custom"）
    ─────────────────────────────────────────────────────────
-   启用步骤（锋哥部署好 Waline 后端后）：
-   1) 在 Vercel 部署 Waline（serverless 版，零成本），拿到地址，如
-      https://waline-mufeng.vercel.app
-   2) 把 hugo.toml 里 [params.waline] serverURL 填成该地址
-   3) 把 hugo.toml 里 [params.comments] enabled 改成 true
-   4) 重新推送 → 文章页底部 + 互动页留言框自动出现
-   ─────────────────────────────────────────────────────────
-   零成本提醒：
-   · 必须用 LeanCloud 国际版（leancloud.app）免费开发版，**不要用国内版**
-     （国内版要备案域名 + 独立 IP，￥50/月）。
-   · 或者用官方推荐的免部署服务 https://waline.wuyuan.dev
-     （省掉注册 LeanCloud，但第三方托管、可用性不如自建）。
+   当前后端：ZeroCat 托管的 Waline（空间「沐风博客评论」）
+   serverURL 已配在 hugo.toml 的 [params.waline]，并绑定域名 mufeng168.top。
+
+   改地址只需两步：
+   1) hugo.toml → [params.waline] serverURL = "新的后端地址"
+   2) 重新推送 → 文章页底部 + 互动页留言框自动生效
+
+   ── 选型记录（2026-10-20，四条路都试过，别重复踩）──
+   ✗ LeanCloud 国际版：官方 2026-01-12 起停止注册/建应用，2027-01-12 全面停服。
+   ✗ Vercel 自建：注册要手机验证，Twilio 发国际短信到 +86 中国号收不到。
+   ✗ ZeroCat 的 GitHub OAuth 登录：其 redirect_uri 配置损坏，会跳 GitHub 404。
+   ✓ ZeroCat 托管（当前）：免部署、0 元、域名白名单已配。
    ───────────────────────────────────────────────────────── */}}
 {{ $walineURL := site.Params.waline.serverURL | default "" }}
 {{ if $walineURL }}
