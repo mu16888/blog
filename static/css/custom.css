@@ -1649,3 +1649,49 @@ html[data-theme="dark"] .waline-container .wl-btn {
 @media (min-width: 1081px) {
   .site-header .site-brand__avatar img { border-radius: 0; object-fit: contain; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   文章/条目列表加细分隔线（2026-10-21 锋哥：光秃秃的实在难看）
+   作用对象：列表页（posts/products/docs 等）与分类归档页里的紧凑条目
+   ——.post-feed > .post-card--compact / .post-feed--taxonomy > .post-card
+   做法：border-bottom 1px 细线 + 上下内边距形成节奏；最后一项不画线。
+   深浅色统一走 --border 变量，跟整体配色方案一致。
+   ══════════════════════════════════════════════════════════════ */
+.post-feed > .post-card--compact {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.post-feed > .post-card--compact:last-child {
+  border-bottom: 0;
+  padding-bottom: 6px;
+}
+.post-feed > .post-card--compact:first-child {
+  padding-top: 6px;
+}
+.post-feed > .post-card--compact > .post-card__body {
+  padding: 0;
+}
+.post-feed > .post-card--compact:hover {
+  background: transparent;
+}
+/* 悬停时标题变主色（保持反馈，但不撑起卡片背景） */
+.post-feed > .post-card--compact .post-card__title a:hover {
+  color: var(--accent);
+}
+
+/* 归档 / 分类页的紧凑条目同理 */
+.post-feed--taxonomy > .post-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+.post-feed--taxonomy > .post-card:last-child {
+  border-bottom: 0;
+}
+.post-feed--taxonomy > .post-card:hover {
+  background: transparent;
+}
