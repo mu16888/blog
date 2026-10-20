@@ -454,12 +454,18 @@ html[data-palette="deep-sea-blue"] {
   /* 标题卡 / 封面回退：藏青渐变 + 淡白字 */
   --hero-start: #1b2a4d;
   --hero-end: #33415c;
-  --hero-text: #f6f7f9;
-  --hero-subtitle: #c9d3e4;
-  --hero-chip: rgba(255, 255, 255, 0.12);
-  --hero-chip-text: #e8eef7;
-  --hero-border: rgba(255, 255, 255, 0.16);
-  --hero-orb: rgba(255, 255, 255, 0.10);
+  /* ★ 页头配色（2026-10-21 锋哥令：手机端深浅调换没区别）
+     浅色模式页头原本也是深藏青底（品牌光效图 + 藏青叠色），
+     与深色模式几乎同色，页头又占手机首屏一半 → 切换后肉眼几乎无变化。
+     → 浅色模式整组翻成「亮底 + 藏青字」；深色模式另有一组（见下方 dark 段）。
+     注：标题卡用 --cover-hero-* 独立变量，不受这里影响。 */
+  --hero-text: #16233f;
+  --hero-subtitle: #4a5b7c;
+  --hero-chip: rgba(255, 255, 255, 0.78);
+  --hero-chip-text: #1b2a4d;
+  --hero-chip-border: rgba(27, 42, 77, 0.20);
+  --hero-border: rgba(27, 42, 77, 0.18);
+  --hero-orb: rgba(255, 255, 255, 0.55);
   /* 首页漏斗模块（浅色模式：浅底 + 藏青字，与深色模式拉开对比） */
   --funnel-start: #e8eef8;
   --funnel-end: #f2f0f8;
@@ -470,6 +476,9 @@ html[data-palette="deep-sea-blue"] {
   --funnel-eyebrow: #6b7fa6;
   --funnel-card-bg: rgba(27, 42, 77, 0.04);
   --funnel-card-border: rgba(27, 42, 77, 0.12);
+  --funnel-btn-bg: #1b2a4d;
+  --funnel-btn-bg-hover: #24365f;
+  --funnel-btn-text: #ffffff;
 }
 
 /* ---------- 深色模式：藏青底 / 淡白字 ----------
@@ -502,6 +511,7 @@ html[data-theme=dark][data-palette="deep-sea-blue"] {
   --hero-subtitle: #c3cddd;
   --hero-chip: rgba(255, 255, 255, 0.09);
   --hero-chip-text: #e8eef7;
+  --hero-chip-border: rgba(255, 255, 255, 0.14);
   --hero-border: rgba(255, 255, 255, 0.13);
   --hero-orb: rgba(255, 255, 255, 0.07);
   /* 首页漏斗模块（深色模式：深底 + 淡白字） */
@@ -514,6 +524,9 @@ html[data-theme=dark][data-palette="deep-sea-blue"] {
   --funnel-eyebrow: #8fa2c0;
   --funnel-card-bg: rgba(255, 255, 255, 0.045);
   --funnel-card-border: rgba(255, 255, 255, 0.11);
+  --funnel-btn-bg: #f6f7f9;
+  --funnel-btn-bg-hover: #ffffff;
+  --funnel-btn-text: #1b2a4d;
 }
 
 /* ---------- 深色模式主题背景：藏青纹理底（锋哥提供的素材，已按站点色重调） ----------
@@ -894,6 +907,26 @@ html[data-theme="dark"] .site-header__inner {
     linear-gradient(rgba(10, 15, 26, 0.62), rgba(10, 15, 26, 0.62)),
     url("/img/header-bg.jpg") center / cover no-repeat;
 }
+/* ★ 浅色模式页头改亮底（2026-10-21 锋哥令：手机端深浅调换没区别）
+   根因：浅色模式页头原本也是「深藏青底 + 淡白字」，与深色模式（同一张图 + 暗罩）
+   视觉几乎一致；页头在手机端又占首屏近一半 → 切换主题肉眼看不出变化。
+   对策：浅色模式换成同源淡化版底图（header-bg-light.jpg，浅蓝白、保留光效纹理），
+   文字/按钮翻成藏青（--hero-* 变量已在浅色段改为亮底藏青字）。
+   → 两模式页头一浅一深，一眼可辨。 */
+html[data-theme="light"] .site-header__inner,
+html:not([data-theme="dark"]) .site-header__inner {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10)),
+    url("/img/header-bg-light.jpg") center / cover no-repeat;
+}
+/* ★ 浅色页头底变浅 → 导航胶囊/工具按钮的描边与底色要跟着加深，否则浮在浅底上看不见
+   （描边色走变量 --hero-chip-border，两模式各自给值，避免用 :not([data-theme]) 写规则
+     —— 那种写法特异性会反压深色模式） */
+.site-header .main-nav__link,
+.site-header .header-tools .header-tool,
+.site-header .header-tools .social-nav__link {
+  border-color: var(--hero-chip-border, var(--border));
+}
 
 /* ========== 头图两段式标题（2026-10-19 锋哥定） ==========
    文章头图统一为深蓝电路风（/covers/cover-tech-2.png），
@@ -968,12 +1001,14 @@ html[data-min="true"] .article-page__cover img {
 .funnel-card__icon { font-size: 1.9rem; line-height: 1; margin-bottom: 10px; }
 .funnel-card__stage { font-size: 1.15rem; margin: 0 0 8px; color: var(--funnel-title); }
 .funnel-card__desc { font-size: .9rem; line-height: 1.65; color: var(--funnel-sub); margin: 0 0 16px; flex: 1; }
+/* 按钮配色走变量：浅色模式藏青底白字（浅灰底和漏斗卡几乎同色，看不出按钮），
+   深色模式白底深字（原本就是这个观感，保留）。 */
 .funnel-card__btn {
   display: block; text-align: center; padding: 11px 14px;
-  background: #f6f7f9; color: #1b2a4d; font-weight: 700;
+  background: var(--funnel-btn-bg); color: var(--funnel-btn-text); font-weight: 700;
   border-radius: 9px; text-decoration: none; font-size: .95rem;
 }
-.funnel-card__btn:hover { background: #fff; }
+.funnel-card__btn:hover { background: var(--funnel-btn-bg-hover); }
 .funnel-card__link { display: block; text-align: center; margin-top: 8px; font-size: .85rem; color: var(--funnel-eyebrow); text-decoration: none; }
 .funnel-card__link:hover { color: var(--funnel-title); }
 @media (max-width: 767px) {
