@@ -1029,11 +1029,15 @@ html[data-theme="dark"] .site-header__inner {
   pointer-events: none;
 }
 .cover-title-overlay__l1 {
-  color: #f6f7f9;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-  line-height: 1.3;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  /* ★ 2026-10-21 锋哥令：文章头图文字换橘红、加大一号、居中。
+     复用列表分割线同一色值 --divider-accent(#fd3e02)，全站橘红统一。
+     字号 clamp 上限 2rem → 2.5rem（≈加大一号）。 */
+  color: var(--divider-accent);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 1.35rem + 1vw, 2.5rem);
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 .cover-title-overlay__l2 {
   color: #c9d3e4;
@@ -1042,17 +1046,28 @@ html[data-theme="dark"] .site-header__inner {
   line-height: 1.4;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
+/* ★ 标题居中（锋哥令：放到图中间）
+   原为 flex 列 + 贴底左对齐，现水平垂直都居中。
+   同步收窄底部渐变遮罩：图压矮后大遮罩会盖掉大半个封面。 */
+.cover-title-overlay {
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, rgba(11, 18, 33, 0.30) 0%, rgba(11, 18, 33, 0.55) 100%);
+}
 @media (max-width: 767px) {
-  .cover-title-overlay { padding: 34px 14px 12px; }
+  .cover-title-overlay { padding: 6px 10px; }
 }
 
-/* ---- 文章页头图高度减半（锋哥 2026-10-20：宽度不变，高度 400→200）---- */
+/* ---- 文章页头图高度：400 → 200 → ★ 68（约 1/3，锋哥 2026-10-21 令）---- */
 .article-page__cover img {
-  max-height: 200px;
+  max-height: 68px;
+  object-fit: cover;
+  object-position: center;
 }
-/* 精简模式（data-min="true"）下主题写死 height:250px，特异性更高，一并压到 200 */
+/* 精简模式（data-min="true"）下主题写死 height，特异性更高，一并压到 68 */
 html[data-min="true"] .article-page__cover img {
-  height: 200px;
+  height: 68px;
 }
 
 /* ========== 首页「一人公司成长漏斗」模块（扒 opc.cn 前端 v3·阶段A，2026-10-20） ========== */
