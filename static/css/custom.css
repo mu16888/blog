@@ -830,10 +830,17 @@ body { font-family: var(--mufeng-font); }
   .post-card--taxonomy .post-card__title { font-size: 1.75rem; }
   .post-card__excerpt { font-size: 1.5rem; line-height: 1.8; }
 
-  /* 纯文字卡标题：手机端保持可读（其规则特异性高于上方通用 .post-card__title 1.75rem） */
-  .post-card--compact .post-card__title { font-size: 1.8rem; }
-  .post-card--compact .post-card__title-l2 { font-size: 1.3rem; }
-  .post-card--compact .post-card__meta { font-size: 1rem; }
+  /* 纯文字卡标题：手机端保持可读（其规则特异性高于上方通用 .post-card__title 1.75rem）
+     ★ 2026-10-21 锋哥令「手机端主页文章标题有点大，调小一点」：
+       基础规则 `.post-card--compact .post-card__title{font-size:2.7rem}`（27px）
+       位于 1184 行，**同特异性且位置更靠后 → 反压了这里的 1.8rem**，
+       手机端实际生效的是 27px（截图实测），偏大、标题占两行还挤。
+       → 改用 `.post-feed` 前缀提高特异性(0,3,0)，确保手机端规则真正生效。
+       主标题 27px → 22px（2.2rem），副标题 16px → 13px（1.3rem），
+       meta 11px → 10.5px，层级关系保持不变。 */
+  .post-feed .post-card--compact .post-card__title { font-size: 2.2rem; }
+  .post-feed .post-card--compact .post-card__title-l2 { font-size: 1.3rem; }
+  .post-feed .post-card--compact .post-card__meta { font-size: 1.05rem; }
 
   /* ---------- 内边距与底部安全区 ---------- */
   .article-page,
