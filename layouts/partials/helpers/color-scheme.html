@@ -7,61 +7,36 @@
              项目虽在 hugo.toml 里 showPicker=false 隐藏了调色板 UI，
              但**主题 JS 仍在读 localStorage 并应用** →
              任何残留的旧值都会让 data-palette 变成别的色系（如 golden-summer-fields 暖米色）。
-       后果：custom.css 里所有配色覆盖（浅色段/深色段/移动端兜底）
-             全部以 `[data-palette="deep-sea-blue"]` 为条件 → palette 一变，**整套覆盖全部失效**，
-             站点退回主题默认暖色系（暖褐底 + 粉白标题 + 米黄卡片），看着完全不是自己的站。
        修法：resolvedPalette 恒为站点 preset，不读 localStorage、不给 picker 按钮应用机会。
 
-     ★ 修复 2：移动端只保留浅色主题（2026-10-21 锋哥令）
-       「手机端深浅没有太大区别干脆移动端只有浅色就好了」
-       判定不能只看视口宽度：部分手机浏览器开「桌面版网站」时 CSS 视口 ≥768px，
-       matchMedia('(max-width:767px)') 不匹配 → 锁不住。
-       → 改用「视口宽度 OR 触屏设备」双条件（(pointer:coarse) 覆盖桌面版网站模式）。
-       桌面端（真桌面浏览器）逻辑与主题一致，深浅切换照旧。
+     ★ 修复 2（2026-10-21 锋哥令升级）：**全站取消深色模式，永远浅色**
+       「手机端还是无法使用，干脆取消深色模式只有一种原白色背景」
+       原方案是"仅移动端锁浅色"（视口 OR 触屏双条件判定），但锋哥手机上仍出现深色，
+       判定式方案在真实设备上有漏网可能（缓存/环境差异）。
+       现改为**无条件锁浅色**：不读 localStorage、不看系统偏好、不分设备，
+       主题 CSS 深浅全部由 data-theme 驱动（已核实主题 CSS 无 prefers-color-scheme 媒体查询），
+       data-theme 恒为 light 即永远浅色。
+       localStorage 的 'StackColorScheme'（主题旧偏好）与 'PocketPalettePreset'（调色板残留）
+       均直接清除，主题 main.js 后续写入由 mobile-light-lock.js 持续纠正。
 
-     同时注入 static/js/mobile-light-lock.js 兜底：主题 main.js 是 defer 加载的，
-     会在之后把 data-theme 改成 dark（监听系统配色变化），需要持续纠正。
+     页头工具按钮排（深浅切换/调色板/翻译/极简/社交）已整排下线，见 site-header.html。
      ============================================================ */}}
 {{- $sitePreset := .Site.Params.colorScheme.preset | default "deep-sea-blue" -}}
+<meta name="color-scheme" content="light">
 <script>
     (function () {
-        var key = 'StackColorScheme';
-        var media = window.matchMedia('(prefers-color-scheme: dark)');
-        var defaultTheme = {{ printf "%q" (.Site.Params.colorScheme.default | default "auto") | safeJS }};
-
-        /* ★ 移动端判定：视口窄 OR 触屏设备（覆盖浏览器「桌面版网站」模式）*/
-        var narrow = window.matchMedia('(max-width: 767px)');
-        var coarse = window.matchMedia('(pointer: coarse)');
-        function isMobile() { return narrow.matches || coarse.matches; }
-
-        var stored = null;
-        try { stored = localStorage.getItem(key); } catch (e) { stored = null; }
-
-        /* ★ 清理调色板残留（关键）：
-           主题 main.js 的 resolvePalette() 会读 localStorage['PocketPalettePreset']，
-           若有旧值会把 data-palette 改成别的色系 → 本站所有 [data-palette="deep-sea-blue"]
-           配色覆盖全部失效（症状：暖褐底 + 粉白标题 + 米黄卡片，完全不是自己的站）。
-           项目已关闭调色板 UI（showPicker=false），这个 key 没有任何合法用途 → 直接清掉，
-           让 main.js 回退到 dataset.palette（下面已硬锁为站点 preset）。 */
+        /* 全站只有浅色：不读任何偏好，清掉历史残留 key */
         try { localStorage.removeItem('PocketPalettePreset'); } catch (e) {}
+        try { localStorage.removeItem('StackColorScheme'); } catch (e) {}
 
-        var resolved = stored === 'dark' || stored === 'light'
-            ? stored
-            : ((defaultTheme === 'dark' || defaultTheme === 'light')
-                ? defaultTheme
-                : (media.matches ? 'dark' : 'light'));
-
-        /* ★ 移动端强制浅色：忽略 localStorage 与系统偏好 */
-        if (isMobile()) { resolved = 'light'; }
-
-        document.documentElement.dataset.theme = resolved;
-        document.documentElement.dataset.scheme = resolved;
+        document.documentElement.dataset.theme = 'light';
+        document.documentElement.dataset.scheme = 'light';
         /* ★ 调色板锁定为站点 preset，绝不读 localStorage（见上方「修复 1」） */
         document.documentElement.dataset.palette = {{ printf "%q" $sitePreset | safeJS }};
-        document.documentElement.style.colorScheme = resolved;
+        document.documentElement.style.colorScheme = 'light';
     })();
 </script>
-{{/* 移动端浅色锁定兜底脚本（纠正主题 main.js 后续可能写入的 dark / 错误 palette）
+{{/* 浅色锁定兜底脚本（纠正主题 main.js 后续可能写入的 dark / 错误 palette）
      ★ 必须带内容指纹：静态 JS 不带 ?v= 时浏览器/CDN 会一直用旧副本。 */}}
 {{- $lockJsPath := "js/mobile-light-lock.js" -}}
 {{- $lockJsVer := partial "helpers/asset-version.html" $lockJsPath -}}

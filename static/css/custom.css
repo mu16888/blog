@@ -2037,6 +2037,6 @@ html[data-min="true"] .article-page__cover img {
 }
 /* ③ 触屏设备（含浏览器「桌面版网站」模式，CSS 视口 ≥768px 那种）同样隐藏切换按钮：
    移动端已锁浅色，保留按钮点了也没反应，会让人以为坏了。 */
-@media (pointer: coarse) {
-  .site-header .header-tool--toggle { display: none !important; }
-}
+/* 2026-10-21 锋哥令：页头工具按钮排整排下线（主题切换/调色板/翻译/极简/社交）。
+   partial 已删输出，这里全平台再兜一层（按钮已无存在意义：深色模式已全站取消）。 */
+.site-header .header-tools { display: none !important; }
