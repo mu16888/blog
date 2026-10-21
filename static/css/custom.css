@@ -444,6 +444,10 @@ html[data-palette="deep-sea-blue"] {
   --card: #ffffff;
   --card-muted: #eef1f6;
   --border: #dce2ea;
+  /* 列表分割线专用色（2026-10-21 锋哥：分割线换成橘红色）。
+     单独建变量而不改 --border，避免把表格/输入框等其它边框一起染橘红。
+     取色自锋哥提供的图片：rgb(253, 62, 2) */
+  --divider-accent: #fd3e02;
   --accent: #1b2a4d;              /* 强调 = 藏青 */
   --accent-contrast: #ffffff;
   --danger: #c0574d;
@@ -1780,7 +1784,7 @@ html[data-min="true"] .article-page__cover img {
    ══════════════════════════════════════════════════════════════ */
 .post-feed > .post-card--compact {
   padding: 18px 0;
-  border-bottom: 2px solid var(--border);   /* 锋哥令：加粗 */
+  border-bottom: 2px solid var(--divider-accent);   /* 锋哥令：分割线换橘红色 rgb(253,62,2) */
   border-radius: 0;
   background: transparent;
   box-shadow: none;
@@ -1806,7 +1810,7 @@ html[data-min="true"] .article-page__cover img {
 /* 归档 / 分类页的紧凑条目同理 */
 .post-feed--taxonomy > .post-card {
   padding: 16px 0;
-  border-bottom: 2px solid var(--border);   /* 锋哥令：加粗 */
+  border-bottom: 2px solid var(--divider-accent);   /* 锋哥令：分割线换橘红色 rgb(253,62,2) */
   background: transparent;
   box-shadow: none;
 }
@@ -1817,10 +1821,10 @@ html[data-min="true"] .article-page__cover img {
   background: transparent;
 }
 
-/* 分割线加粗（2026-10-21 锋哥：分割线可加粗） */
+/* 分割线加粗（2026-10-21 锋哥：分割线可加粗 + 换橘红色） */
 .post-feed > .post-card--compact,
 .post-feed--taxonomy > .post-card {
-  border-bottom: 2px solid var(--border);
+  border-bottom: 2px solid var(--divider-accent);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1954,6 +1958,10 @@ html[data-min="true"] .article-page__cover img {
     --card: #ffffff;
     --card-muted: #eef1f6;
     --border: #dce2ea;
+  /* 列表分割线专用色（2026-10-21 锋哥：分割线换成橘红色）。
+     单独建变量而不改 --border，避免把表格/输入框等其它边框一起染橘红。
+     取色自锋哥提供的图片：rgb(253, 62, 2) */
+  --divider-accent: #fd3e02;
     --accent: #1b2a4d;
     --accent-contrast: #ffffff;
     --danger: #c0574d;
