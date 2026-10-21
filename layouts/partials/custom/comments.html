@@ -16,6 +16,38 @@
 {{ $walineURL := site.Params.waline.serverURL | default "" }}
 {{ if $walineURL }}
 <link rel="stylesheet" href="/waline/waline.css" />
+{{/* ★ 修正 Waline 字号崩塌（2026-10-21 锋哥报「手机端没法使用」）
+   根因：Waline 用 em 相对单位，基准是 --waline-font-size；
+        waline.css 里 :root{--waline-font-size:1rem} 假设 1rem=16px，
+        而本站主题设 html{font-size:62.5%}（1rem=10px）→ 两者打架。
+        结果评论框 .wl-nick/.wl-mail/.wl-link 实测只有 6.25px、
+        留言框 .wl-editor 8.75px —— 手机上基本读不了，
+        且 iOS Safari 对 <16px 的输入框会**自动放大页面**，用户体感就是「页面坏了」。
+        站内搜索框早前已单独修成 16px，唯独评论区漏了。
+   修法：覆写 --waline-font-size 为 1.6rem(=16px)，并把表单控件字号钉到 16px 以上。 */}}
+<style>
+  #waline {
+    --waline-font-size: 1.6rem !important;   /* 16px，与 iOS 缩放阈值一致 */
+  }
+  #waline .wl-nick,
+  #waline .wl-mail,
+  #waline .wl-link,
+  #waline .wl-editor,
+  #waline .wl-input,
+  #waline .wl-meta-head,
+  #waline .wl-btn,
+  #waline .wal-meta,
+  #waline .wal-comment__content {
+    font-size: 1.6rem !important;
+  }
+  #waline .wl-editor { min-height: 9rem; }
+  #waline .wl-btn { padding: .6rem 1.4rem; }
+  /* iOS Safari：输入框字号 <16px 会触发自动放大，统一钉到 16px */
+  #waline input,
+  #waline textarea,
+  #waline select,
+  #waline button { font-size: 1.6rem !important; }
+</style>
 <section id="waline" class="waline-container"></section>
 <script type="module">
     import { init } from '/waline/waline.js';

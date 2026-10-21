@@ -1075,7 +1075,14 @@ html[data-min="true"] .article-page__cover img {
   border-radius: 9px; text-decoration: none; font-size: .95rem;
 }
 .funnel-card__btn:hover { background: var(--funnel-btn-bg-hover); }
-.funnel-card__link { display: block; text-align: center; margin-top: 8px; font-size: .85rem; color: var(--funnel-eyebrow); text-decoration: none; }
+.funnel-card__link {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 40px;                 /* ★ 2026-10-21：触控目标 15px → 40px，手指能点中 */
+  margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--funnel-eyebrow);
+  text-decoration: none;
+}
 .funnel-card__link:hover { color: var(--funnel-title); }
 @media (max-width: 767px) {
   .home-funnel { padding: 24px 16px; }
@@ -1570,11 +1577,22 @@ html[data-min="true"] .article-page__cover img {
   .site-header .main-nav--row { gap: 6px; }
   .site-header .main-nav--row .main-nav__link { padding: 0 11px; }
 }
-/* 极窄屏：导航横向滑动，不换行不挤压 */
+/* 极窄屏：导航换行居中显示，7 项全部可见可点
+   ★ 2026-10-21 锋哥报「手机端没法使用」：主因。
+     原方案是 nowrap + 横向滑动 + 隐藏滚动条，但**没有任何视觉提示**
+     （无渐隐/无箭头/无「更多」），用户只看到 5 项 + 第 6 项露半个圆边，
+     合理判断就是「菜单坏了、点不动」。
+     → 改为换行两行居中，7 项全可见，不依赖横滑。 */
 @media (max-width: 767px) {
-  .site-header .site-header__nav { overflow-x: auto; scrollbar-width: none; }
+  .site-header .site-header__nav { overflow-x: visible; scrollbar-width: none; }
   .site-header .site-header__nav::-webkit-scrollbar { display: none; }
-  .site-header .main-nav--row { flex-wrap: nowrap; }
+  .site-header .main-nav--row {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 8px;
+    width: auto;
+    padding-right: 0;
+  }
 }
 
 /* ========== 第二排导航右边缘与第一排工具区右边缘像素级对齐（2026-10-21） ==========
@@ -1855,22 +1873,21 @@ html[data-min="true"] .article-page__cover img {
     overflow-y: hidden;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    /* 左缘渐隐，提示右边还有内容 */
-    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
-    mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+    /* ★ 2026-10-21：已改为换行居中显示，无需横滑渐隐提示 */
   }
   .site-header .site-header__nav::-webkit-scrollbar { display: none; }
   .site-header .main-nav--row {
-    justify-content: flex-start;   /* ★ 关键修复：从左开始，不再把前几项推到屏幕外 */
-    flex-wrap: nowrap;
+    justify-content: center;       /* ★ 2026-10-21：换行居中，7 项全可见（不再横滑藏项） */
+    flex-wrap: wrap;
     gap: 8px;
-    width: max-content;
-    padding-right: 18px;
+    row-gap: 6px;
+    width: auto;
+    padding-right: 0;
   }
   .site-header .main-nav--row .main-nav__link {
     flex: 0 0 auto;
-    padding: 0 13px;
-    min-height: 40px;
+    padding: 0 12px;
+    min-height: 34px;          /* ★ 2026-10-21：压缩页头，导航换行后页头占屏 30% 太高 */
     font-size: 1.4rem;
   }
   /* 工具按钮：独占第三行，靠右 */
@@ -1897,9 +1914,9 @@ html[data-min="true"] .article-page__cover img {
     width: 18px; height: 18px;
   }
   /* 头像/站名也放大一点，手机上更好认 */
-  .site-header .site-brand__avatar img { width: 60px; height: 60px; }
-  .site-header .site-brand__title { font-size: 2.1rem; line-height: 1.3; }
-  .site-header .site-brand__subtitle { font-size: 1.3rem; margin-top: 4px; }
+  .site-header .site-brand__avatar img { width: 52px; height: 52px; }
+  .site-header .site-brand__title { font-size: 1.95rem; line-height: 1.3; }
+  .site-header .site-brand__subtitle { font-size: 1.2rem; margin-top: 3px; }
 }
 
 /* 互动页 / 侧栏正文在手机上调大（实测 14px 偏小） */
