@@ -978,15 +978,18 @@ html[data-min="true"] .article-page__title-sub { font-size: 1.6rem; }
    叠色只为保证头像右侧文字对比度；深/浅色模式图本身就是深蓝调，
    共用同一套，无需分别处理。封面回退渐变（--hero-*）不受影响。
 
-   ★ 2026-10-21 锋哥令「网站头图宽度裁掉 1/3」：
-     原为 `center / cover`，光效图铺满页头整幅宽度。
-     现改为只占页头宽度的 2/3，居中摆放，两侧留出藏青底色。
-     尺寸抽成变量 --header-bg-size，以后要调宽度/位置只改这一行。
-     ⚠️ 必须补最底层藏青底色：图片只占 2/3，两侧若透出页面浅灰底，
-        头像和标题文字会压在浅灰上、对比度崩掉（实测截图确认）。 */
+   ★ 2026-10-21 锋哥令「网站头图高度减少 1/3，长度不变」（先说成"宽度裁掉1/3"是口误）：
+     头图（深蓝光效图）宽度保持**铺满整幅页头**（长度不变），
+     只在**高度方向裁掉 1/3** → 图只占页头上部 2/3，下部 1/3 露藏青底色。
+     尺寸与位置抽成变量，以后要调只改这一行：
+       --header-bg-size: 100% 66.67%  → 改回 100% 100% 即恢复铺满上下
+       --header-bg-pos: center top   → 改 center center 则图片垂直居中
+     ⚠️ 必须保留最底层藏青底色 `var(--theme-color)`：
+     图片只盖上部 2/3，下部若透出页面浅灰底（#f6f7f9），
+     导航排压在浅灰上对比度会崩（第一版踩过，已修）。 */
 .site-header__inner {
-  --header-bg-size: 66.67% 100%;   /* 宽 2/3 + 高铺满；要恢复铺满改成 cover */
-  --header-bg-pos: center center;
+  --header-bg-size: 100% 66.67%;   /* 宽度铺满 + 高度只占上部 2/3 */
+  --header-bg-pos: center top;
   background:
     linear-gradient(rgba(27, 42, 77, 0.22), rgba(27, 42, 77, 0.22)),
     url("/img/header-bg.jpg") var(--header-bg-pos) / var(--header-bg-size) no-repeat,
@@ -2043,11 +2046,12 @@ html[data-min="true"] .article-page__cover img {
     background-image: none;
   }
   html[data-theme="dark"] .site-header__inner {
-    /* 头图宽度已按锋哥令裁为 2/3（见主段 --header-bg-size），此处保持一致 */
-    --header-bg-size: 66.67% 100%;
+    /* 头图已按锋哥令「高度减 1/3、长度不变」设置（见主段 --header-bg-size） */
+    --header-bg-size: 100% 66.67%;
+    --header-bg-pos: center top;
     background:
       linear-gradient(rgba(27, 42, 77, 0.22), rgba(27, 42, 77, 0.22)),
-      url("/img/header-bg.jpg") center / var(--header-bg-size) no-repeat,
+      url("/img/header-bg.jpg") var(--header-bg-pos) / var(--header-bg-size) no-repeat,
       var(--theme-color);
   }
   html[data-theme="dark"] .cover-fallback[data-cover-palette="deep-sea-blue"][data-cover-tone="dark"] {
