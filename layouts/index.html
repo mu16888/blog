@@ -15,7 +15,11 @@
         {{ partial "widgets/talk-preview.html" (dict "Context" . "Class" "widget-simple--talk-mobile") }}
     </div>
 
-    {{ partial "home-funnel.html" . }}
+    {{/* 「一人公司成长路径」漏斗三卡区块已于 2026-10-21 下线（锋哥令：这三个块取消）。
+         partial 保留在 layouts/partials/home-funnel.html，恢复只需取消下面这行注释。
+         注：custom.css 里 .funnel-card__link 的 40px 触控目标修复一并保留，
+             将来恢复漏斗时次级链接仍可手指点得中。 */}}
+    {{/* partial "home-funnel.html" . */}}
 
     <!-- PIN-OVERRIDE-ACTIVE --><section class="post-feed post-feed--home">
         {{ range $paginator.Pages }}
