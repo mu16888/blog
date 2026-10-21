@@ -1,33 +1,49 @@
 {{/* ============================================================
      颜色方案初始化（覆盖主题 themes/pocket-hugo-theme/layouts/partials/helpers/color-scheme.html）
-     ★ 2026-10-21 锋哥令：移动端只保留浅色主题
+
+     ★ 修复 1：锁定调色板为 deep-sea-blue（2026-10-21）
+       根因：主题 main.js:103 会 `applyPalette(resolvePalette())`，
+             而 resolvePalette() 读 localStorage 的 'PocketPalettePreset'。
+             项目虽在 hugo.toml 里 showPicker=false 隐藏了调色板 UI，
+             但**主题 JS 仍在读 localStorage 并应用** →
+             任何残留的旧值都会让 data-palette 变成别的色系（如 golden-summer-fields 暖米色）。
+       后果：custom.css 里所有配色覆盖（浅色段/深色段/移动端兜底）
+             全部以 `[data-palette="deep-sea-blue"]` 为条件 → palette 一变，**整套覆盖全部失效**，
+             站点退回主题默认暖色系（暖褐底 + 粉白标题 + 米黄卡片），看着完全不是自己的站。
+       修法：resolvedPalette 恒为站点 preset，不读 localStorage、不给 picker 按钮应用机会。
+
+     ★ 修复 2：移动端只保留浅色主题（2026-10-21 锋哥令）
        「手机端深浅没有太大区别干脆移动端只有浅色就好了」
-     做法：在主题原有逻辑上叠加「移动端强制 light」。
-       · 判定用 matchMedia('(max-width: 767px)')，与 custom.css 的媒体查询同一断点。
-       · 移动端忽略 localStorage 里的 dark、也忽略系统深色偏好 → 一律 light。
-       · 桌面端逻辑与主题完全一致（深浅切换照旧）。
+       判定不能只看视口宽度：部分手机浏览器开「桌面版网站」时 CSS 视口 ≥768px，
+       matchMedia('(max-width:767px)') 不匹配 → 锁不住。
+       → 改用「视口宽度 OR 触屏设备」双条件（(pointer:coarse) 覆盖桌面版网站模式）。
+       桌面端（真桌面浏览器）逻辑与主题一致，深浅切换照旧。
+
      同时注入 static/js/mobile-light-lock.js 兜底：主题 main.js 是 defer 加载的，
-     会在之后再次把 data-theme 改成 dark（监听系统配色变化），需要持续纠正。
+     会在之后把 data-theme 改成 dark（监听系统配色变化），需要持续纠正。
      ============================================================ */}}
+{{- $sitePreset := .Site.Params.colorScheme.preset | default "deep-sea-blue" -}}
 <script>
     (function () {
         var key = 'StackColorScheme';
-        var paletteKey = 'PocketPalettePreset';
         var media = window.matchMedia('(prefers-color-scheme: dark)');
-        var mobile = window.matchMedia('(max-width: 767px)');
         var defaultTheme = {{ printf "%q" (.Site.Params.colorScheme.default | default "auto") | safeJS }};
-        var defaultPalette = {{ printf "%q" (.Site.Params.colorScheme.preset | default "golden-summer-fields") | safeJS }};
-        var validPalettes = ['golden-summer-fields', 'soft-pastel-shades', 'black-gold-elegance', 'fresh-greens', 'light-steel', 'deep-sea-blue', 'morandi-mist', 'monochrome-core'];
-        var stored = null;
-        var storedPalette = null;
 
-        try {
-            stored = localStorage.getItem(key);
-            storedPalette = localStorage.getItem(paletteKey);
-        } catch (e) {
-            stored = null;
-            storedPalette = null;
-        }
+        /* ★ 移动端判定：视口窄 OR 触屏设备（覆盖浏览器「桌面版网站」模式）*/
+        var narrow = window.matchMedia('(max-width: 767px)');
+        var coarse = window.matchMedia('(pointer: coarse)');
+        function isMobile() { return narrow.matches || coarse.matches; }
+
+        var stored = null;
+        try { stored = localStorage.getItem(key); } catch (e) { stored = null; }
+
+        /* ★ 清理调色板残留（关键）：
+           主题 main.js 的 resolvePalette() 会读 localStorage['PocketPalettePreset']，
+           若有旧值会把 data-palette 改成别的色系 → 本站所有 [data-palette="deep-sea-blue"]
+           配色覆盖全部失效（症状：暖褐底 + 粉白标题 + 米黄卡片，完全不是自己的站）。
+           项目已关闭调色板 UI（showPicker=false），这个 key 没有任何合法用途 → 直接清掉，
+           让 main.js 回退到 dataset.palette（下面已硬锁为站点 preset）。 */
+        try { localStorage.removeItem('PocketPalettePreset'); } catch (e) {}
 
         var resolved = stored === 'dark' || stored === 'light'
             ? stored
@@ -36,19 +52,17 @@
                 : (media.matches ? 'dark' : 'light'));
 
         /* ★ 移动端强制浅色：忽略 localStorage 与系统偏好 */
-        if (mobile.matches) {
-            resolved = 'light';
-        }
-
-        var resolvedPalette = validPalettes.indexOf(storedPalette) > -1
-            ? storedPalette
-            : (validPalettes.indexOf(defaultPalette) > -1 ? defaultPalette : 'golden-summer-fields');
+        if (isMobile()) { resolved = 'light'; }
 
         document.documentElement.dataset.theme = resolved;
         document.documentElement.dataset.scheme = resolved;
-        document.documentElement.dataset.palette = resolvedPalette;
+        /* ★ 调色板锁定为站点 preset，绝不读 localStorage（见上方「修复 1」） */
+        document.documentElement.dataset.palette = {{ printf "%q" $sitePreset | safeJS }};
         document.documentElement.style.colorScheme = resolved;
     })();
 </script>
-{{/* 移动端浅色锁定兜底脚本（纠正主题 main.js 后续可能写入的 dark） */}}
-<script src="{{ "js/mobile-light-lock.js" | relURL }}" defer></script>
+{{/* 移动端浅色锁定兜底脚本（纠正主题 main.js 后续可能写入的 dark / 错误 palette）
+     ★ 必须带内容指纹：静态 JS 不带 ?v= 时浏览器/CDN 会一直用旧副本。 */}}
+{{- $lockJsPath := "js/mobile-light-lock.js" -}}
+{{- $lockJsVer := partial "helpers/asset-version.html" $lockJsPath -}}
+<script src="{{ $lockJsPath | relURL }}?{{ $lockJsVer }}" defer></script>

@@ -1,27 +1,35 @@
 /* ══════════════════════════════════════════════════════════════
-   移动端只保留浅色主题（2026-10-21 锋哥令）
+   移动端只保留浅色主题 + 调色板锁定（2026-10-21 锋哥令）
    「手机端深浅没有太大区别干脆移动端只有浅色就好了」
 
    为什么需要这个脚本（CSS 已经兜住了，这里是行为层的第二道保险）：
-     ① 主题 head 内联脚本 helpers/color-scheme.html 会读 localStorage 与
-        prefers-color-scheme，若系统是深色或用户之前点过深色，
-        会把 <html data-theme> 设成 "dark"；
-     ② 主题 main.js 监听 prefers-color-scheme 的 change 事件，
-        也会在系统切深色时把 data-theme 改成 "dark"；
-     ③ 桌面端 localStorage 存的 "dark" 会被手机端读到（同一浏览器同源）。
+     ① 主题 main.js 会监听 prefers-color-scheme 的 change 事件，
+        系统切深色时把 data-theme 改成 "dark"；
+     ② 主题 main.js:103 applyPalette(resolvePalette()) 会读 localStorage 的
+        'PocketPalettePreset' 并应用 —— 项目虽已隐藏调色板 UI（showPicker=false），
+        但这段 JS 仍在跑 → 残留旧值会让 data-palette 变成别的色系，
+        导致 custom.css 里所有 [data-palette="deep-sea-blue"] 覆盖全部失效，
+        站点退回主题默认暖米色系（暖褐底 + 粉白标题 + 米黄卡片）。
+     ③ 手机浏览器开「桌面版网站」时 CSS 视口 ≥768px，
+        只靠 max-width 判定会漏 → 因此加 (pointer:coarse) 触屏判定。
 
-   CSS 那段把深色变量全拉回浅色，视觉上已经是浅色；但 data-theme 属性
-   仍是 "dark"，会影响 <meta name="color-scheme">、系统滚动条/表单控件配色、
-   以及少数依赖 [data-theme] 属性的第三方脚本。
-   → 这里在移动端强制把 data-theme 拉回 "light"，并持续纠正。
-   桌面端（>768px）完全不受影响。
+   桌面端（真桌面浏览器，非触屏）完全不受影响。
    ══════════════════════════════════════════════════════════════ */
 (function () {
-    var MQ = window.matchMedia('(max-width: 767px)');
     var root = document.documentElement;
+    var SITE_PALETTE = 'deep-sea-blue';
 
-    function forceLight() {
-        if (!MQ.matches) return;
+    var narrow = window.matchMedia('(max-width: 767px)');
+    var coarse = window.matchMedia('(pointer: coarse)');
+    function isMobile() { return narrow.matches || coarse.matches; }
+
+    function fix() {
+        /* 调色板锁定：无论主题 JS 写了什么，都强制回到品牌色系 */
+        if (root.dataset.palette !== SITE_PALETTE) {
+            root.dataset.palette = SITE_PALETTE;
+        }
+        if (!isMobile()) return;
+        /* 移动端强制浅色 */
         if (root.dataset.theme !== 'light') {
             root.dataset.theme = 'light';
             root.dataset.scheme = 'light';
@@ -31,40 +39,37 @@
         }
     }
 
-    // 立即执行一次（脚本放在 body 末尾，DOM 已就绪）
-    forceLight();
-
-    // 主题 main.js 是 defer 加载的，可能在本站脚本之后才执行并覆盖 data-theme
-    window.setTimeout(forceLight, 0);
-    window.setTimeout(forceLight, 200);
-
-    // 视口跨越 768px（如平板旋转、手机横竖屏切换）时重新纠正
-    var onChange = function () { forceLight(); };
-    if (MQ.addEventListener) {
-        MQ.addEventListener('change', onChange);
-    } else if (MQ.addListener) {
-        MQ.addListener(onChange);
+    /* 立即执行一次 */
+    fix();
+    /* 主题 main.js 是 defer 加载、可能在本脚本之后才执行并覆盖 → 延迟纠正 */
+    window.setTimeout(fix, 0);
+    window.setTimeout(fix, 200);
+    window.setTimeout(fix, 800);
+    /* DOMContentLoaded 触发时，所有 defer 脚本（含主题 main.js）均已执行完 → 再兜一次 */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fix);
+    } else {
+        fix();
     }
 
-    // 系统配色偏好变化时（主题 main.js 会把 data-theme 改成 dark）再纠正一次
+    /* 视口 / 设备类型变化 */
+    var onChange = function () { fix(); };
+    if (narrow.addEventListener) narrow.addEventListener('change', onChange);
+    else if (narrow.addListener) narrow.addListener(onChange);
+    if (coarse.addEventListener) coarse.addEventListener('change', onChange);
+    else if (coarse.addListener) coarse.addListener(onChange);
+
+    /* 系统配色偏好变化时（主题 main.js 会把 data-theme 改成 dark）再纠正 */
     var media = window.matchMedia('(prefers-color-scheme: dark)');
     var onMedia = function () {
-        // 让主题先处理，随后我们再拉回浅色
-        window.setTimeout(forceLight, 0);
-        window.setTimeout(forceLight, 50);
+        window.setTimeout(fix, 0);
+        window.setTimeout(fix, 50);
     };
-    if (media.addEventListener) {
-        media.addEventListener('change', onMedia);
-    } else if (media.addListener) {
-        media.addListener(onMedia);
-    }
+    if (media.addEventListener) media.addEventListener('change', onMedia);
+    else if (media.addListener) media.addListener(onMedia);
 
-    // 兜底轮询：主题 main.js 可能在任意时刻写入 dark
-    var guard = window.setInterval(function () {
-        if (!MQ.matches) {
-            window.clearInterval(guard);
-            return;
-        }
-        forceLight();
+    /* 兜底轮询：主题 main.js 可能在任意时刻写入 dark / 错误 palette */
+    window.setInterval(function () {
+        fix();
     }, 1000);
 })();

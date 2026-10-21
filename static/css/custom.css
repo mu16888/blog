@@ -1926,7 +1926,11 @@ html[data-min="true"] .article-page__cover img {
 @media (max-width: 767px) {
   /* ① CSS 兜底：把深色段的全部变量在移动端拉回浅色值。
      这里只列「深浅两段定义过、且浅深值不同」的变量，逐项对齐浅色段的值。 */
-  html[data-theme="dark"][data-palette="deep-sea-blue"] {
+  /* ★ 用 :where() 把 palette 条件解绑：无论 data-palette 被改成什么
+     （主题 main.js 会读 localStorage 写入，UI 已关但 JS 仍在跑），
+     移动端都强制拉回浅色。:where() 内部选择器权重为 0，
+     但本规则靠「文件末尾 + 媒体查询」取胜，不依赖权重。 */
+  html[data-theme="dark"] {
     --background: #f6f7f9;
     --foreground: #1b2a4d;
     --muted: #5c6b86;
@@ -1998,7 +2002,7 @@ html[data-min="true"] .article-page__cover img {
     --waline-btn-text: #ffffff;
   }
   /* 深色模式专属的背景图 / 暗罩 / 标题卡，在移动端一并撤掉 */
-  html[data-theme="dark"][data-palette="deep-sea-blue"] body {
+  html[data-theme="dark"] body {
     background-color: #f6f7f9;
     background-image: none;
   }
@@ -2012,5 +2016,10 @@ html[data-min="true"] .article-page__cover img {
     --cover-hero-end: #5b6c92;
   }
   /* ③ 移动端隐藏深浅切换按钮（浅色/深色 太阳月亮图标）*/
+  .site-header .header-tool--toggle { display: none !important; }
+}
+/* ③ 触屏设备（含浏览器「桌面版网站」模式，CSS 视口 ≥768px 那种）同样隐藏切换按钮：
+   移动端已锁浅色，保留按钮点了也没反应，会让人以为坏了。 */
+@media (pointer: coarse) {
   .site-header .header-tool--toggle { display: none !important; }
 }
