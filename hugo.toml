@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 #  沐风的个人博客 · Hugo 配置（pocket-hugo-theme）
 #  注意：pocket 主题要求 Hugo >= 0.149，Cloudflare Pages 默认 0.147 会挂
 #        → 必须在 CF 项目设置 HUGO_VERSION = 0.167.0
@@ -43,42 +43,28 @@ copyright = "沐风 · AI办公与效率工具"
   category = "categories"
 
 # 顶部导航（首页由主题硬编码，这里加其余栏目）
+# 精简为 5 项，保证手机端一排显示：产品 / 餐饮AI / 互动 / 关于
 [ menu ]
-  [[ menu.main ]]
-    identifier = "posts"
-    name = "文章"
-    url = "/posts/"
-    weight = 1
   [[ menu.main ]]
     identifier = "products"
     name = "产品"
     url = "/products/"
-    weight = 2
+    weight = 1
   [[ menu.main ]]
     identifier = "canyin"
     name = "餐饮AI"
     url = "/products/canyin-ai/"
-    weight = 3
-  [[ menu.main ]]
-    identifier = "docs"
-    name = "文档"
-    url = "/docs/"
-    weight = 4
+    weight = 2
   [[ menu.main ]]
     identifier = "interact"
     name = "互动"
     url = "/interact/"
-    weight = 5
+    weight = 3
   [[ menu.main ]]
     identifier = "about"
     name = "关于"
     url = "/about/"
-    weight = 6
-  [[ menu.main ]]
-    identifier = "cases"
-    name = "案例"
-    url = "/cases/"
-    weight = 7
+    weight = 4
 
 # ---------- 主题参数 ----------
 [ params ]
