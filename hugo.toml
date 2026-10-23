@@ -55,6 +55,11 @@ copyright = "沐风 · AI办公与效率工具"
     url = "/products/"
     weight = 2
   [[ menu.main ]]
+    identifier = "canyin"
+    name = "餐饮AI"
+    url = "/products/canyin-ai/"
+    weight = 2.5
+  [[ menu.main ]]
     identifier = "docs"
     name = "文档"
     url = "/docs/"
