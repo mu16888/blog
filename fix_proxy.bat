@@ -1,6 +1,6 @@
-@echo off
+﻿@echo off
 title [Blog] Fix Git Proxy
-set GIT=D:\Program Files\Git\cmd\git.exe
+set GIT=C:\Program Files\Git\cmd\git.exe
 echo.
 echo ============================================
 echo    MU FENG BLOG - FIX GIT PROXY

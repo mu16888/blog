@@ -1,7 +1,7 @@
-@echo off
+﻿@echo off
 title [Blog] Publish Article
 cd /d "%~dp0"
-set GIT=D:\Program Files\Git\cmd\git.exe
+set GIT=C:\Program Files\Git\cmd\git.exe
 
 echo.
 echo ============================================
