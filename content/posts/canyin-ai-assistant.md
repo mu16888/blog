@@ -1,7 +1,7 @@
 ---
 title: "不会 Excel 的老板，也能把店里的账算清楚"
 date: 2026-11-10
-draft: true
+draft: false
 tags: ["餐饮经营", "AI助理", "成本核算", "菜单"]
 title_main: "不会 Excel 的老板，也能把店里的账算清楚"
 title_sub: "说句话，就把店里的账算清楚"

@@ -263,7 +263,8 @@ def prepare(slug):
     if len(title.encode("utf-8")) > 63:
         title = fit_bytes(title, 60)
         print(f"[警告] 标题超64字节限制，已裁短 → {title}（建议在 md 加 wechat_title 字段定制）")
-    digest = fit_bytes(clean(fm.get("description", "")), 115)
+    digest_src = clean(fm.get("wechat_digest", "")) or clean(fm.get("description", ""))
+    digest = fit_bytes(digest_src, 115)
     image_rel = clean(fm.get("image", ""))
     cover = ROOT / "static" / image_rel.lstrip("/") if image_rel else None
     # 优先用公众号专用封面（2.35:1），避免微信按 2.35:1 居中裁切切到两段式文字上下；
