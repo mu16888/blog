@@ -218,20 +218,35 @@ def upload_cover(token, local_path: Path):
     return r["media_id"]
 
 
-def add_draft(token, article):
+def add_draft(token, article, retries=3):
     # 🔴 必须显式 ensure_ascii=False + UTF-8 字节提交：早期用 json= 参数导致中文被
     # 转义后未被微信正确解码，草稿正文在后台显示成 \uXXXX 乱码。
-    payload = json.dumps({"articles": [article]}, ensure_ascii=False).encode("utf-8")
-    r = requests.post(
-        f"{API}/cgi-bin/draft/add",
-        params={"access_token": token},
-        data=payload,
-        headers={"Content-Type": "application/json; charset=utf-8"},
-        timeout=30,
-    ).json()
-    if "media_id" not in r:
-        sys.exit(f"[建草稿失败] {r}")
-    return r["media_id"]
+    #
+    # ⚠️ errcode 47001 "data format error" 是**间歇性**的：同一份 payload
+    # 重发一次就成功（2026-11-10 实测连试 4 次全过）。所以这里做自动重试，
+    # 而不是直接 sys.exit 把整次发布废掉。
+    last = {}
+    for attempt in range(1, retries + 1):
+        payload = json.dumps({"articles": [article]}, ensure_ascii=False).encode("utf-8")
+        r = requests.post(
+            f"{API}/cgi-bin/draft/add",
+            params={"access_token": token},
+            data=payload,
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            timeout=30,
+        ).json()
+        if "media_id" in r:
+            return r["media_id"]
+        last = r
+        code = r.get("errcode")
+        # 47001 走重试；其他错误码（如 40001/40164/45009）重试也没意义，直接退出
+        if code != 47001:
+            break
+        if attempt < retries:
+            print(f"[建稿重试] 微信返回 47001（间歇性格式错误），"
+                  f"第 {attempt} 次重试…")
+            time.sleep(1.5 * attempt)
+    sys.exit(f"[建草稿失败] {last}")
 
 
 def freepublish(token, media_id):

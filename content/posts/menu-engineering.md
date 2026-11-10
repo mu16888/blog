@@ -1,13 +1,14 @@
 ---
 title: "菜单工程四象限：用一张表淘汰你的「赔本引流菜」"
 date: 2026-10-14
-draft: true
+draft: false
 tags: ["餐饮经营", "菜单", "利润"]
 title_main: "菜单工程四象限"
 title_sub: "用一张表淘汰你的赔本引流菜"
 description: "菜单不是越厚越好。用波士顿矩阵式的四象限，把每道菜按「人气 × 利润」摆上桌，该留该砍一眼看清。"
-image: "/covers/cover-tech-1.png"
-wechat_title: "一张表淘汰你的赔本引流菜"
+image: "/covers/wechat/menu-engineering.jpg"
+wechat_title: "菜单工程四象限：用一张表淘汰「赔本引流菜」"
+wechat_digest: "菜单不是越厚越好。用四象限把每道菜按「人气×利润」摆上桌，该留该砍一眼看清。"
 ---
 
 很多老板觉得菜单越厚越有面子，二十多道菜洋洋洒洒。真算起来，一半是在替房东和供应商打工——卖得欢，不赚钱。
